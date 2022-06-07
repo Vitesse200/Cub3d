@@ -67,6 +67,6 @@ int		ft_file_linecount(char *file);
 int		ft_file_type(char *s, char *end);
 int		ft_extract(t_map *map);
 int		ft_check_map(t_map *struc_map);
-void	ft_print_player_map(t_map *map);
+void	ft_print_player_map(char **map);
 
 #endif

@@ -180,6 +180,6 @@ int	ft_extract(t_map *map)
 	ft_map_first(map);
 	map->play_map = ft_malloc_play_map(map);
 	ft_play_map(map);
-	ft_print_player_map(map);
+	ft_print_player_map(map->play_map);
 	return (0);
 }

@@ -20,17 +20,17 @@ void	ft_print_map(t_map *map)
 	}
 }
 
-void	ft_print_player_map(t_map *map)
+void	ft_print_player_map(char **map)
 {
 	int i, j;
 
 	i = 0;
-	while (map->play_map[i])
+	while (map[i])
 	{
 		j = 0;
-		while (map->play_map[i][j])
+		while (map[i][j])
 		{
-			write(1, &map->play_map[i][j], 1);
+			write(1, &map[i][j], 1);
 			j++;
 		}
 		i++;
