@@ -48,6 +48,7 @@ typedef struct s_map
 	char		orientation;
 	char		**map;
 	char		**play_map;
+	char		**check_map;
 	void		*mlx;
 	void		*window;
 	int			moves;

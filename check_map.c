@@ -23,7 +23,7 @@ int	move_down(char **map, int y, int x)
 
 int	move_up(char **map, int y, int x)
 {
-	while (map[y-1][x] == '1' && map[y][x+1] != '1')
+	while (map[y-1][x] == '1')
 		y--;
 	return (y);
 }
