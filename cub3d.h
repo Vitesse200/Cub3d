@@ -26,10 +26,19 @@ typedef struct s_image
 	void	*celling;
 }	t_image;
 
+typedef struct s_check
+{
+    t_vector    top_left;
+    t_vector    top_right;
+    t_vector    btm_left;
+    t_vector    btm_right;
+}	t_check;
+
 typedef struct s_map
 {
 	t_vector	size;
 	t_vector	player;
+    t_check     map_checker;
 	int			y_1_1;
 	int			x_1_1;
 	int			y_2_1;
@@ -68,5 +77,6 @@ int		ft_file_type(char *s, char *end);
 int		ft_extract(t_map *map);
 int		ft_check_map(t_map *struc_map);
 void	ft_print_player_map(char **map);
+int     check_4_sides_holes(char **map, t_map *s_map);
 
 #endif

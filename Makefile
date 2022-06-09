@@ -16,6 +16,8 @@ SRC = cub3d.c\
 			open_map.c\
 			exctract_map.c\
 			check_map.c\
+			new_check_map.c\
+			new_check_holes.c\
 
 CC = gcc
 

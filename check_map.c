@@ -14,16 +14,16 @@ int	move_right(char **map, int y, int x)
 			map[y][x] = '3';
 		else
 			map[y][x] = '2';
-        if (map[y][x+1] == '2' && map[y-1][x] == '1')
+        if ((map[y][x+1] == '3' || map[y][x+1] == '2') && map[y-1][x] == '1')
         {
             move_up(map, y, x);
-            printf("move up y = %d\n", y);
+            printf(" R move up y = %d\n", y);
             break ;
         }
-        else if (map[y][x+1] == '2' && map[y+1][x] == '1')
+        else if ((map[y][x+1] == '2' || map[y][x+1] == '3') && map[y+1][x] == '1')
         {
             move_down(map, y, x);
-            printf("move down y = %d\n", y);
+            printf(" R move down y = %d\n", y);
             break ;
         }
 		x++;
@@ -45,6 +45,8 @@ int	move_down(char **map, int y, int x)
 		else
 			map[y][x] = '2';
 		y++;
+        if (map[y][x+1] == '1')
+            x++;
 	}
 	return (y);
 }
@@ -69,7 +71,7 @@ int	move_up(char **map, int y, int x)
 {
 	while ((map[y-1][x] == '1'  || map[y-1][x] == '2'))
 	{
-		printf("y = %d\n", y);
+		printf("move up y = %d\n", y);
 		if (map[y-1][x] == '2')
 			map[y][x] = '3';
 		else
@@ -131,10 +133,10 @@ int	ft_check_top(t_map *s_map)
 		{
 			x = move_right(map, y, x);
 			printf("move right x = %d\n", x);
-            if (y > 0 && map[y-1][x] < map[y][x-1]){
-                y = move_up(map, y, x);
-                printf("move up y = %d\n", y);
-            }
+//            if (y > 0 && map[y-1][x] < map[y][x-1]){
+//                y = move_up(map, y, x);
+//                printf("move up y = %d\n", y);
+//            }
 		}
 //        else if ((map[y][x] == '2' || map[y][x] == '3') && (map[y-1][x] == '1'))
 //        {
@@ -166,20 +168,21 @@ int	ft_check_top(t_map *s_map)
 	return (1);
 }
 
-int	ft_check_map(t_map *struc_map)
-{
-	printf("\n*****************\n");
-	if (!ft_check_top(struc_map))
-	{
-		error("top wall not valid\n");
-		ft_print_player_map(struc_map->check_map);
-		return (0);
-	}
-	// if (!ft_check_right(struc_map))
-	// {
-	// 	error("right wall not valid\n");
-	// 	return (0);
-	// }
-	printf("TOP WALL VALID\n");
-	return (1);
-}
+//int	ft_check_map(t_map *struc_map)
+//{
+//	printf("\n*****************\n");
+////	if (!ft_check_top(struc_map))
+////	{
+////		error("top wall not valid\n");
+////		ft_print_player_map(struc_map->check_map);
+////		return (0);
+////	}
+//	// if (!ft_check_right(struc_map))
+//	// {
+//	// 	error("right wall not valid\n");
+//	// 	return (0);
+//	// }
+//    ft_check_all_sides()
+//	printf("TOP WALL VALID\n");
+//	return (1);
+//}

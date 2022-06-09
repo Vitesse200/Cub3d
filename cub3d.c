@@ -48,14 +48,15 @@ int	main(int argc, char **argv)
 	ft_get_map(&map, argv[1]);
 	//ft_print_map(&map);
 	ft_extract(&map);
+    printf("///*****/////*****///***///****\n");
 	if (!ft_check_map(&map))
 	{
-		// printf("NO = %s\n", map.NO);
-		// printf("SO = %s\n", map.SO);
-		// printf("WE = %s\n", map.WE);
-		// printf("EA = %s\n", map.EA);
-		// printf("F = %s\n", map.F);
-		// printf("C = %s\n", map.C);
+//		// printf("NO = %s\n", map.NO);
+//		// printf("SO = %s\n", map.SO);
+//		// printf("WE = %s\n", map.WE);
+//		// printf("EA = %s\n", map.EA);
+//		// printf("F = %s\n", map.F);
+//		// printf("C = %s\n", map.C);
 		return (error("map is not valid\n"));
 	}
 	return (0);
