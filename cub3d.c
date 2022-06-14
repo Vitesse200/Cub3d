@@ -35,6 +35,7 @@ void	ft_print_player_map(char **map)
 		}
 		i++;
 	}
+    write (1, "\n", 2);
 }
 
 int	main(int argc, char **argv)
@@ -50,10 +51,12 @@ int	main(int argc, char **argv)
         return (error("No map to extract"));
 	if (!ft_extract(&map))
         return (0);
-    printf("///*****/////*****///***///****\n");
+    printf("///*****/////*CUB3D*///***///****\n");
 	if (!ft_check_map(&map))
 		return (error("map is not valid\n"));
     if (!ft_extract_data(&map))
         return (error("Expected rgb data\n"));
+    printf("Max x = %d\n", map.max_x);
+    printf("Max y = %d\n", map.max_y);
 	return (0);
 }
