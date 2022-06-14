@@ -46,18 +46,14 @@ int	main(int argc, char **argv)
 	if (!ft_valid_file(argv[1]))
 		return (error("expecting .cub file type\n"));
 	ft_get_map(&map, argv[1]);
-	//ft_print_map(&map);
-	ft_extract(&map);
+    if (!map.map)
+        return (error("No map to extract"));
+	if (!ft_extract(&map))
+        return (0);
     printf("///*****/////*****///***///****\n");
 	if (!ft_check_map(&map))
-	{
-//		// printf("NO = %s\n", map.NO);
-//		// printf("SO = %s\n", map.SO);
-//		// printf("WE = %s\n", map.WE);
-//		// printf("EA = %s\n", map.EA);
-//		// printf("F = %s\n", map.F);
-//		// printf("C = %s\n", map.C);
 		return (error("map is not valid\n"));
-	}
+    if (!ft_extract_data(&map))
+        return (error("Expected rgb data\n"));
 	return (0);
 }

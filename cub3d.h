@@ -53,6 +53,8 @@ typedef struct s_map
 	char		*WE;
 	char		*EA;
 	char		*F;
+    int         *tab_F;
+    int         *tab_C;
 	char		*C;
 	char		orientation;
 	char		**map;
@@ -74,9 +76,12 @@ int		ft_valid_file(char *file);
 char	**ft_alloc_lines(char *file, t_map *game);
 int		ft_file_linecount(char *file);
 int		ft_file_type(char *s, char *end);
-int		ft_extract(t_map *map);
+int     ft_extract(t_map *map);
 int		ft_check_map(t_map *struc_map);
 void	ft_print_player_map(char **map);
-int     check_4_sides_holes(char **map, t_map *s_map);
+int     ft_valid_data(t_map *map);
+int     ft_extract_F_data(t_map *map);
+int     ft_extract_C_data(t_map *map);
+int     ft_extract_data(t_map *map);
 
 #endif
