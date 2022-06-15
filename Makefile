@@ -15,12 +15,13 @@ SRC = cub3d.c\
 			get_next_line.c\
 			open_map.c\
 			exctract_map.c\
+			raycasting_2.c\
 			check_0_map.c\
 			check_data_map.c\
 			check_data_support.c\
 			extract_map_support.c\
 
-CC = gcc
+CC = gcc -g
 
 NAME = cub3D
 

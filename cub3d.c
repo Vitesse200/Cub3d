@@ -47,6 +47,9 @@ int	main(int argc, char **argv)
 	if (!ft_valid_file(argv[1]))
 		return (error("expecting .cub file type\n"));
 	ft_get_map(&map, argv[1]);
+	if (!ft_valid_file(argv[1]))
+		return (error("expecting .cub file type\n"));
+	ft_get_map(&map, argv[1]);
     if (!map.map)
         return (error("No map to extract"));
 	if (!ft_extract(&map))
