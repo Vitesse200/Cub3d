@@ -1,47 +1,47 @@
 #include "cub3d.h"
-char **init_map()
-{
-	char **map;
-	int i = 0;
-	
-	map = malloc(sizeof(char *) * 6);
-	while (i < 6) {
-		map[i] = malloc(sizeof(char) * 6);
-		i++;
-	}
-	i = 0;
-	while (i < 6)
-	{
-		map[0][i] = '1';
-		map[5][i] = '1';
-		i++;
-	}
-	i = 1;
-	while (i < 5)
-	{
-		map[i][0] = '1';
-		map[i][i] = '0';
-		map[i][5] = '1';
-		i++;
-	}
-	map[3][3] = '1';
-	return(map);
-}
+//char **init_map()
+//{
+//	char **map;
+//	int i = 0;
+//
+//	map = malloc(sizeof(char *) * 6);
+//	while (i < 6) {
+//		map[i] = malloc(sizeof(char) * 6);
+//		i++;
+//	}
+//	i = 0;
+//	while (i < 6)
+//	{
+//		map[0][i] = '1';
+//		map[5][i] = '1';
+//		i++;
+//	}
+//	i = 1;
+//	while (i < 5)
+//	{
+//		map[i][0] = '1';
+//		map[i][i] = '0';
+//		map[i][5] = '1';
+//		i++;
+//	}
+//	map[3][3] = '1';
+//	return(map);
+//}
 
-double find_close_wall(char **map, double angle)
+double find_close_wall(char **map, int x, int y, double angle)
 {
 	double wall_distance;
 	double wall_heigth;
 	
-	if (find_first_hor(map, 1, 4, angle) > find_first_vert(map, 1, 4 , angle))
+	if (find_first_hor(map, x, y, angle) > find_first_vert(map, x, y , angle))
 	{
-		wall_distance = find_first_vert(map, 1, 4, angle);
+		wall_distance = find_first_vert(map, x, y, angle);
 		wall_heigth = TILE_SIZE / wall_distance * PROJ_DIST;
 		return (wall_heigth);
 	}
 	else
 	{
-		wall_distance = find_first_hor(map, 1, 4 , angle);
+		wall_distance = find_first_hor(map, x, y , angle);
 		wall_heigth = TILE_SIZE / wall_distance * PROJ_DIST;
 		return (wall_heigth);
 	}
@@ -55,8 +55,8 @@ double find_first_hor(char **map, int posx, int posy, double angle)
 	
 	posx = posx * TILE_SIZE + (TILE_SIZE / 2);
 	posy = posy * TILE_SIZE + (TILE_SIZE / 2);
-	grid_hit_y = posy / TILE_SIZE * TILE_SIZE - 1;
-	grid_hit_x = posx + ((posy - grid_hit_y) / fabs(tan_degrees(angle)));
+	grid_hit_x = posy / TILE_SIZE * TILE_SIZE - 1;
+	grid_hit_y = posx + ((posy - grid_hit_x) / fabs(tan_degrees(angle)));
 	while (map[(int)grid_hit_x / TILE_SIZE][(int)grid_hit_y / TILE_SIZE] != '1')
 	{
 		grid_hit_y -= TILE_SIZE;
@@ -107,7 +107,7 @@ double tan_degrees(double angle)
 	angle = tan(angle);
 	return (angle);
 }
-int	draw_map(t_winp winp, char **map) {
+int	draw_map(t_winp winp, t_map *map) {
 	int i;
 	int j;
 	int k;
@@ -120,9 +120,9 @@ int	draw_map(t_winp winp, char **map) {
 	j = 0;
 	i = 0;
 	k = 0;
-	angle = 140;
-	while (i < 320) {
-		wall_heigth = find_close_wall(map, angle);
+	angle = 120;
+	while (i < 120) {
+		wall_heigth = find_close_wall(map->play_map, map->player.x, map->player.y, angle);
 		wall_top = wall_heigth / 2 - WINDOW_H / 2;
 		while (c < 6) {
 			while (k < wall_heigth) {
@@ -137,18 +137,17 @@ int	draw_map(t_winp winp, char **map) {
 		}
 		color +=10;
 		i++;
-		angle -= ANGLE_DIFF;
+		angle += ANGLE_DIFF;
 		printf("angle is = %f\n", angle);
 		c = 0;
 	}
 	return (0);
 }
 
-void	window_manager(char **map)
+void	window_manager(t_map *map)
 	{
 		t_winp	winp;
 		
-		//(void) map;
 		winp.mlx = mlx_init();
 		winp.win = mlx_new_window(winp.mlx,1920, 1200,"Cub3d");
 		draw_map(winp, map);
