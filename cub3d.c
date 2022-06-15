@@ -20,65 +20,46 @@ void	ft_print_map(t_map *map)
 	}
 }
 
-void	ft_print_player_map(t_map *map)
+void	ft_print_player_map(char **map)
 {
 	int i, j;
 
 	i = 0;
-	while (map->play_map[i])
+	while (map[i])
 	{
 		j = 0;
-		while (map->play_map[i][j])
+		while (map[i][j])
 		{
-			write(1, &map->play_map[i][j], 1);
+			write(1, &map[i][j], 1);
 			j++;
 		}
 		i++;
 	}
+    write (1, "\n", 2);
 }
 
 int	main(int argc, char **argv)
 {
-	//t_map	map;
-	char	**HARD_MAP;
+	t_map	map;
 
-//	if (find_first_horizontal_wall(HARD_MAP, 2, 2) > find_first_vertical_wall(HARD_MAP, 2, 2))
-//	{
-//		wall_distance = find_first_vertical_wall(HARD_MAP, 2, 2);
-//		wall_heigth = TILE_SIZE / wall_distance * PROJ_DIST;
-//		printf("Closest wall is vertical\n");
-//		printf("Wall distance is %f\n", wall_distance);
-//		printf("Wall heigth is : %d\n", wall_heigth);
-//		printf("Stard drawing at : %d	until : %d\n", (WINDOW_H / 2) + (wall_heigth / 2), ((WINDOW_H / 2) - (wall_heigth / 2)));
-//	}
-//	else
-//	{
-//		wall_distance = find_first_horizontal_wall(HARD_MAP, 2, 2);
-//		wall_heigth = TILE_SIZE / wall_distance * PROJ_DIST;
-//		printf("Closest wall is horizontal\n");
-//		printf("Wall distance is %f\n", wall_distance);
-//		printf("Wall heigth is : %d\n", wall_heigth);
-//		printf("Stard drawing at : %d	until : %d\n", (WINDOW_H / 2) + (wall_heigth / 2), ((WINDOW_H / 2) - (wall_heigth / 2)));
-//	}
-	HARD_MAP = init_map();
-	window_manager(HARD_MAP);
 	if (argc != 2)
 		return (error("expecting 1 map as argument\n"));
-	(void ) argv;
-//	if (!ft_valid_file(argv[1]))
-//		return (error("expecting .cub file type\n"));
-//	ft_get_map(&map, argv[1]);
-//	//ft_print_map(&map);
-//	ft_extract(&map);
-//	if (!ft_check_map(&map))
-//	{
-//		// printf("NO = %s\n", map.NO);
-//		// printf("SO = %s\n", map.SO);
-//		// printf("WE = %s\n", map.WE);
-//		// printf("EA = %s\n", map.EA);
-//		// printf("F = %s\n", map.F);
-//		// printf("C = %s\n", map.C);
-//		return (error("map is not valid\n"));
-//	}
+	if (!ft_valid_file(argv[1]))
+		return (error("expecting .cub file type\n"));
+	ft_get_map(&map, argv[1]);
+	if (!ft_valid_file(argv[1]))
+		return (error("expecting .cub file type\n"));
+	ft_get_map(&map, argv[1]);
+    if (!map.map)
+        return (error("No map to extract"));
+	if (!ft_extract(&map))
+        return (0);
+    printf("///*****/////*CUB3D*///***///****\n");
+	if (!ft_check_map(&map))
+		return (error("map is not valid\n"));
+    if (!ft_extract_data(&map))
+        return (error("Expected rgb data\n"));
+    printf("Max x = %d\n", map.max_x);
+    printf("Max y = %d\n", map.max_y);
 	return (0);
 }

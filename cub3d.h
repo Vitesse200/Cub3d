@@ -30,10 +30,19 @@ typedef struct s_image
 	void	*celling;
 }	t_image;
 
+typedef struct s_check
+{
+    t_vector    top_left;
+    t_vector    top_right;
+    t_vector    btm_left;
+    t_vector    btm_right;
+}	t_check;
+
 typedef struct s_map
 {
 	t_vector	size;
 	t_vector	player;
+    t_check     map_checker;
 	int			y_1_1;
 	int			x_1_1;
 	int			y_2_1;
@@ -48,6 +57,8 @@ typedef struct s_map
 	char		*WE;
 	char		*EA;
 	char		*F;
+    int         *tab_F;
+    int         *tab_C;
 	char		*C;
 	char		orientation;
 	char		**map;
@@ -68,10 +79,7 @@ typedef struct s_winpoint
 double find_first_hor(char **map, int posx, int posy, double angle);
 double tan_degrees(double angle);
 double find_first_vert(char **map, int posx, int posy, double angle);
-char **init_map();
 double find_close_wall(char **map, double angle);
-//double 	find_first_horizontal_wall(char **map, int posx, int posy, double angle);
-//double	find_first_vertical_wall(char **map, int posx, int posy, double angle);
 void	window_manager(char **map);
 void	*null_error(char *message);
 int		error(char *message);
@@ -84,10 +92,22 @@ int		ft_valid_file(char *file);
 char	**ft_alloc_lines(char *file, t_map *game);
 int		ft_file_linecount(char *file);
 int		ft_file_type(char *s, char *end);
-int		ft_extract(t_map *map);
-int		ft_check_map(t_map *struct_map);
-void	ft_print_player_map(t_map *map);
-int	draw_map(t_winp winp, char **map);
-int	closest_wall(char **map, double angle);
+int    	draw_map(t_winp winp, char **map);
+int     ft_extract(t_map *map);
+int		  ft_check_map(t_map *struc_map);
+void	  ft_print_player_map(char **map);
+int     ft_valid_data(t_map *map);
+int     ft_extract_F_data(t_map *map);
+int     ft_extract_C_data(t_map *map);
+int     ft_extract_data(t_map *map);
+int     ft_check_rgb(int *tab);
+int	    ft_isnum(int c);
+int     ft_extract_rgb(int i, char *tmp, char *rgb, char t, t_map *map, int count);
+int     ft_check_valid_num(char *f, int i);
+int     get_max_value(char **map, t_map *s_map);
+char	  **ft_malloc_play_map(t_map *s_map);
+void	  init_map(t_map *map);
+int	    ft_match(char *c, t_map *map);
+
 
 #endif
