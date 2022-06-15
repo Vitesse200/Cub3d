@@ -1,4 +1,4 @@
-#ifndef CUB3D_H
+# ifndef CUB3D_H
 # define CUB3D_H
 
 # include "mlx/mlx.h"
@@ -7,17 +7,21 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <math.h>
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
-# endif 
+# define BUFFER_SIZE 10
+# define TILE_SIZE 320
+# define PROJ_DIST 1662
+# define WINDOW_H 1200
+# define WINDOW_W 1920
+# define ANGLE_DIFF 0.1875
+# define TILE_SIZE 320
 
 typedef struct s_vector
 {
 	int	x;
 	int	y;
 } t_vector;
-
 
 typedef struct s_image
 {
@@ -52,8 +56,23 @@ typedef struct s_map
 	void		*mlx;
 	void		*window;
 	int			moves;
-} t_map;
+}	t_map;
 
+typedef struct s_winpoint
+{
+	void	*win;
+	void	*mlx;
+	//char	*map;
+}			t_winp;
+
+double find_first_hor(char **map, int posx, int posy, double angle);
+double tan_degrees(double angle);
+double find_first_vert(char **map, int posx, int posy, double angle);
+char **init_map();
+double find_close_wall(char **map, double angle);
+//double 	find_first_horizontal_wall(char **map, int posx, int posy, double angle);
+//double	find_first_vertical_wall(char **map, int posx, int posy, double angle);
+void	window_manager(char **map);
 void	*null_error(char *message);
 int		error(char *message);
 char	*ft_save(char *save);
@@ -66,7 +85,9 @@ char	**ft_alloc_lines(char *file, t_map *game);
 int		ft_file_linecount(char *file);
 int		ft_file_type(char *s, char *end);
 int		ft_extract(t_map *map);
-int		ft_check_map(t_map *struc_map);
+int		ft_check_map(t_map *struct_map);
 void	ft_print_player_map(t_map *map);
+int	draw_map(t_winp winp, char **map);
+int	closest_wall(char **map, double angle);
 
 #endif

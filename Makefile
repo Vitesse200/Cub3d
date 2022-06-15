@@ -16,8 +16,9 @@ SRC = cub3d.c\
 			open_map.c\
 			exctract_map.c\
 			check_map.c\
+			raycasting_2.c\
 
-CC = gcc
+CC = gcc -g
 
 NAME = cub3D
 
