@@ -20,6 +20,7 @@ SRC = cub3d.c\
 			check_data_map.c\
 			check_data_support.c\
 			extract_map_support.c\
+			find_wall.c\
 
 CC = gcc -g
 
