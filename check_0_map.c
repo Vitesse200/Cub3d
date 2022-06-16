@@ -5,6 +5,7 @@ int ft_find_player(int count, char **map, int y, t_map *s_map)
     int x;
 
     x = 0;
+    //s_map->player.angle = 0;
     while (map[y][x])
     {
         if (map[y][x] == 'W' || map[y][x] == 'E' || map[y][x] == 'N' || map[y][x] == 'S') {
@@ -12,9 +13,18 @@ int ft_find_player(int count, char **map, int y, t_map *s_map)
             s_map->player.x = x;
             s_map->player.y = y;
             s_map->orientation = map[y][x];
+            if (s_map->orientation == 'N')
+                s_map->player.angle = 90;
+            if (s_map->orientation == 'S')
+                s_map->player.angle = 270;
+            if (s_map->orientation == 'E')
+                s_map->player.angle = 180;
+            if (s_map->orientation == 'W')
+                s_map->player.angle = 0;
         }
         x++;
     }
+    printf("/////*****////****/////**//*/init player angle = %d\n", s_map->player.angle);
     return (count);
 }
 

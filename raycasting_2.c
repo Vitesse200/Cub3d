@@ -100,7 +100,9 @@ void	window_manager(t_map *map)
 		winp.mlx = mlx_init();
 		winp.win = mlx_new_window(winp.mlx,1920, 1200,"Cub3d");
 		draw_map(winp, map);
-		mlx_loop(winp.mlx);
+        mlx_hook(winp.win, 17, 0, &ft_close, 0);
+        mlx_key_hook(winp.win, *ft_input, map);
+        mlx_loop(winp.mlx);
 		if (winp.win == NULL)
 			exit(0);
 	}
