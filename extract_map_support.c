@@ -8,6 +8,7 @@ void	init_map(t_map *map)
     map->start_y = 0;
     map->max_x = 0;
     map->max_y = 0;
+    map->player.angle = 0;
     map->NO = NULL;
     map->SO = NULL;
     map->WE = NULL;

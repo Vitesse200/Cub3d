@@ -19,7 +19,10 @@ SRC = cub3d.c\
 			check_0_map.c\
 			check_data_map.c\
 			check_data_support.c\
+			check_data_hexa.c\
 			extract_map_support.c\
+			window.c\
+			hooks.c\
 
 CC = gcc -g
 
