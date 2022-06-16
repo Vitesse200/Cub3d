@@ -54,6 +54,13 @@ typedef struct s_check
     t_vector    btm_right;
 }	t_check;
 
+typedef struct s_winpoint
+{
+    void	*win;
+    void	*mlx;
+    //char	*map;
+}   t_winp;
+
 typedef struct s_map
 {
 	t_vector	size;
@@ -85,14 +92,9 @@ typedef struct s_map
     int         *tab_C;
     RGBhex      F_RGBhex;
     RGBhex      C_RGBhex;
+    t_winp      winp;
 }	t_map;
 
-typedef struct s_winpoint
-{
-	void	*win;
-	void	*mlx;
-	//char	*map;
-}			t_winp;
 
 double find_first_hor(char **map, int posx, int posy, double angle);
 double tan_degrees(double angle);
@@ -127,6 +129,7 @@ char	  **ft_malloc_play_map(t_map *s_map);
 void	  init_map(t_map *map);
 int	    ft_match(char *c, t_map *map);
 int     convert_hexa(t_map *map);
-
+int	    ft_close(void);
+int     ft_input(int key, void *param);
 
 #endif
