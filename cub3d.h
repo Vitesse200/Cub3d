@@ -99,7 +99,8 @@ typedef struct s_map
 double find_first_hor(char **map, int posx, int posy, double angle);
 double tan_degrees(double angle);
 double find_first_vert(char **map, int posx, int posy, double angle);
-double find_close_wall(char **map, int x, int y, double angle);
+double find_close_wall(char **map, int x, int y, double angle, double i);
+
 void	window_manager(t_map *map);
 void	*null_error(char *message);
 int		error(char *message);
@@ -128,6 +129,7 @@ int     get_max_value(char **map, t_map *s_map);
 char	  **ft_malloc_play_map(t_map *s_map);
 void	  init_map(t_map *map);
 int	    ft_match(char *c, t_map *map);
+double cos_degrees(double angle);
 int     convert_hexa(t_map *map);
 int	    ft_close(void);
 int     ft_input(int key, void *param);

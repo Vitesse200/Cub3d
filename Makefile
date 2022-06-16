@@ -21,6 +21,7 @@ SRC = cub3d.c\
 			check_data_support.c\
 			check_data_hexa.c\
 			extract_map_support.c\
+			find_wall.c\
 			window.c\
 			hooks.c\
 
