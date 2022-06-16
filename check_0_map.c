@@ -12,6 +12,14 @@ int ft_find_player(int count, char **map, int y, t_map *s_map)
             s_map->player.x = x;
             s_map->player.y = y;
             s_map->orientation = map[y][x];
+            if (s_map->orientation == 'N')
+                s_map->player.angle = 90;
+            if (s_map->orientation == 'S')
+                s_map->player.angle = 270;
+            if (s_map->orientation == 'E')
+                s_map->player.angle = 180;
+            if (s_map->orientation == 'W')
+                s_map->player.angle = 0;
         }
         x++;
     }

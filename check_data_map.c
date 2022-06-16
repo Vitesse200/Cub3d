@@ -103,6 +103,7 @@ int ft_extract_data(t_map *map)
         return (0);
     if (!ft_check_rgb(map->tab_C) || !ft_check_rgb(map->tab_F))
         return (0);
+    convert_hexa(map);
     while (i < 3)
     {
         printf("tabf[%d] = %d\n", i, map->tab_F[i]);

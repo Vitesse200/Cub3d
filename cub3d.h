@@ -17,11 +17,27 @@
 # define ANGLE_DIFF 0.1875
 # define TILE_SIZE 320
 
+typedef struct s_map t_map;
+
 typedef struct s_vector
 {
-	int	x;
-	int	y;
+	int	    x;
+	int	    y;
+    int     angle;
+    t_map   *map;
 } t_vector;
+
+//typedef struct
+//{
+//    int R;
+//    int G;
+//    int B;
+//} RGBdec;
+
+typedef struct
+{
+    char    rgb[9];
+} RGBhex;
 
 typedef struct s_image
 {
@@ -57,8 +73,6 @@ typedef struct s_map
 	char		*WE;
 	char		*EA;
 	char		*F;
-    int         *tab_F;
-    int         *tab_C;
 	char		*C;
 	char		orientation;
 	char		**map;
@@ -67,6 +81,10 @@ typedef struct s_map
 	void		*mlx;
 	void		*window;
 	int			moves;
+    int         *tab_F;
+    int         *tab_C;
+    RGBhex      F_RGBhex;
+    RGBhex      C_RGBhex;
 }	t_map;
 
 typedef struct s_winpoint
@@ -108,6 +126,7 @@ int     get_max_value(char **map, t_map *s_map);
 char	  **ft_malloc_play_map(t_map *s_map);
 void	  init_map(t_map *map);
 int	    ft_match(char *c, t_map *map);
+int     convert_hexa(t_map *map);
 
 
 #endif
