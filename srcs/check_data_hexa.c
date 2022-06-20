@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "../cub3d.h"
 
 void dec2hex(int *rgbd, RGBhex *rgbh)
 {

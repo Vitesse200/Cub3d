@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "../cub3d.h"
 
 int ft_find_player(int count, char **map, int y, t_map *s_map)
 {

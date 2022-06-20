@@ -10,20 +10,24 @@
 # include <math.h>
 
 # define BUFFER_SIZE 10
-# define TILE_SIZE 320
+# define TILE_SIZE 64
 # define PROJ_DIST 1662
 # define WINDOW_H 1200
 # define WINDOW_W 1920
-# define ANGLE_DIFF 0.1875
-# define TILE_SIZE 320
+# define ANGLE_DIFF 0.03125
+typedef struct s_map	t_map;
 
-typedef struct s_map t_map;
+typedef struct s_test
+{
+	double height;
+	int color;
+}	t_test;
 
 typedef struct s_vector
 {
 	int	    x;
 	int	    y;
-    int     angle;
+    double     angle;
     t_map   *map;
 } t_vector;
 
@@ -96,10 +100,11 @@ typedef struct s_map
 }	t_map;
 
 
-double find_first_hor(char **map, int posx, int posy, double angle);
+double find_first_hor(t_map map);
 double tan_degrees(double angle);
-double find_first_vert(char **map, int posx, int posy, double angle);
-double find_close_wall(char **map, int x, int y, double angle, double i);
+double find_first_vert(t_map map);
+//double find_close_wall(char **map, int x, int y, double angle, double i);
+t_test find_close_wall(t_map map, double i);
 
 void	window_manager(t_map *map);
 void	*null_error(char *message);
