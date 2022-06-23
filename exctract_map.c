@@ -36,10 +36,7 @@ int	ft_map_data(t_map *map)
 		i++;
 	}
     if (count < 6)
-    {
-        printf ("count = %d\n", count);
         return (error("Wrong number of game data \n"));
-    }
 	map_start_y(i, map);
 	return (1);
 }
@@ -48,14 +45,36 @@ int	get_play_map(t_map *map)
 {
 	int	y;
 	int	x = 0;
+    int z = 0;
+    int w = 0;
+    char    *tmp;
 
 	y = map->start_y;
+    ft_print_map(map);
 	while (map->map[y])
 	{
-		map->play_map[x] = ft_strdup(map->map[y]);
-		y++;
-		x++;
+        x = 0;
+        //tmp = NULL;
+        tmp = malloc(sizeof(char) * ft_strlen(map->map[y]) + 1);
+        printf("map = %s\n", map->map[y]);
+        z = 0;
+        while (map->map[y][x])
+        {
+            //printf("map = %s\n", map->map[y]);
+            tmp[z] = map->map[y][x];
+            //printf("cp = %s\n", tmp);
+            x++;
+            z++;
+        }
+        tmp[z] = 0;
+        printf("cop = %s\n", tmp);
+        map->play_map[w] = tmp;
+		//free(tmp);
+        y++;
+        w++;
 	}
+    map->play_map[w] = 0;
+    //ft_print_player_map(map->play_map);
 	return (0);
 }
 

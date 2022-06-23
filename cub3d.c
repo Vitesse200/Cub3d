@@ -18,6 +18,7 @@ void	ft_print_map(t_map *map)
 		}
 		i++;
 	}
+    write(1, "\n", 1);
 }
 
 void	ft_print_player_map(char **map)
@@ -47,11 +48,8 @@ int	main(int argc, char **argv)
 	if (!ft_valid_file(argv[1]))
 		return (error("expecting .cub file type\n"));
 	ft_get_map(&map, argv[1]);
-	if (!ft_valid_file(argv[1]))
-		return (error("expecting .cub file type\n"));
-	ft_get_map(&map, argv[1]);
-    if (!map.map)
-        return (error("No map to extract"));
+        if (!map.map)
+            return (error("No map to extract"));
 	if (!ft_extract(&map))
         return (0);
     printf("///*****/////*CUB3D*///***///****\n");
@@ -59,8 +57,13 @@ int	main(int argc, char **argv)
 		return (error("map is not valid\n"));
     if (!ft_extract_data(&map))
         return (error("Expected rgb data\n"));
-	window_manager(&map);
+    draw_map(map.winp, &map);
+    init_all_text(&map);
+    mlx_hook(map.winp.win, 17, 0, &ft_close, 0);
+    mlx_key_hook(map.winp.win, *ft_input, &map);
+    mlx_loop(map.winp.mlx);
     printf("Max x = %d\n", map.max_x);
     printf("Max y = %d\n", map.max_y);
-	return (0);
+    printf("main path = %s\n", map.NO.path);
+	return (1);
 }
