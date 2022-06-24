@@ -9,7 +9,7 @@
 # include <unistd.h>
 # include <math.h>
 
-# define BUFFER_SIZE 10
+# define BUFFER_SIZE 10000
 # define TILE_SIZE 64
 # define PROJ_DIST 1662
 # define WINDOW_H 1200
@@ -26,24 +26,11 @@ typedef struct s_vector
     t_map   *map;
 } t_vector;
 
-//typedef struct
-//{
-//    int R;
-//    int G;
-//    int B;
-//} RGBdec;
 
 typedef struct
 {
-    char    rgb[9];
+    char    *rgb;
 } RGBhex;
-
-typedef struct s_image
-{
-	void	*wall;
-	void	*empty;
-	void	*celling;
-}	t_image;
 
 typedef struct s_check
 {
@@ -59,6 +46,7 @@ typedef struct s_winpoint
     void	*mlx;
     void    *canvas_ptr;
     int     *addr_canva;
+    int     bpp;
     int     size_line;
     int     endian;
     //char	*map;
@@ -103,7 +91,6 @@ typedef struct s_map
 	char		orientation;
 	char		**map;
 	char		**play_map;
-	char		**check_map;
 	void		*mlx;
 	void		*window;
 	int			moves;
@@ -158,5 +145,7 @@ int     ft_input(int key, void *param);
 int     init_all_text(t_map *map);
 int     init_texture(t_winp *winp, t_texture *text);
 int 	draw_map(t_winp winp, t_map *map);
+int	    ft_free_all(t_map *map);
+void	ft_free(void **ptr);
 
 #endif

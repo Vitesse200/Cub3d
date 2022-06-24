@@ -16,8 +16,6 @@ void    get_texture_path(char *extract, t_texture *text)
     }
     tmp2[i] = '\0';
     text->path = tmp2;
-    //printf("path = %s\n", text->path);
-    free(tmp2);
 }
 
 int valid_text(char *path)
@@ -36,19 +34,15 @@ int ft_texture_data(t_map *map)
     get_texture_path(map->NO.extract, &map->NO);
     if (valid_text(map->NO.path) != 1)
         return (error("path to texture not valid\n"));
-    printf("path2 NO = %s\n", map->NO.path);
     get_texture_path(map->SO.extract, &map->SO);
     if (valid_text(map->SO.path) != 1)
         return (error("path to texture not valid\n"));
-    printf("path2 SO = %s\n", map->SO.path);
     get_texture_path(map->EA.extract, &map->EA);
     if (valid_text(map->EA.path) != 1)
         return (error("path to texture not valid\n"));
-    printf("path2 EA= %s\n", map->EA.path);
     get_texture_path(map->WE.extract, &map->WE);
     if (valid_text(map->WE.path) != 1)
         return (error("path to texture not valid\n"));
-    printf("path2 WE= %s\n", map->WE.path);
     return (1);
 }
 

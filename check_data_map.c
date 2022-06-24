@@ -62,6 +62,7 @@ int ft_extract_rgb(int i, char *tmp, char *rgb, char t, t_map *map, int count)
                 tmp[j++] = rgb[i++];
             tab[count++] = ft_atoi(tmp);
             tmp = NULL;
+            free(tmp);
         }
     if (t == 'f')
         map->tab_F = tab;

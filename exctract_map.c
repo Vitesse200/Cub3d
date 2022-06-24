@@ -50,31 +50,23 @@ int	get_play_map(t_map *map)
     char    *tmp;
 
 	y = map->start_y;
-    ft_print_map(map);
 	while (map->map[y])
 	{
         x = 0;
-        //tmp = NULL;
         tmp = malloc(sizeof(char) * ft_strlen(map->map[y]) + 1);
-        printf("map = %s\n", map->map[y]);
         z = 0;
         while (map->map[y][x])
         {
-            //printf("map = %s\n", map->map[y]);
             tmp[z] = map->map[y][x];
-            //printf("cp = %s\n", tmp);
             x++;
             z++;
         }
         tmp[z] = 0;
-        printf("cop = %s\n", tmp);
         map->play_map[w] = tmp;
-		//free(tmp);
         y++;
         w++;
 	}
     map->play_map[w] = 0;
-    //ft_print_player_map(map->play_map);
 	return (0);
 }
 

@@ -13,11 +13,17 @@ void	init_map(t_map *map)
     map->SO.extract = NULL;
     map->WE.extract = NULL;
     map->EA.extract = NULL;
+    map->NO.path = NULL;
+    map->SO.path = NULL;
+    map->WE.path = NULL;
+    map->EA.path = NULL;
     map->F = NULL;
     map->C = NULL;
     map->orientation = 0;
     map->winp.mlx = mlx_init();
     map->winp.win = mlx_new_window(map->winp.mlx,WINDOW_W, WINDOW_H,"Cub3d");
+    map->winp.canvas_ptr = mlx_new_image(map->winp.mlx, WINDOW_W, WINDOW_H);
+    map->winp.addr_canva = (int *) mlx_get_data_addr(map->winp.canvas_ptr, &map->winp.bpp, &map->winp.size_line, &map->winp.endian);
 }
 
 char	**ft_malloc_play_map(t_map *s_map)

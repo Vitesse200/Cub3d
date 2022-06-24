@@ -62,8 +62,6 @@ int	main(int argc, char **argv)
     mlx_hook(map.winp.win, 17, 0, &ft_close, 0);
     mlx_key_hook(map.winp.win, *ft_input, &map);
     mlx_loop(map.winp.mlx);
-    printf("Max x = %d\n", map.max_x);
-    printf("Max y = %d\n", map.max_y);
-    printf("main path = %s\n", map.NO.path);
+    ft_free_all(&map);
 	return (1);
 }
