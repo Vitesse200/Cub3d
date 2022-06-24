@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "../cub3d.h"
 
 int ft_find_player(int count, char **map, int y, t_map *s_map)
 {
@@ -24,6 +24,7 @@ int ft_find_player(int count, char **map, int y, t_map *s_map)
         }
         x++;
     }
+    printf("/////*****////****/////**//*/init player angle = %f\n", s_map->player.angle);
     return (count);
 }
 
@@ -98,7 +99,7 @@ int ft_check_map(t_map *s_map)
     int     y;
 
     map = s_map->play_map;
-    //ft_print_player_map(map);
+    ft_print_player_map(map);
     if (!check_valid_char(map))
         return (0);
     if (!player_pos(s_map, map))

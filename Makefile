@@ -15,18 +15,19 @@ SRC = cub3d.c\
 			get_next_line.c\
 			open_map.c\
 			exctract_map.c\
-			raycasting_2.c\
 			check_0_map.c\
 			check_data_map.c\
 			check_data_support.c\
 			check_data_hexa.c\
 			extract_map_support.c\
-			find_wall.c\
 			window.c\
-			hooks.c\
-			extract_texture.c\
+      hooks.c\
+      Image_generator.c\
+      Raycasting_finished_23_06_2022.c\
+      extract_texture.c\
 			init_texture.c\
 			free.c\
+
 
 CC = gcc -g
 
@@ -34,7 +35,7 @@ NAME = cub3D
 
 OBJ = $(SRC:.c=.o)
 	
-FLAGS = -Wall -Wextra -Werror -Imlx
+FLAGS = -Imlx -Wall -Wextra -Werror -Imlx
 
 LIBX = -Lmlx -lmlx -lz -framework OpenGL -framework AppKit
 

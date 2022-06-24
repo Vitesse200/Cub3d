@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "../cub3d.h"
 
 void	ft_move_r(t_vector *game)
 {
@@ -63,7 +63,7 @@ int	ft_input(int key, void *param)
         ft_move_d(&map->player);
     if (key == 123) // look on the left
     {
-        map->player.angle += 31;
+        map->player.angle += 35;
         if (map->player.angle > 360)
             map->player.angle =  0;
     }
@@ -78,6 +78,5 @@ int	ft_input(int key, void *param)
     printf("angle == %f\n", map->player.angle);
 	mlx_clear_window(map->winp.mlx, map->winp.win);
 	draw_map(map->winp, map);
-//    draw_scoreboard(game, 3, 2);
     return (0);
 }
