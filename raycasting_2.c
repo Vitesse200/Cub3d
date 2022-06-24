@@ -1,71 +1,39 @@
 #include "cub3d.h"
 
-//double find_close_wall(char **map, int x, int y, double angle, double i)
+//t_test find_close_wall(t_map map, double i, t_test test)
 //{
-//	double wall_distance;
-//	double wall_heigth;
+//	double	wall_distance_hort;
+//	double	wall_distance_vert;
 //
-//	if (find_first_hor(map, x, y, angle) > find_first_vert(map, x, y , angle))
+//	wall_distance_hort = find_first_hor(map, i);
+//	wall_distance_vert = find_first_vert(map);
+//	if (wall_distance_hort > wall_distance_vert )//|| (find_first_vert(map) - find_first_hor(map) < 5 && test.last == 1))
 //	{
-//		wall_distance = find_first_vert(map, x, y, angle);
-////		if (angle == 120 || angle == 90 || angle == 60.1875) {
-////		//	printf("at angle : %f wall_distance is = %f\n", angle, wall_distance);
-////		//	printf("%f\n", cos_degrees(i));
-////		}
-//		wall_distance *= cos_degrees(i);
-//		wall_heigth = TILE_SIZE / wall_distance * PROJ_DIST;
-//	//	if (angle == 120 || angle == 90 || angle == 60.1875)
+//		//if (angle == 120 || angle == 90 || angle == 60.1875) {
 //		//	printf("at angle : %f wall_distance is = %f\n", angle, wall_distance);
-//		return (wall_heigth);
+//			printf("%f\n", cos_degrees(i));
+//
+//		wall_distance_vert *= cos_degrees(i);
+//		test.height = TILE_SIZE / wall_distance_vert * PROJ_DIST;
+//		test.color = 0x0000FF;	//	if (angle == 120 || angle == 90 || angle == 60.1875)
+//		//	printf("at angle : %f wall_distance is = %f\n", angle, wall_distance);
+//		return (test);
 //	}
 //	else
 //	{
-//		wall_distance = find_first_hor(map, x, y , angle);
-////		if (angle == 120 || angle == 90 || angle == 60.1875) {
-////		//	printf("at angle : %f wall_distance is = %f\n", angle, wall_distance);
-////		//	printf("%f\n", fabs(cos_degrees(i)));
-////		}
-//		wall_distance *= cos_degrees(i);
-//		wall_heigth = TILE_SIZE / wall_distance * PROJ_DIST;
-//		//if (angle == 120 || angle == 90 || angle == 60.1875)
-//		//	printf("at angle : %f wall_distance is = %f\n", angle, wall_distance);
-//		return (wall_heigth);
-//	}
-//}
-
-t_test find_close_wall(t_map map, double i)
-{
-	double	wall_distance;
-	t_test	test;
-	if (find_first_hor(map) > find_first_vert(map))
-	{
-		wall_distance = find_first_vert(map);
-		//if (angle == 120 || angle == 90 || angle == 60.1875) {
-		//	printf("at angle : %f wall_distance is = %f\n", angle, wall_distance);
-		//	printf("%f\n", cos_degrees(i));
-		
-		wall_distance *= cos_degrees(i);
-		test.height = TILE_SIZE / wall_distance * PROJ_DIST;
-		test.color = 0x0000FF;	//	if (angle == 120 || angle == 90 || angle == 60.1875)
-		//	printf("at angle : %f wall_distance is = %f\n", angle, wall_distance);
-		return (test);
-	}
-	else
-	{
-		wall_distance = find_first_hor(map);
-//		if (angle == 120 || angle == 90 || angle == 60.1875) {
+//	//	if (angle == 120 || angle == 90 || angle == 60.1875) {
 //		//	printf("at angle : %f wall_distance is = %f\n", angle, wall_distance);
 //		//	printf("%f\n", fabs(cos_degrees(i)));
-//		}
-		wall_distance *= cos_degrees(i);
-		test.height = TILE_SIZE / wall_distance * PROJ_DIST;
-		test.color = 0x00FF00;
-		
-		//if (angle == 120 || angle == 90 || angle == 60.1875)
-		//	printf("at angle : %f wall_distance is = %f\n", angle, wall_distance);
-		return (test);
-	}
-}
+//	//	}
+//		wall_distance_hort *= cos_degrees(i);
+//		test.height = TILE_SIZE / wall_distance_hort * PROJ_DIST;
+//		test.color = 0x00FF00;
+//
+//		//if (angle == 120 || angle == 90 || angle == 60.1875)
+//		//	printf("at angle : %f wall_distance is = %f\n", angle, wall_distance);
+//		return (test);
+//	}
+//}
 
 double tan_degrees(double angle)
 {
@@ -79,55 +47,64 @@ double cos_degrees(double angle)
 	angle = cos(angle);
 	return (angle);
 }
-int	draw_map(t_winp winp, t_map *map) {
-	int i;
-	int j;
-	int k;
-	t_test test;
-	int wall_top;
-	int c = 0;
-	double cos;
-	int l = 0;
-	
-	
-	j = 0;
-	i = 0;
-	k = 0;
-	cos = -30;
-	map->player.angle += 30;
-	while (i < WINDOW_W) {
-		test = find_close_wall(*map, cos);
-		wall_top = WINDOW_H / 2 - test.height / 2;
-		//printf("wall top is %d\n", wall_heigth);
-		while (c < 6) {
-			while (k < test.height) {
-				if (wall_top < 0)
-					wall_top = 0;
-				while (l < wall_top)
-					l++;
-				mlx_pixel_put(winp.mlx, winp.win, j, k + l, test.color);
-				k++;
-			}
-			l = 0;
-			k = 0;
-			c++;
-			j++;
-		}
-		i++;
-		map->player.angle -= ANGLE_DIFF;
-		cos += ANGLE_DIFF;
-		c = 0;
-		printf("angle is %f\n", map->player.angle);
-	}
-	return (0);
-}
+//int	draw_map(t_winp winp, t_map *map) {
+//	int i;
+//	t_test test;
+//	double wall_top;
+//	double cos;
+//	t_data	img;
+//
+//	img.img = mlx_new_image(winp.mlx, 1, WINDOW_H);
+//	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
+//								 &img.endian);
+//	i = 0;
+//	cos = -30;
+//	map->player.angle += 30;
+//	while (i < WINDOW_W) {
+//		test = find_close_wall(*map, cos, test);
+//		wall_top = (WINDOW_H * 0.5) - (test.height * 0.5);
+////	//	printf("wall top is %f\n", wall_top);
+////		while (c < 1) {
+////			while (k < test.height)
+//							if (wall_top < 0)
+//								wall_top = 0;
+////				while (l < wall_top) {
+////					mlx_pixel_put(winp.mlx, winp.win, j, l, 0x0FFFF0);
+////					l++;
+////				}
+//			//	mlx_pixel_put(winp.mlx, winp.win, j, k + l, test.color);
+//	//			k++;
+//	//		}
+//	//		while (k + l < WINDOW_H)
+//	//		{
+//			//	mlx_pixel_put(winp.mlx, winp.win, j, k + l, 0xFF0D00);
+//	//			k++;
+//	//		}
+//	//		l = 0;
+//	//		k = 0;
+//	//		c++;
+//	//		j++;
+//	//	}
+//	//	i++;
+//		map->player.angle -= ANGLE_DIFF;
+//		cos += ANGLE_DIFF;
+//	//	c = 0;
+//	//}
+//	//printf("XX%dXX\n", WINDOW_W);
+//	img_put(winp, i, wall_top, test, img);
+//	i++;
+//	}
+//
+//	return (0);
+//}
 
 void	window_manager(t_map *map)
 	{
 		t_winp	winp;
 		
 		winp.mlx = mlx_init();
-		winp.win = mlx_new_window(winp.mlx,1920, 1200,"Cub3d");
+		winp.win = mlx_new_window(winp.mlx,WINDOW_W, WINDOW_H,"Cub3d");
+		map->winp = winp;
 		draw_map(winp, map);
         mlx_hook(winp.win, 17, 0, &ft_close, 0);
         mlx_key_hook(winp.win, *ft_input, map);

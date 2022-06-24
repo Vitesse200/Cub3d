@@ -10,18 +10,20 @@
 # include <math.h>
 
 # define BUFFER_SIZE 10
-# define TILE_SIZE 64
-# define PROJ_DIST 1662
-# define WINDOW_H 1200
-# define WINDOW_W 1920
-# define ANGLE_DIFF 0.03125
+# define TILE_SIZE 320
+# define PROJ_DIST 1108.512516844081016
+# define WINDOW_H 800
+# define WINDOW_W 1280
+# define ANGLE_DIFF 0.046875
 typedef struct s_map	t_map;
 
-typedef struct s_test
+typedef struct s_wall
 {
-	double height;
-	int color;
-}	t_test;
+	float	heigth;
+	float	wall_top;
+	int		color;
+	int		direction;
+}	t_wall;
 
 typedef struct s_vector
 {
@@ -99,12 +101,22 @@ typedef struct s_map
     t_winp      winp;
 }	t_map;
 
+typedef struct	s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
 
-double find_first_hor(t_map map);
+//double find_first_hor(t_map map, int i);
 double tan_degrees(double angle);
-double find_first_vert(t_map map);
+//double find_first_vert(t_map map);
 //double find_close_wall(char **map, int x, int y, double angle, double i);
-t_test find_close_wall(t_map map, double i);
+//t_test	find_close_wall(t_map map, double i, t_test test);
+void	img_put(t_winp winp, int x, t_wall wall, t_data img);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+t_wall find_wall_distance(t_map map, float cos);
 
 void	window_manager(t_map *map);
 void	*null_error(char *message);
@@ -118,7 +130,7 @@ int		ft_valid_file(char *file);
 char	**ft_alloc_lines(char *file, t_map *game);
 int		ft_file_linecount(char *file);
 int		ft_file_type(char *s, char *end);
-int		draw_map(t_winp winp, t_map *map);
+void	draw_map(t_winp win, t_map *map);
 int     ft_extract(t_map *map);
 int		  ft_check_map(t_map *struc_map);
 void	  ft_print_player_map(char **map);
