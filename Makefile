@@ -24,6 +24,9 @@ SRC = cub3d.c\
 			find_wall.c\
 			window.c\
 			hooks.c\
+			extract_texture.c\
+			init_texture.c\
+			free.c\
 
 CC = gcc -g
 
