@@ -47,56 +47,6 @@ double cos_degrees(double angle)
 	angle = cos(angle);
 	return (angle);
 }
-//int	draw_map(t_winp winp, t_map *map) {
-//	int i;
-//	t_test test;
-//	double wall_top;
-//	double cos;
-//	t_data	img;
-//
-//	img.img = mlx_new_image(winp.mlx, 1, WINDOW_H);
-//	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-//								 &img.endian);
-//	i = 0;
-//	cos = -30;
-//	map->player.angle += 30;
-//	while (i < WINDOW_W) {
-//		test = find_close_wall(*map, cos, test);
-//		wall_top = (WINDOW_H * 0.5) - (test.height * 0.5);
-////	//	printf("wall top is %f\n", wall_top);
-////		while (c < 1) {
-////			while (k < test.height)
-//							if (wall_top < 0)
-//								wall_top = 0;
-////				while (l < wall_top) {
-////					mlx_pixel_put(winp.mlx, winp.win, j, l, 0x0FFFF0);
-////					l++;
-////				}
-//			//	mlx_pixel_put(winp.mlx, winp.win, j, k + l, test.color);
-//	//			k++;
-//	//		}
-//	//		while (k + l < WINDOW_H)
-//	//		{
-//			//	mlx_pixel_put(winp.mlx, winp.win, j, k + l, 0xFF0D00);
-//	//			k++;
-//	//		}
-//	//		l = 0;
-//	//		k = 0;
-//	//		c++;
-//	//		j++;
-//	//	}
-//	//	i++;
-//		map->player.angle -= ANGLE_DIFF;
-//		cos += ANGLE_DIFF;
-//	//	c = 0;
-//	//}
-//	//printf("XX%dXX\n", WINDOW_W);
-//	img_put(winp, i, wall_top, test, img);
-//	i++;
-//	}
-//
-//	return (0);
-//}
 
 void	window_manager(t_map *map)
 	{
@@ -112,3 +62,4 @@ void	window_manager(t_map *map)
 		if (winp.win == NULL)
 			exit(0);
 	}
+
