@@ -57,11 +57,12 @@ int	main(int argc, char **argv)
 		return (error("map is not valid\n"));
     if (!ft_extract_data(&map))
         return (error("Expected rgb data\n"));
-    draw_map(map.winp, &map);
-    init_all_text(&map);
+	//init_all_text(&map);
+	draw_map(&map.winp, &map);
+//   	init_all_text(&map);
     mlx_hook(map.winp.win, 17, 0, &ft_close, 0);
     mlx_key_hook(map.winp.win, *ft_input, &map);
     mlx_loop(map.winp.mlx);
-    ft_free_all(&map);
+   	ft_free_all(&map);
 	return (1);
 }

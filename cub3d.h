@@ -30,7 +30,7 @@ typedef struct s_vector
 {
 	int	    x;
 	int	    y;
-    double     angle;
+    float	angle;
     t_map   *map;
 } t_vector;
 
@@ -119,7 +119,7 @@ typedef struct	s_data {
 }				t_data;
 
 double tan_degrees(double angle);
-void	img_put(t_winp winp, int x, t_wall wall, t_data img);
+void	img_put(t_winp *winp, int x, t_wall *wall, t_data *img);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 t_wall find_wall_distance(t_map map, float cos);
 void	ft_print_map(t_map *map);
@@ -135,7 +135,7 @@ int		ft_valid_file(char *file);
 char	**ft_alloc_lines(char *file, t_map *game);
 int		ft_file_linecount(char *file);
 int		ft_file_type(char *s, char *end);
-void	draw_map(t_winp win, t_map *map);
+void	draw_map(t_winp *win, t_map *map);
 int     ft_extract(t_map *map);
 int     ft_texture_data(t_map *map);
 int		ft_check_map(t_map *struc_map);
@@ -158,7 +158,7 @@ int	    ft_close(void);
 int     ft_input(int key, void *param);
 int     init_all_text(t_map *map);
 int     init_texture(t_winp *winp, t_texture *text);
-int 	draw_map(t_winp winp, t_map *map);
+//int 	draw_map(t_winp winp, t_map *map);
 int	    ft_free_all(t_map *map);
 void	ft_free(void **ptr);
 

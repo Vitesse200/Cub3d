@@ -95,7 +95,7 @@ t_wall find_wall_distance(t_map map, float cos)
 	}
 }
 
-void	draw_map(t_winp win, t_map *map)
+void	draw_map(t_winp *win, t_map *map)
 {
 	int		ray;
 	t_wall	wall;
@@ -105,13 +105,16 @@ void	draw_map(t_winp win, t_map *map)
 	ray = 0;
 	cos = -30;
 	map->player.angle +=30;
-	img.img = mlx_new_image(win.mlx, 1, WINDOW_H);
+	img.img = mlx_new_image(map->winp.mlx, 1, WINDOW_H);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 								 &img.endian);
 	while (ray < WINDOW_W)
 	{
+		
 		wall = find_wall_distance(*map, cos);
-		img_put(win, ray, wall, img);
+		if (wall.wall_top < 0)
+			wall.wall_top = 0;
+		img_put(win, ray, &wall, &img);
 		map->player.angle -= ANGLE_DIFF;
 		cos += ANGLE_DIFF;
 		ray++;
@@ -120,16 +123,16 @@ void	draw_map(t_winp win, t_map *map)
 
 void	window_manager(t_map *map)
 {
-	t_winp	winp;
+	//t_winp	winp;
 	
-	winp.mlx = mlx_init();
-	winp.win = mlx_new_window(winp.mlx,WINDOW_W, WINDOW_H,"Cub3d");
-	map->winp = winp;
-	draw_map(winp, map);
-	mlx_hook(winp.win, 17, 0, &ft_close, 0);
-	mlx_key_hook(winp.win, *ft_input, map);
-	mlx_loop(winp.mlx);
-	if (winp.win == NULL)
+//	winp.mlx = mlx_init();
+//	winp.win = mlx_new_window(winp.mlx,WINDOW_W, WINDOW_H,"Cub3d");
+//	map->winp = winp;
+	draw_map(&map->winp, map);
+	mlx_hook(map->winp.win, 17, 0, &ft_close, 0);
+	mlx_key_hook(map->winp.win, *ft_input, map);
+	mlx_loop(map->winp.mlx);
+	if (map->winp.win == NULL)
 		exit(0);
 }
 

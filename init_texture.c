@@ -20,6 +20,7 @@ void    print_texture(t_winp *winp, t_texture *text)
 
 int init_texture(t_winp *winp, t_texture *text)
 {
+	printf("text path bug %s\n", text->path);
     text->img_ptr = mlx_xpm_file_to_image(winp->mlx, text->path, &text->img_width, &text->img_height);
     if (!text->img_ptr)
         return(error("***issue with texture loading\n"));

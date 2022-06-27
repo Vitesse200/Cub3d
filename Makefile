@@ -35,7 +35,7 @@ NAME = cub3D
 
 OBJ = $(SRC:.c=.o)
 	
-FLAGS = -Imlx -Wall -Wextra -Werror -Imlx
+FLAGS = -Imlx -Wall -Wextra -Werror -Imlx -g -fsanitize=address
 
 LIBX = -Lmlx -lmlx -lz -framework OpenGL -framework AppKit
 
