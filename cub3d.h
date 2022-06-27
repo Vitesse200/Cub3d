@@ -130,7 +130,7 @@ int		ft_valid_file(char *file);
 char	**ft_alloc_lines(char *file, t_map *game);
 int		ft_file_linecount(char *file);
 int		ft_file_type(char *s, char *end);
-void	draw_map(t_winp win, t_map *map);
+void	draw_map(t_winp *win, t_map *map);
 int     ft_extract(t_map *map);
 int		  ft_check_map(t_map *struc_map);
 void	  ft_print_player_map(char **map);
