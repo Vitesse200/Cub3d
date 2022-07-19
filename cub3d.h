@@ -10,12 +10,20 @@
 # include <math.h>
 
 # define BUFFER_SIZE 10
-# define TILE_SIZE 320
+# define TILE_SIZE 64
 # define PROJ_DIST 1108.512516844081016
 # define WINDOW_H 800
 # define WINDOW_W 1280
 # define ANGLE_DIFF 0.046875
 typedef struct s_map	t_map;
+
+typedef struct s_intersection
+{
+	float	wall_hitx;
+	float	wall_hity;
+	float	delta_x;
+	float	delta_y;
+}	t_intersection;
 
 typedef struct s_wall
 {

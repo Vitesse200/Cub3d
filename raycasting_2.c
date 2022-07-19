@@ -35,7 +35,7 @@
 //	}
 //}
 
-double tan_degrees(double angle)
+float tan_degrees(float angle)
 {
 	angle = angle * (M_PI / 180);
 	angle = tan(angle);
@@ -97,18 +97,18 @@ double cos_degrees(double angle)
 //
 //	return (0);
 //}
-
-void	window_manager(t_map *map)
-	{
-		t_winp	winp;
-		
-		winp.mlx = mlx_init();
-		winp.win = mlx_new_window(winp.mlx,WINDOW_W, WINDOW_H,"Cub3d");
-		map->winp = winp;
-		draw_map(winp, map);
-        mlx_hook(winp.win, 17, 0, &ft_close, 0);
-        mlx_key_hook(winp.win, *ft_input, map);
-        mlx_loop(winp.mlx);
-		if (winp.win == NULL)
-			exit(0);
-	}
+//
+//void	window_manager(t_map *map)
+//	{
+//		t_winp	winp;
+//
+//		winp.mlx = mlx_init();
+//		winp.win = mlx_new_window(winp.mlx,WINDOW_W, WINDOW_H,"Cub3d");
+//		map->winp = winp;
+//		draw_map(winp, map);
+//        mlx_hook(winp.win, 17, 0, &ft_close, 0);
+//        mlx_key_hook(winp.win, *ft_input, map);
+//        mlx_loop(winp.mlx);
+//		if (winp.win == NULL)
+//			exit(0);
+//	}

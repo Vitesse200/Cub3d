@@ -64,9 +64,11 @@ int	ft_input(int key, void *param)
     if (key == 123) // look on the left
     {
         map->player.angle += 31;
-        if (map->player.angle > 360)
+        if (map->player.angle == 360)
             map->player.angle =  0;
-    }
+		if (map->player.angle > 360)
+			map->player.angle -=  360;
+	}
     if (key == 124) // look on the right
     {
         map->player.angle += 29;
@@ -76,7 +78,7 @@ int	ft_input(int key, void *param)
     if (key == 53)
         exit(0);
     printf("angle == %f\n", map->player.angle);
-	mlx_clear_window(map->winp.mlx, map->winp.win);
+//	mlx_clear_window(map->winp.mlx, map->winp.win);
 	draw_map(&map->winp, map);
 //    draw_scoreboard(game, 3, 2);
     return (0);

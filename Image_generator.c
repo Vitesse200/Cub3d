@@ -15,18 +15,21 @@ void	img_put(t_winp winp, int x, t_wall wall, t_data img)
 	int i;
 	
 	i = 0;
+	if (wall.wall_top < 0)
+		wall.wall_top = 0;
 	while(i < wall.wall_top){
-		my_mlx_pixel_put(&img, 0, i, 0x00FF0011);
+		my_mlx_pixel_put(&img, x, i, 0x00FF0011);
 		i++;
 	}
 	while(wall.wall_top < wall.heigth + i){
 		if(wall.wall_top < WINDOW_H){
-		my_mlx_pixel_put(&img, 0, wall.wall_top, wall.color);}
+		my_mlx_pixel_put(&img, x, wall.wall_top, wall.color);}
 		wall.wall_top++;
 	}
 	while(wall.wall_top < WINDOW_H){
-		my_mlx_pixel_put(&img, 0, wall.wall_top, 0x00FF00DD);
+		my_mlx_pixel_put(&img, x, wall.wall_top, 0x00FF00DD);
 		wall.wall_top++;
 	}
-	mlx_put_image_to_window(winp.mlx, winp.win, img.img, x, 0);
+	if (x == WINDOW_W - 1)
+	mlx_put_image_to_window(winp.mlx, winp.win, img.img, 0, 0);
 }

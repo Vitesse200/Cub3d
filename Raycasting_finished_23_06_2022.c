@@ -3,86 +3,75 @@
 //
 #include "cub3d.h"
 
-//calcule la plus courte distance jusqu'a un mur
-// to maybe do : change tan to atan so we can multiply instead of dividing
 t_wall find_wall_distance(t_map map, float cos)
 {
-	//horizontal wall
-	float	wall_hit_x;
-	float	wall_hit_y;
-	float 	delta_x;
-	float	delta_y;
-	float 	horizontal_distance;
-	float 	vertical_distance;
-	t_wall	wall;
-	int dof = 0;
-	//looking up
-	horizontal_distance = 0;
-	delta_y = TILE_SIZE;
-	wall_hit_y = 0;
-	wall_hit_x = 0;
-	delta_x = 0;
-	delta_y = 0;
-	if (map.player.angle > 0 && map.player.angle < 180)
+	t_wall			wall;
+	t_intersection	intersection;
+	float 	horizontal_distance = 1000000;
+	float 	vertical_distance = 1000000;
+	//maybe abs value on tan when calculating deltal;
+	//hor_wall looking up
+	if (map.player.angle == 180 || map.player.angle == 90 || map.player.angle == 270 || map.player.angle == 0 || map.player.angle == 360)
+		map.player.angle += 0.001;
+	if (map.player.angle < 180)
 	{
-		wall_hit_y = (map.player.y / TILE_SIZE) * TILE_SIZE - 0.1;
-		wall_hit_x = map.player.x + (map.player.y - wall_hit_y) / tan_degrees(map.player.angle); //maybe -posx instead
-		delta_y = -64;
-		delta_x = delta_y / tan_degrees(map.player.angle);
+		intersection.wall_hity = ((int)((map.player.y / TILE_SIZE) * TILE_SIZE)) - 0.001;
+		intersection.wall_hitx = map.player.x + ((map.player.y - intersection.wall_hity) / tan_degrees(map.player.angle));
+		intersection.delta_y = -64;
+		intersection.delta_x = 64 / tan_degrees(map.player.angle);
+
 	}
-	// looking down
-	else if (map.player.angle != 0 && map.player.angle > 180)
+		// hor wall looking down
+	else if (map.player.angle > 180)
 	{
-		wall_hit_y = ((int)(map.player.y / TILE_SIZE) * TILE_SIZE) + TILE_SIZE;
-		wall_hit_x = (map.player.y - wall_hit_y) / tan_degrees(map.player.angle) - map.player.x; //maybe -posx instead
-		delta_y = +64;
-		delta_x = delta_y / tan_degrees(map.player.angle);
+		intersection.wall_hity = ((int)((map.player.y / 64) * TILE_SIZE)) + TILE_SIZE;
+		intersection.wall_hitx = map.player.x + -1 * ((intersection.wall_hity - map.player.y) / tan_degrees(map.player.angle));
+		intersection.delta_y = 64;
+		intersection.delta_x = intersection.delta_y / tan_degrees(map.player.angle);
+		intersection.delta_x *= -1;
 	}
-	else
-		horizontal_distance = 10000000;
-	while(map.play_map[(int)wall_hit_y / TILE_SIZE][(int)wall_hit_x / TILE_SIZE] != 1 && dof < 8)
+	if (intersection.wall_hitx < 0 || intersection.wall_hity / 64 > map.max_y || intersection.wall_hity < 0)
+		intersection.wall_hity = map.max_y * 64;
+	if (intersection.wall_hitx / 64 > map.max_x)
+		intersection.wall_hitx = map.max_x * 64;
+	while(map.play_map[(int)intersection.wall_hity / TILE_SIZE][(int)intersection.wall_hitx / TILE_SIZE] != '1')
 	{
-		if(map.play_map[(int)wall_hit_y / TILE_SIZE][(int)wall_hit_x / TILE_SIZE])
-			horizontal_distance = sqrt(pow(map.player.x - wall_hit_x, 2) + pow(map.player.y - wall_hit_y, 2));
-		wall_hit_y += delta_y;
-		wall_hit_x += delta_x;
-		dof++;
+		if (intersection.wall_hitx < 0 || intersection.wall_hity / 64 > map.max_y || intersection.wall_hity < 0)
+			break;
+		intersection.wall_hity += intersection.delta_y;
+		intersection.wall_hitx += intersection.delta_x;
+		if (intersection.wall_hitx < 0 || intersection.wall_hity / 64 > map.max_y || intersection.wall_hity < 0)
+			break;
 	}
-	
-	//vertical wall
-	vertical_distance = 0;
-	//looking right
-	dof = 0;
+	//what if no wall found ??
+	horizontal_distance = sqrt(pow(map.player.x - intersection.wall_hitx, 2) + pow(map.player.y - intersection.wall_hity, 2));
+	// vert wal looking rigth
 	if(map.player.angle < 90 || map.player.angle > 270)
 	{
-		wall_hit_x = ((int)(map.player.x / TILE_SIZE) * TILE_SIZE) + TILE_SIZE;
-		wall_hit_y = (map.player.x - wall_hit_x) / (-1 * tan_degrees(map.player.angle)) + map.player.y; //maybe -posx instead
-		delta_x = +64;
-		delta_y = delta_x / (-1 * tan_degrees(map.player.angle));
+		intersection.wall_hitx = ((int)((map.player.x / 64) * TILE_SIZE)) + TILE_SIZE;
+		intersection.wall_hity = map.player.y + ((map.player.x - intersection.wall_hitx) * tan_degrees(map.player.angle));
+		intersection.delta_x = 64;
+		intersection.delta_y = 64 * fabs(tan_degrees(map.player.angle));
+		if (map.player.angle < 90)
+			intersection.delta_y *= -1;
 	}
-	//looking left
-	else if (map.player.angle < 270|| map.player.angle > 90)
+	else if (map.player.angle < 270 || map.player.angle > 90)
 	{
-		wall_hit_x = ((int)(map.player.x / TILE_SIZE) * TILE_SIZE) - 0.001;
-		wall_hit_y = (map.player.x - wall_hit_x) / (-1 * tan_degrees(map.player.angle)) + map.player.y; //maybe -posx instead
-		delta_x = -64;
-		delta_y = delta_x / (-1 * tan_degrees(map.player.angle));
+		intersection.wall_hitx = ((int)((map.player.x / TILE_SIZE) * TILE_SIZE)) - 0.001;
+		intersection.wall_hity = map.player.y + ((intersection.wall_hitx- map.player.x) * -1 * tan_degrees(map.player.angle));
+		intersection.delta_x = -64;
+		intersection.delta_y = 64 * tan_degrees(map.player.angle);
 	}
-	else
-		vertical_distance = 10000000;
-	while(map.play_map[(int)wall_hit_y / TILE_SIZE][(int)wall_hit_x / TILE_SIZE] != 1 && (wall_hit_y / TILE_SIZE) < map.max_y && (wall_hit_x / TILE_SIZE) < map.max_x
-		  && wall_hit_y / TILE_SIZE > 0 && wall_hit_x / TILE_SIZE > 0 && vertical_distance == 0 && dof < 8)
+	if (intersection.wall_hitx < 0 || intersection.wall_hity / 64 > map.max_y || intersection.wall_hity < 0)
+		intersection.wall_hity = map.max_y * 64;
+	while(map.play_map[(int)intersection.wall_hity / TILE_SIZE][(int)intersection.wall_hitx / TILE_SIZE] != '1')
 	{
-		if(map.play_map[(int)wall_hit_y / TILE_SIZE][(int)wall_hit_x / TILE_SIZE])
-		vertical_distance = sqrt(pow(map.player.x - wall_hit_x, 2) + pow(map.player.y - wall_hit_y, 2));
-		wall_hit_y += delta_y;
-		wall_hit_x += delta_x;
-		dof++;
+		intersection.wall_hity += intersection.delta_y;
+		intersection.wall_hitx += intersection.delta_x;
+		if (intersection.wall_hitx < 0 || intersection.wall_hity / 64 > map.max_y || intersection.wall_hity < 0)
+			break;
 	}
-	if (vertical_distance == 0)
-		vertical_distance += 0.0000001;
-	if (horizontal_distance == 0)
-		horizontal_distance += 0.0000001;
+		vertical_distance = sqrt(pow(map.player.x - intersection.wall_hitx, 2) + pow(map.player.y - intersection.wall_hity, 2));
 	if (vertical_distance < horizontal_distance)
 	{
 		vertical_distance *= cos_degrees(cos);
@@ -102,7 +91,6 @@ t_wall find_wall_distance(t_map map, float cos)
 		return (wall);
 	}
 }
-
 void	draw_map(t_winp *win, t_map *map)
 {
 	int		ray;
@@ -113,7 +101,7 @@ void	draw_map(t_winp *win, t_map *map)
 	ray = 0;
 	cos = -30;
 	map->player.angle +=30;
-	img.img = mlx_new_image(win->mlx, 1, WINDOW_H);
+	img.img = mlx_new_image(win->mlx, WINDOW_W, WINDOW_H);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 								 &img.endian);
 	while (ray < WINDOW_W)
@@ -121,6 +109,10 @@ void	draw_map(t_winp *win, t_map *map)
 		wall = find_wall_distance(*map, cos);
 		img_put(*win, ray, wall, img);
 		map->player.angle -= ANGLE_DIFF;
+		if (map->player.angle < 0)
+			map->player.angle += 360;
+		if (map->player.angle > 360)
+			map->player.angle -= 360;
 		cos += ANGLE_DIFF;
 		ray++;
 	}
@@ -128,6 +120,7 @@ void	draw_map(t_winp *win, t_map *map)
 
 void	window_manager(t_map *map)
 {
+	printf("start x %d\n", map->player.x);
 	map->winp.mlx = mlx_init();
 	map->winp.win = mlx_new_window(map->winp.mlx,WINDOW_W, WINDOW_H,"Cub3d");
 	draw_map(&map->winp, map);
