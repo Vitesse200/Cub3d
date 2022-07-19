@@ -9,21 +9,13 @@ void	init_map(t_map *map)
     map->max_x = 0;
     map->max_y = 0;
     map->player.angle = 0;
-    map->NO.extract = NULL;
-    map->SO.extract = NULL;
-    map->WE.extract = NULL;
-    map->EA.extract = NULL;
-    map->NO.path = NULL;
-    map->SO.path = NULL;
-    map->WE.path = NULL;
-    map->EA.path = NULL;
+    map->NO = NULL;
+    map->SO = NULL;
+    map->WE = NULL;
+    map->EA = NULL;
     map->F = NULL;
     map->C = NULL;
     map->orientation = 0;
-    map->winp.mlx = mlx_init();
-    map->winp.win = mlx_new_window(map->winp.mlx,WINDOW_W, WINDOW_H,"Cub3d");
-    map->winp.canvas_ptr = mlx_new_image(map->winp.mlx, WINDOW_W, WINDOW_H);
-    map->winp.addr_canva = (int *) mlx_get_data_addr(map->winp.canvas_ptr, &map->winp.bpp, &map->winp.size_line, &map->winp.endian);
 }
 
 char	**ft_malloc_play_map(t_map *s_map)
@@ -34,19 +26,13 @@ char	**ft_malloc_play_map(t_map *s_map)
 
     y = s_map->start_y;
     map = s_map->map;
-    len = 1;
     while (map[y])
-    {
         y++;
-        len++;
-    }
-    //printf("len = %d\n", len);
+    len = y;
     map = malloc(sizeof(char *) * len + 1);
-    s_map->play_map = map;
     if (map == NULL)
         return (null_error("malloc error on ft_alloc_lines"));
-    free(map);
-    return (s_map->play_map);
+    return (map);
 }
 
 int get_max_value(char **map, t_map *s_map)
@@ -57,7 +43,6 @@ int get_max_value(char **map, t_map *s_map)
 
     y = 0;
     x = 0;
-    ft_print_player_map(map);
     while (map[y])
     {
         len = ft_strlen(map[y]);
@@ -73,17 +58,17 @@ int get_max_value(char **map, t_map *s_map)
 
 int	ft_match(char *c, t_map *map)
 {
-    if ((!ft_strncmp(c, "NO", 2) && !map->NO.extract) || (!ft_strncmp(c, "SO", 2) && !map->SO.extract)
-    || (!ft_strncmp(c, "WE", 2) && !map->WE.extract) || (!ft_strncmp(c, "EA", 2) && !map->EA.extract))
+    if ((!ft_strncmp(c, "NO", 2) && !map->NO) || (!ft_strncmp(c, "SO", 2) && !map->SO)
+    || (!ft_strncmp(c, "WE", 2) && !map->WE) || (!ft_strncmp(c, "EA", 2) && !map->EA))
     {
         if (c[0] == 'N')
-            map->NO.extract = c;
+            map->NO = c;
         else if (c[0] == 'W')
-            map->WE.extract = c;
+            map->WE = c;
         else if (c[0] == 'E')
-            map->EA.extract = c;
+            map->EA = c;
         else
-            map->SO.extract = c;
+            map->SO = c;
         return (1);
     }
     if ((!ft_strncmp(c, "F", 1) && !map->F) || (!ft_strncmp(c, "C", 1) && !map->C))

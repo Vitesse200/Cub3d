@@ -21,14 +21,15 @@ SRC = cub3d.c\
 			check_data_hexa.c\
 			extract_map_support.c\
 			window.c\
-      hooks.c\
-      Image_generator.c\
-      Raycasting_finished_23_06_2022.c\
-      extract_texture.c\
-			init_texture.c\
-			free.c\
-
-
+            hooks.c\
+            Image_generator.c\
+            Raycasting_finished_23_06_2022.c\
+		#	raycasting_2.c\
+			find_wall.c\
+			window.c\
+			hooks.c\
+			Image_generator.c\
+			Raycasting_finished_23_06_2022.c
 CC = gcc -g
 
 NAME = cub3D
