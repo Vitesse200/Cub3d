@@ -85,6 +85,5 @@ int	ft_input(int key, void *param)
     printf("angle == %f\n", map->player.angle);
 //	mlx_clear_window(map->winp.mlx, map->winp.win);
 	draw_map(&map->winp, map);
-//    draw_scoreboard(game, 3, 2);
     return (0);
 }

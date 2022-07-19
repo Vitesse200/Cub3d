@@ -24,19 +24,20 @@ SRC = cub3d.c\
             hooks.c\
             Image_generator.c\
             Raycasting_finished_23_06_2022.c\
-		#	raycasting_2.c\
-			find_wall.c\
 			window.c\
 			hooks.c\
 			Image_generator.c\
 			Raycasting_finished_23_06_2022.c
+			extract_texture.c\
+           	init_texture.c\
+            free.c\
 CC = gcc -g
 
 NAME = cub3D
 
 OBJ = $(SRC:.c=.o)
 	
-FLAGS = -Imlx -Wall -Wextra -Werror -Imlx
+FLAGS = -Imlx -Wall -Wextra -Werror -Imlx -g -fsanitize=address
 
 LIBX = -Lmlx -lmlx -lz -framework OpenGL -framework AppKit
 

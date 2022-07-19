@@ -54,7 +54,7 @@ char	**ft_alloc_lines(char *file, t_map *game)
 	if (linecount <= 0)
 		return (NULL);
 	game->size.y = linecount;
-	map = malloc(sizeof(char *) * linecount + 1);
+	map = malloc(sizeof(char *) * (linecount + 1));
 	if (map == NULL)
 		return (null_error("malloc error on ft_alloc_lines"));
 	return (map);

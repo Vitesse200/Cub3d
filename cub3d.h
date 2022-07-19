@@ -37,7 +37,7 @@ typedef struct s_vector
 {
 	int	    x;
 	int	    y;
-    double     angle;
+    float	angle;
     t_map   *map;
 } t_vector;
 
@@ -122,10 +122,9 @@ double tan_degrees(double angle);
 //double find_first_vert(t_map map);
 //double find_close_wall(char **map, int x, int y, double angle, double i);
 //t_test	find_close_wall(t_map map, double i, t_test test);
-void	img_put(t_winp winp, int x, t_wall wall, t_data img);
+void	img_put(t_winp *winp, int x, t_wall *wall, t_data *img);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 t_wall find_wall_distance(t_map map, float cos);
-
 void	window_manager(t_map *map);
 void	*null_error(char *message);
 int		error(char *message);
