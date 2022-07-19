@@ -30,6 +30,7 @@ char	**ft_malloc_play_map(t_map *s_map)
 
     y = s_map->start_y;
     map = s_map->map;
+    len = 0;
     while (map[y])
     {
         y++;
