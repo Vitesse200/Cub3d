@@ -12,7 +12,6 @@
 
 # include "cub3d.h"
 
-
 char	*ft_get_line(char *save)
 {
 	int		i;
@@ -52,7 +51,7 @@ char	*ft_save(char *save)
 		i++;
 	if (!save[i])
 	{
-		ft_free((void **)&save);
+		free(save);
 		return (NULL);
 	}
 	s = (char *)malloc(sizeof(char) * (ft_strlen(save) - i + 1));
@@ -63,7 +62,7 @@ char	*ft_save(char *save)
 	while (save[i])
 		s[c++] = save[i++];
 	s[c] = '\0';
-    ft_free((void **)&save);
+	free(save);
 	return (s);
 }
 
@@ -81,13 +80,13 @@ char	*ft_read_and_save(int fd, char *save)
 		nbr_bytes = read(fd, buff, BUFFER_SIZE);
 		if (nbr_bytes == -1)
 		{
-            ft_free((void **)&buff);
+			free(buff);
 			return (NULL);
 		}
 		buff[nbr_bytes] = '\0';
 		save = ft_strjoin(save, buff);
 	}
-    ft_free((void **)&buff);
+	free(buff);
 	return (save);
 }
 

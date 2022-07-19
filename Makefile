@@ -21,14 +21,16 @@ SRC = cub3d.c\
 			check_data_hexa.c\
 			extract_map_support.c\
 			window.c\
-      hooks.c\
-      Image_generator.c\
-      Raycasting_finished_23_06_2022.c\
-      extract_texture.c\
-			init_texture.c\
-			free.c\
-
-
+            hooks.c\
+            Image_generator.c\
+            Raycasting_finished_23_06_2022.c\
+			window.c\
+			hooks.c\
+			Image_generator.c\
+			Raycasting_finished_23_06_2022.c
+			extract_texture.c\
+           	init_texture.c\
+            free.c\
 CC = gcc -g
 
 NAME = cub3D
@@ -42,7 +44,6 @@ LIBX = -Lmlx -lmlx -lz -framework OpenGL -framework AppKit
 LIBFT_DIR	= ./libft
 
 LIBFT		= ./libft/libft.a 
-
 all: $(NAME)
 
 $(NAME): $(OBJ) 

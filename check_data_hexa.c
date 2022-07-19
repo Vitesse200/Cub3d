@@ -6,7 +6,6 @@ void dec2hex(int *rgbd, RGBhex *rgbh)
     int i0;
     int i1;
 
-    rgbh->rgb = malloc(sizeof(char) * 9);
     rgbh->rgb[0] = '0';
     rgbh->rgb[1] = 'x';
     i0 = rgbd[0] / 16;

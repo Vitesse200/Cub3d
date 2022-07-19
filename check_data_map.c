@@ -63,7 +63,6 @@ int ft_extract_rgb(int i, char *tmp, char *rgb, char t, t_map *map, int count)
                 tmp[j++] = rgb[i++];
             tab[count++] = ft_atoi(tmp);
             tmp = NULL;
-            free(tmp);
         }
     if (t == 'f')
         map->tab_F = tab;
@@ -106,8 +105,12 @@ int ft_extract_data(t_map *map)
     if (!ft_check_rgb(map->tab_C) || !ft_check_rgb(map->tab_F))
         return (0);
     convert_hexa(map);
-    if (ft_texture_data(map) != 1)
-        return (0);
+    while (i < 3)
+    {
+        printf("tabf[%d] = %d\n", i, map->tab_F[i]);
+        printf("tabc[%d] = %d\n", i, map->tab_C[i]);
+        i++;
+    }
     printf("player pos y = %d\n", map->player.y);
     printf("player pos x = %d\n", map->player.x);
     return (1);

@@ -17,7 +17,10 @@ int ft_check_valid_num(char *f, int i)
         while (f[i] != ' ' && f[i] != ',' && f[i] != '\n')
         {
             if (!ft_isnum(f[i]))
+            {
+                printf("val = %c i = %d\n", f[i], i);
                 return (error(" F Should be num\n"));
+            }
             i++;
         }
     }

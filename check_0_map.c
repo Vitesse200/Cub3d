@@ -18,12 +18,13 @@ int ft_find_player(int count, char **map, int y, t_map *s_map)
             if (s_map->orientation == 'S')
                 s_map->player.angle = 270;
             if (s_map->orientation == 'E')
-                s_map->player.angle = 180;
-            if (s_map->orientation == 'W')
                 s_map->player.angle = 0;
+            if (s_map->orientation == 'W')
+                s_map->player.angle = 180;
         }
         x++;
     }
+    printf("/////*****////****/////**//*/init player angle = %f\n", s_map->player.angle);
     return (count);
 }
 
@@ -98,7 +99,7 @@ int ft_check_map(t_map *s_map)
     int     y;
 
     map = s_map->play_map;
-    //ft_print_player_map(map);
+    ft_print_player_map(map);
     if (!check_valid_char(map))
         return (0);
     if (!player_pos(s_map, map))
