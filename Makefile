@@ -43,7 +43,6 @@ LIBX = -Lmlx -lmlx -lz -framework OpenGL -framework AppKit
 LIBFT_DIR	= ./libft
 
 LIBFT		= ./libft/libft.a 
-
 all: $(NAME)
 
 $(NAME): $(OBJ) 

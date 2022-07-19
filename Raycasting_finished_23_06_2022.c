@@ -45,6 +45,10 @@ t_wall find_wall_distance(t_map map, float cos)
 	}
 	//what if no wall found ??
 	horizontal_distance = sqrt(pow(map.player.x - intersection.wall_hitx, 2) + pow(map.player.y - intersection.wall_hity, 2));
+	if((int)intersection.wall_hitx  % 64 == 0)
+		wall.color = 0x00FF00;
+	else
+		wall.color = 0x000000;
 	// vert wal looking rigth
 	if(map.player.angle < 90 || map.player.angle > 270)
 	{
@@ -63,7 +67,7 @@ t_wall find_wall_distance(t_map map, float cos)
 		intersection.delta_y = 64 * tan_degrees(map.player.angle);
 	}
 	if (intersection.wall_hitx < 0 || intersection.wall_hity / 64 > map.max_y || intersection.wall_hity < 0)
-		intersection.wall_hity = map.max_y * 64;
+		intersection.wall_hity = 0;
 	while(map.play_map[(int)intersection.wall_hity / TILE_SIZE][(int)intersection.wall_hitx / TILE_SIZE] != '1')
 	{
 		intersection.wall_hity += intersection.delta_y;
@@ -77,7 +81,10 @@ t_wall find_wall_distance(t_map map, float cos)
 		vertical_distance *= cos_degrees(cos);
 		wall.heigth = (TILE_SIZE / vertical_distance * PROJ_DIST);
 		wall.wall_top = (WINDOW_H / 2) - (wall.heigth / 2);
-		wall.color = 0x0000FF;
+		if((int)intersection.wall_hity  % 64 == 0)
+			wall.color = 0x00FF00;
+		else
+			wall.color = 0x0000FF;
 		wall.direction = -1;
 		return (wall);
 	}
@@ -86,7 +93,6 @@ t_wall find_wall_distance(t_map map, float cos)
 		horizontal_distance *= cos_degrees(cos);
 		wall.heigth = (TILE_SIZE / horizontal_distance * PROJ_DIST);
 		wall.wall_top = (WINDOW_H / 2) - (wall.heigth / 2);
-		wall.color = 0x00FF00;
 		wall.direction = 1;
 		return (wall);
 	}

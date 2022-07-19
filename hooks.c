@@ -24,14 +24,15 @@ void	ft_move_l(t_vector *game)
 
 void	ft_move_up(t_vector *game)
 {
-    if (game->map->play_map[game->y - 1][game->x] != '1')
-    {
-        game->y--;
+  //  if (game->map->play_map[game->y - 1][game->x] != '1')
+    //{
+     //   game->y--;
 //        mlx_put_image_to_window(game->mlx, game->window, game->image.player,
 //                                game->player.x * IMG_SIZE, game->player.y * IMG_SIZE);
 //        mlx_put_image_to_window(game->mlx, game->window, game->image.empty,
 //                                game->player.x * IMG_SIZE, (game->player.y + 1) * IMG_SIZE);
-    }
+   // }
+	game->y -=16;
 }
 
 void	ft_move_d(t_vector *game)
@@ -57,15 +58,17 @@ int	ft_input(int key, void *param)
         ft_move_r(&map->player);
     if (key == 0)
         ft_move_l(&map->player);
-    if (key == 13)
-        ft_move_up(&map->player);
+    if (key == 13) {
+		ft_move_up(&map->player);
+		map->player.angle += 30;
+	}
     if (key == 1)
         ft_move_d(&map->player);
     if (key == 123) // look on the left
     {
         map->player.angle += 31;
         if (map->player.angle == 360)
-            map->player.angle =  0;
+            map->player.angle +=  0;
 		if (map->player.angle > 360)
 			map->player.angle -=  360;
 	}
@@ -73,7 +76,9 @@ int	ft_input(int key, void *param)
     {
         map->player.angle += 29;
         if (map->player.angle < 0)
-            map->player.angle =  360;
+            map->player.angle += 360;
+		if (map->player.angle > 360)
+			map->player.angle -=  360;
     }
     if (key == 53)
         exit(0);
