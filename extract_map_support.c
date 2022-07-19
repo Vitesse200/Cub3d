@@ -9,6 +9,7 @@ void	init_map(t_map *map)
     map->max_x = 0;
     map->max_y = 0;
     map->player.angle = 0;
+    map->play_map = NULL;
     map->NO = NULL;
     map->SO = NULL;
     map->WE = NULL;
@@ -49,10 +50,12 @@ int get_max_value(char **map, t_map *s_map)
     int x;
     int len;
 
+    len = 0;
     y = 0;
     x = 0;
     while (map[y])
     {
+//        printf("map[%i] = %s",y, map[y]);
         len = ft_strlen(map[y]);
         if ((len - 1 > s_map->max_x))
             s_map->max_x = len - 2;

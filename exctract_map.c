@@ -56,6 +56,7 @@ int	get_play_map(t_map *map)
 		y++;
 		x++;
 	}
+    map->play_map[x] = NULL;
 	return (0);
 }
 
