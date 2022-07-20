@@ -8,6 +8,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <math.h>
+# include <sys/time.h>
 
 # define BUFFER_SIZE 10
 # define TILE_SIZE 64
