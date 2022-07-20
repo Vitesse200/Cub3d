@@ -51,11 +51,7 @@ int	get_play_map(t_map *map)
 
 	y = map->start_y;
 	while (map->map[y])
-	{
-		map->play_map[x] = ft_strdup(map->map[y]);
-		y++;
-		x++;
-	}
+		map->play_map[x++] = map->map[y++];
     map->play_map[x] = NULL;
 	return (0);
 }
