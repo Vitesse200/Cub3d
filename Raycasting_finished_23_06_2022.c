@@ -34,8 +34,11 @@ t_wall find_wall_distance(t_map map, float cos)
 		intersection.wall_hity = map.max_y * 64;
 	if (intersection.wall_hitx / 64 > map.max_x)
 		intersection.wall_hitx = map.max_x * 64;
-	while(map.play_map[(int)intersection.wall_hity / TILE_SIZE][(int)intersection.wall_hitx / TILE_SIZE] != '1')
+	while(map.play_map[(int)intersection.wall_hity / TILE_SIZE] && map.play_map[(int)intersection.wall_hity / TILE_SIZE][(int)intersection.wall_hitx / TILE_SIZE] &&
+        map.play_map[(int)intersection.wall_hity / TILE_SIZE][(int)intersection.wall_hitx / TILE_SIZE] != '1')
+
 	{
+        //printf("%f %f\n", intersection.wall_hity, intersection.wall_hitx);
 		if (intersection.wall_hitx < 0 || intersection.wall_hity / 64 > map.max_y || intersection.wall_hity < 0)
 			break;
 		intersection.wall_hity += intersection.delta_y;
