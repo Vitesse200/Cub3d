@@ -24,6 +24,7 @@ SRC = cub3d.c\
             Image_generator.c\
             Raycasting_finished_23_06_2022.c\
 			hooks.c\
+			extract_texture.c\
            	#init_texture.c\
 
 CC = gcc -g
