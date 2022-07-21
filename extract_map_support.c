@@ -4,7 +4,6 @@ void	init_map(t_map *map)
 {
     map->player.x = 0;
     map->player.y = 0;
-    map->start_x = 0;
     map->start_y = 0;
     map->max_x = 0;
     map->max_y = 0;
