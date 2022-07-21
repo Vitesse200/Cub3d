@@ -58,6 +58,22 @@ typedef struct s_winpoint
     int     endian;
 }   t_winp;
 
+typedef struct  s_texture
+{
+    char    *extract;
+    char    *path;
+    void    *img_ptr;
+    int     *addr_img;
+    int     height;
+    int     width;
+    int     img_height;
+    int     img_width;
+    int     bpp;
+    int     size_line;
+    int     endian;
+    t_winp  winp;
+} t_texture;
+
 typedef struct s_map
 {
 	t_vector	size;
