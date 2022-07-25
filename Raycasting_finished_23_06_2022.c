@@ -7,7 +7,7 @@ t_wall find_wall_distance(t_map map, float cos)
 {
 	t_wall			wall;
 	t_intersection	intersection;
-	float 	horizontal_distance = 1000000;
+	float 	horizontal_distance = 1000001;
 	float 	vertical_distance = 1000000;
 	//maybe abs value on tan when calculating deltal;
 	//hor_wall looking up
@@ -32,11 +32,10 @@ t_wall find_wall_distance(t_map map, float cos)
 	}
 	if (intersection.wall_hitx < 0 || intersection.wall_hity / 64 > map.max_y || intersection.wall_hity < 0)
 		intersection.wall_hity = map.max_y * 64;
-	if (intersection.wall_hitx / 64 > map.max_x)
+	if (intersection.wall_hitx / 64 > map.max_x || intersection.wall_hitx < 0)
 		intersection.wall_hitx = map.max_x * 64;
-	while(map.play_map[(int)intersection.wall_hity / TILE_SIZE] && map.play_map[(int)intersection.wall_hity / TILE_SIZE][(int)intersection.wall_hitx / TILE_SIZE] &&
-        map.play_map[(int)intersection.wall_hity / TILE_SIZE][(int)intersection.wall_hitx / TILE_SIZE] != '1')
-
+	if (intersection.delta_x > -20000){
+	while( map.play_map[(int)intersection.wall_hity / TILE_SIZE][(int)intersection.wall_hitx / TILE_SIZE] != '1')
 	{
         //printf("%f %f\n", intersection.wall_hity, intersection.wall_hitx);
 		if (intersection.wall_hitx < 0 || intersection.wall_hity / 64 > map.max_y || intersection.wall_hity < 0)
@@ -45,7 +44,9 @@ t_wall find_wall_distance(t_map map, float cos)
 		intersection.wall_hitx += intersection.delta_x;
 		if (intersection.wall_hitx < 0 || intersection.wall_hity / 64 > map.max_y || intersection.wall_hity < 0)
 			break;
-	}
+		if (intersection.wall_hitx / 64 > map.max_x)
+			break;
+	}}
 	//what if no wall found ??
 	horizontal_distance = sqrt(pow(map.player.x - intersection.wall_hitx, 2) + pow(map.player.y - intersection.wall_hity, 2));
 	if((int)intersection.wall_hitx  % 64 == 0)
@@ -71,11 +72,15 @@ t_wall find_wall_distance(t_map map, float cos)
 	}
 	if (intersection.wall_hitx < 0 || intersection.wall_hity / 64 > map.max_y || intersection.wall_hity < 0)
 		intersection.wall_hity = 0;
+	if (intersection.wall_hitx / 64 > map.max_x)
+		intersection.wall_hitx = map.max_x * 64;
 	while(map.play_map[(int)intersection.wall_hity / TILE_SIZE][(int)intersection.wall_hitx / TILE_SIZE] != '1')
 	{
 		intersection.wall_hity += intersection.delta_y;
 		intersection.wall_hitx += intersection.delta_x;
 		if (intersection.wall_hitx < 0 || intersection.wall_hity / 64 > map.max_y || intersection.wall_hity < 0)
+			break;
+		if (intersection.wall_hitx / 64 > map.max_x)
 			break;
 	}
 		vertical_distance = sqrt(pow(map.player.x - intersection.wall_hitx, 2) + pow(map.player.y - intersection.wall_hity, 2));
@@ -111,7 +116,7 @@ void	draw_map(t_winp *win, t_map *map)
 	ray = 0;
 	cos = -30;
 	map->player.angle +=30;
-	img.img = mlx_new_image(map->winp.mlx, 1, WINDOW_H);
+	img.img = mlx_new_image(map->winp.mlx, WINDOW_W, WINDOW_H);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 								 &img.endian);
 	while (ray < WINDOW_W)
