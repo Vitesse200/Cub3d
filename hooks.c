@@ -20,6 +20,7 @@ void	ft_move_r(t_vector *game, t_map *map)
 {
     if (map->play_map[(game->y) / TILE_SIZE][(game->x + 64) / TILE_SIZE] != '1')
         game->x += 16;
+
 }
 
 void	ft_move_l(t_vector *game, t_map *map)
@@ -71,7 +72,7 @@ void    ft_camera(int key, t_map *map)
 {
     if (key == 123) // look on the left
     {
-        map->player.angle += 5;
+        map->player.angle += 10;
         if (map->player.angle == 360)
             map->player.angle +=  0;
         if (map->player.angle > 360)
@@ -79,7 +80,7 @@ void    ft_camera(int key, t_map *map)
     }
     else if (key == 124) // look on the right
     {
-        map->player.angle -=5;
+        map->player.angle -=10;
         if (map->player.angle < 0)
             map->player.angle += 360;
         if (map->player.angle > 360)
