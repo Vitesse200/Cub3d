@@ -59,8 +59,6 @@ int	main(int argc, char **argv)
 		return (error("map is not valid\n"));
     if (!ft_extract_data(&map))
         return (error("Expected rgb data\n"));
-    printf("test = %s\n", map.map[7]);
-    printf("test play = %s\n", map.play_map[7]);
 	printf("Max x = %d\n", map.max_x);
 	printf("Max y = %d\n", map.max_y);
 	window_manager(&map);

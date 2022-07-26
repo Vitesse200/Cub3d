@@ -87,6 +87,8 @@ int ft_extract(t_map *map)
 	get_play_map(map);
 	if (!map->play_map)
         return (error("Map malloc did not work"));
+    if (!get_max_value(map->play_map, map))
+        return (error("Issue with max value extraction\n"));
 //	get_play_map(map);
     return (1);
 }
