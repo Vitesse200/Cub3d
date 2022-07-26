@@ -26,6 +26,7 @@ char	**ft_malloc_play_map(t_map *s_map)
 
     y = s_map->start_y;
     map = s_map->map;
+	map = malloc(sizeof(char *) *)
     while (map[y])
         y++;
     len = y;

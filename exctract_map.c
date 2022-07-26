@@ -48,11 +48,31 @@ int	get_play_map(t_map *map)
 {
 	int	y;
 	int	x = 0;
-
+	int	z = 0;
 	y = map->start_y;
 	while (map->map[y])
-		map->play_map[x++] = map->map[y++];
-    map->play_map[x] = NULL;
+	{
+		while (map->map[y][z] != '\n')
+		{
+			map->play_map[x][z] = map->map[y][z];
+			z++;
+			if (map->map[y][z] == '\0')
+				break;
+		}
+		while (z < map->max_x)
+		{
+			map->play_map[x][z] = '1';
+		z++;
+		}
+		if (y < map->max_y)
+			map->play_map[x][z] = '\n';
+		else
+			map->play_map[x][z] = '\0';
+		z = 0;
+		y++;
+		x++;
+	}
+	map->play_map[x] = NULL;
 	return (0);
 }
 
@@ -61,11 +81,12 @@ int ft_extract(t_map *map)
 	init_map(map);
 	if (!ft_map_data(map))
         return (error("Data extraction issue"));
-	map->play_map = ft_malloc_play_map(map);
-    if (!map->play_map)
-        return (error("Map malloc did not work"));
+	if (!get_max_value(map->map, map))
+		return (error("Issue with max value extraction\n"));
+	ft_malloc_play_map(map);
 	get_play_map(map);
-    if (!get_max_value(map->play_map, map))
-        return (error("Issue with max value extraction\n"));
+	if (!map->play_map)
+        return (error("Map malloc did not work"));
+//	get_play_map(map);
     return (1);
 }
