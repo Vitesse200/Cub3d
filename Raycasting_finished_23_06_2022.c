@@ -138,6 +138,8 @@ void	draw_map(t_winp *win, t_map *map)
 		ray++;
 	}
 	map->player.angle +=30;
+	if (map->player.angle > 360)
+		map->player.angle -=360;
 }
 
 void	window_manager(t_map *map)
