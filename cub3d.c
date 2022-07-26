@@ -28,14 +28,14 @@ void	ft_print_player_map(char **map)
 	while (map[i])
 	{
 		j = 0;
-		while (map[i][j])
+		while (map[i][j] != '\n' && map[i][j] != '\0')
 		{
 			write(1, &map[i][j], 1);
 			j++;
 		}
+		write (1, "\n", 2);
 		i++;
 	}
-    write (1, "\n", 2);
 }
 
 int	main(int argc, char **argv)
@@ -61,8 +61,8 @@ int	main(int argc, char **argv)
         return (error("Expected rgb data\n"));
     printf("test = %s\n", map.map[7]);
     printf("test play = %s\n", map.play_map[7]);
-    printf("Max x = %d\n", map.max_x);
-    printf("Max y = %d\n", map.max_y);
+	printf("Max x = %d\n", map.max_x);
+	printf("Max y = %d\n", map.max_y);
 	window_manager(&map);
 	return (0);
 }

@@ -6,7 +6,7 @@ int ft_find_player(int count, char **map, int y, t_map *s_map)
 
     x = 0;
     //s_map->player.angle = 0;
-    while (map[y][x])
+    while (map[y][x] != '\n' && map[y][x] != '\0')
     {
         if (map[y][x] == 'W' || map[y][x] == 'E' || map[y][x] == 'N' || map[y][x] == 'S') {
             count += 1;
@@ -56,7 +56,7 @@ int check_valid_char(char **map)
     while (map[y])
     {
         x = 0;
-        while (map[y][x])
+        while (map[y][x] != '\n' && map[y][x] != '\0')
         {
             if (map[y][x] != '0' && map[y][x] != '1' && map[y][x] != '\n' && map[y][x] != '\0'
                 && map[y][x] != 'N' && map[y][x] != 'S' && map[y][x] != 'E' && map[y][x] != 'W' && map[y][x] != ' '){
@@ -75,7 +75,7 @@ int check_zero(char **map, int y)
     int x;
 
     x = 0;
-    while (map[y][x])
+    while (map[y][x] != '\n' && map[y][x] != '\0')
     {
         if (map[y][x] == '0')
         {
@@ -99,7 +99,7 @@ int ft_check_map(t_map *s_map)
     int     y;
 
     map = s_map->play_map;
-    ft_print_player_map(map);
+    ft_print_player_map(s_map->play_map);
     if (!check_valid_char(map))
         return (0);
     if (!player_pos(s_map, map))

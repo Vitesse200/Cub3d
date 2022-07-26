@@ -25,22 +25,19 @@ void	init_map(t_map *map)
 char	**ft_malloc_play_map(t_map *s_map)
 {
     int	y;
-    int	len;
-    char	**map;
+  //  char	**map;
 
-    y = s_map->start_y;
-    map = s_map->map;
-    len = 0;
-    while (map[y])
-    {
-        y++;
-        len++;
-    }
-    map = malloc(sizeof(char *) * (len + 1));
-    s_map->play_map = map;
-    if (map == NULL)
+    y = 0;
+	s_map->play_map = malloc(sizeof(char *) * 15);
+	while (y < 1 + s_map->max_y - s_map->start_y)
+	{
+		s_map->play_map[y] = malloc(sizeof(char) * (s_map->max_x + 1));
+		y++;
+	}
+ //   s_map->play_map = map;
+    if (s_map->play_map == NULL)
         return (null_error("malloc error on ft_alloc_lines"));
-    return (s_map->play_map);
+    return (NULL);
 }
 
 int get_max_value(char **map, t_map *s_map)
@@ -50,14 +47,14 @@ int get_max_value(char **map, t_map *s_map)
     int len;
 
     len = 0;
-    y = 0;
+    y = s_map->start_y;
     x = 0;
     while (map[y])
     {
 //        printf("map[%i] = %s",y, map[y]);
         len = ft_strlen(map[y]);
         if ((len - 1 > s_map->max_x))
-            s_map->max_x = len - 2;
+            s_map->max_x = len - 1;
         y++;
     }
     s_map->max_y = y - 1;
