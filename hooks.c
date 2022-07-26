@@ -65,14 +65,13 @@ void    ft_move(int key, t_map *map)
     else {
         ft_move_d(&map->player, map);
     }
-    map->player.angle += 30;
 }
 
 void    ft_camera(int key, t_map *map)
 {
     if (key == 123) // look on the left
     {
-        map->player.angle += 31;
+        map->player.angle += 5;
         if (map->player.angle == 360)
             map->player.angle +=  0;
         if (map->player.angle > 360)
@@ -80,7 +79,7 @@ void    ft_camera(int key, t_map *map)
     }
     else if (key == 124) // look on the right
     {
-        map->player.angle += 29;
+        map->player.angle -=5;
         if (map->player.angle < 0)
             map->player.angle += 360;
         if (map->player.angle > 360)
