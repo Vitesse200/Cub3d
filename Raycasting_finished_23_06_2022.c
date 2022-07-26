@@ -142,10 +142,6 @@ void	draw_map(t_winp *win, t_map *map)
 
 void	window_manager(t_map *map)
 {
-	//t_winp	winp;
-//	winp.mlx = mlx_init();
-//	winp.win = mlx_new_window(winp.mlx,WINDOW_W, WINDOW_H,"Cub3d");
-//	map->winp = winp;
 	draw_map(&map->winp, map);
 	mlx_hook(map->winp.win, 17, 0, &ft_close, 0);
 	mlx_key_hook(map->winp.win, *ft_input, map);
