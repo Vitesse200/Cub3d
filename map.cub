@@ -1,10 +1,10 @@
-NO 255, 255, 0
+NO ./cub3d_pics/bluestone.xpm
 
-WE 245, 222, 179
+WE ./cub3d_pics/eagle.xpm
 
-SO 196, 180, 84
+SO ./cub3d_pics/greystone.xpm
 
-EA 255, 170, 51
+EA ./cub3d_pics/redbrick.xpm
 
 F 220, 254, 25
 C 225, 30, 125

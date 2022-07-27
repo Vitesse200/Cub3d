@@ -130,7 +130,7 @@ void	draw_map(t_winp *win, t_map *map)
 		wall = find_wall_distance(*map, cos);
 		if (wall.wall_top < 0)
 			wall.wall_top = 0;
-		img_put(win, ray, &wall, &img);
+		img_put(win, ray, &wall, map->NO);
 		map->player.angle -= ANGLE_DIFF;
 		if (map->player.angle < 0)
 			map->player.angle +=360;
