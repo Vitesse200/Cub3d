@@ -22,27 +22,26 @@ void	ft_move_r(t_vector *game, t_map *map)
 	int neg = 1;
 	
 	temp = map->player.angle / 90;
-	if(temp > 3)
+	if(temp > 1 && temp < 2)
 		neg = -1;
-	if (temp < 2 && temp > 3)
+	if(temp > 3 && temp < 4)
 		neg = -1;
 	temp = temp - floorf(temp);
 	if (neg == -1)
 		temp -=1;
-	if(temp == 0 && map->player.angle != 180 && map->player.angle != 0)
+	if(temp == 0 && (map->player.angle == 90 || map->player.angle == 270))
 		temp = 1;
 	if (map->play_map[(int)(game->y + 16 * temp) / TILE_SIZE][(int)(game->x + 16 * temp) / TILE_SIZE] != '1')
 	{
-		if(map->player.angle <= 180.001) {
-			game->y += temp * 16;
-			game->x += 16 - fabs(temp * 16);
+		if(map->player.angle > 90 && map->player.angle <= 270) {
+			game->x -= temp * 16;
+			game->y -= 16 - fabs(temp * 16);
 		}
 		else
-		{		game->y -= temp * 16;
-			game->x -= 16 - fabs(temp * 16);}
+		{		game->x += temp * 16;
+			game->y += 16 - fabs(temp * 16);}
 		
 	}
-
 }
 
 void	ft_move_l(t_vector *game, t_map *map)
@@ -51,25 +50,24 @@ void	ft_move_l(t_vector *game, t_map *map)
 	int neg = 1;
 	
 	temp = map->player.angle / 90;
-	if(temp > 3)
+	if(temp > 1 && temp < 2)
 		neg = -1;
-	if (temp < 2 && temp > 3)
+	if(temp > 3 && temp < 4)
 		neg = -1;
 	temp = temp - floorf(temp);
 	if (neg == -1)
 		temp -=1;
-	if(temp == 0 && map->player.angle != 180 && map->player.angle != 0)
+	if(temp == 0 && (map->player.angle == 90 || map->player.angle == 270))
 		temp = 1;
-	if (map->play_map[(int)(game->y + 16 * temp) / TILE_SIZE][(int)(game->x + 16 * temp) / TILE_SIZE] != '1')
-	{
-		if(map->player.angle <= 180.001) {
-			game->y -= temp * 16;
-			game->x -= 16 - fabs(temp * 16);
+	if (map->play_map[(int)(game->y + 16 * temp) / TILE_SIZE][(int)(game->x + 16 * temp) / TILE_SIZE] != '1') {
+		if ((map->player.angle > 90 && map->player.angle <= 270))// || (map->player.angle > 270 && map->player.angle < 360))
+			 {
+			game->x += temp * 16;
+			game->y += 16 - fabs(temp * 16);
+		} else {
+			game->x -= temp * 16;
+			game->y -= 16 - fabs(temp * 16);
 		}
-		else
-		{		game->y += temp * 16;
-			game->x += 16 - fabs(temp * 16);}
-		
 	}
 }
 
@@ -90,7 +88,8 @@ void	ft_move_up(t_vector *game, t_map *map)
 		temp = 1;
 	if (map->play_map[(int)(game->y + 16 * temp) / TILE_SIZE][(int)(game->x + 16 * temp) / TILE_SIZE] != '1')
 	{
-		if(map->player.angle <= 180.001) {
+		if(map->player.angle <= 180.001)
+		{
 			game->x -= temp * 16;
 			game->y -= 16 - fabs(temp * 16);
 		}
