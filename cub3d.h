@@ -52,7 +52,7 @@ typedef struct s_winpoint
     void	*win;
     void	*mlx;
     void    *canvas_ptr;
-    int     *addr_canva;
+    int    *addr_canva;
     int     bpp;
     int     size_line;
     int     endian;
@@ -63,7 +63,7 @@ typedef struct  s_texture
     char    *extract;
     char    *path;
     void    *img_ptr;
-    int     *addr_img;
+    int    *addr_img;
     int     height;
     int     width;
     int     img_height;
@@ -75,9 +75,13 @@ typedef struct  s_texture
 } t_texture;
 
 typedef struct	s_data {
+    void	*mlx;
+    void	*mlx_win;
     void	*img;
-    char	*addr;
-    int		bits_per_pixel;
+    int     *addr;
+    int     img_height;
+    int     img_width;
+    int		bpp;
     int		line_length;
     int		endian;
 }				t_data;
@@ -90,10 +94,11 @@ typedef struct s_map
 	int			start_y;
 	int			max_x;
 	int			max_y;
-	t_texture 		*NO;
-	t_texture		*SO;
-	t_texture 		*WE;
-	t_texture 		*EA;
+	t_texture 	*NO;
+	t_texture	*SO;
+	t_texture 	*WE;
+	t_texture 	*EA;
+    t_texture   *window;
 	char		*F;
 	char		*C;
 	char		orientation;
@@ -111,8 +116,8 @@ typedef struct s_map
 //double    find_close_wall(char **map, int x, int y, double angle, double i);
 //t_test    find_close_wall(t_map map, double i, t_test test);
 double  tan_degrees(double angle);
-void	img_put(t_winp *winp, int x, t_wall *wall, t_texture *img);
-void	my_mlx_pixel_put(t_texture *data, int x, int y, int color);
+void	img_put(t_winp *winp, int x, t_wall *wall);
+void	my_mlx_pixel_put(t_winp *data, int x, int y, int color);
 t_wall  find_wall_distance(t_map map, float cos);
 void	window_manager(t_map *map);
 void	*null_error(char *message);
@@ -148,6 +153,7 @@ int	    ft_close(void);
 int     ft_input(int key, void *param);
 int     init_all_text(t_map *map);
 int     ft_texture_data(t_map *map);
-void    print_texture(t_winp *winp, t_texture *text, t_wall *wall);
+void    print_texture(t_winp *winp, t_texture *text);
+void    jo_print_texture(t_map *map);
 
 #endif

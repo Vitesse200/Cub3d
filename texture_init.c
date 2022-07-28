@@ -1,14 +1,14 @@
 #include "cub3d.h"
 
-void    print_texture(t_winp *winp, t_texture *text, t_wall *wall)
+void    print_texture(t_winp *winp, t_texture *text)
 {
     int x = 0;
     int i = 0;
 
-    while (i < wall->wall_top)
+    while (i < 64)
     {
         x = 0;
-        while (x < wall->wall_top)
+        while (x < 64)
         {
             winp->addr_canva[i * (winp->size_line / 4) + x] = text->addr_img[i * (text->size_line / 4) + x];
             x++;
@@ -23,9 +23,7 @@ int init_texture(t_winp *winp, t_texture *text)
     text->img_ptr = mlx_xpm_file_to_image(winp->mlx, text->path, &text->img_width, &text->img_height);
     if (!text->img_ptr)
         return(error("***issue with texture loading\n"));
-    text->addr_img = (int *) mlx_get_data_addr(text->img_ptr, &text->bpp, &text->size_line, &text->endian);
-//    print_texture(winp, text);
-//    mlx_put_image_to_window(winp->mlx, winp->win, winp->canvas_ptr, 0, 0);
+    text->addr_img = (int*)mlx_get_data_addr(text->img_ptr, &text->bpp, &text->size_line, &text->endian);
     return (1);
 }
 

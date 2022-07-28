@@ -61,6 +61,7 @@ int	main(int argc, char **argv)
         return (error("Expected rgb data\n"));
 	printf("Max x = %d\n", map.max_x);
 	printf("Max y = %d\n", map.max_y);
-	window_manager(&map);
+    window_manager(&map);
+//    jo_print_texture(&map);
 	return (0);
 }
