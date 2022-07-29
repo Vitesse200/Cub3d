@@ -12,7 +12,12 @@ int    jo_pixel_color(int x, int y, int *firstpixel)
 {
     int    *fp;
 
+    if (x > 64)
+        x = 0;
+    if (y > 64)
+        y = 0;
     fp = firstpixel;
+    //printf("pixel color  x = %d, y = %d, fp = %d\n", x, y, fp[y * 64 + x]);
     return (fp[y * 64 + x]);
 }
 

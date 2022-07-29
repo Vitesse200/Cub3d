@@ -53,7 +53,7 @@ int ft_extract_rgb(int i, char *tmp, char *rgb, char t, t_map *map, int count)
         tab = map->tab_F;
     if (t == 'c')
         tab = map->tab_C;
-	printf("rgb bug = %s i = %d\n", rgb, i);
+	printf("rgb = %s i = %d\n", rgb, i);
     while (rgb[++i] && count < 3)
         if (ft_isnum(rgb[i]))
         {

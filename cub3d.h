@@ -44,7 +44,7 @@ typedef struct s_vector
 
 typedef struct
 {
-    char    rgb[9];
+    char    rgb[11];
 } RGBhex;
 
 typedef struct s_winpoint
@@ -116,8 +116,7 @@ typedef struct s_map
 //double    find_close_wall(char **map, int x, int y, double angle, double i);
 //t_test    find_close_wall(t_map map, double i, t_test test);
 double  tan_degrees(double angle);
-void	img_put(t_winp *winp, int x, t_wall *wall);
-void	my_mlx_pixel_put(t_winp *data, int x, int y, int color);
+//void	img_put(t_winp *winp, int x, t_wall *wall);
 t_wall  find_wall_distance(t_map map, float cos);
 void	window_manager(t_map *map);
 void	*null_error(char *message);
@@ -155,5 +154,8 @@ int     init_all_text(t_map *map);
 int     ft_texture_data(t_map *map);
 void    print_texture(t_winp *winp, t_texture *text);
 void    jo_print_texture(t_map *map);
+int     jo_pixel_color(int x, int y, int *firstpixel);
+void	img_put(t_winp *winp, int x, t_wall *wall, t_map *map, t_vector *xpm);
+void	my_mlx_pixel_put(t_winp *data, int x, int y, int color);
 
 #endif
