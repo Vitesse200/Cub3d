@@ -13,14 +13,24 @@ void	my_mlx_pixel_put(t_winp *data, int x, int y, int color)
     }
 }
 
+int    *direction_texture(int dir, t_map *map)
+{
+    if (dir == 1)
+        return (map->WE->addr_img);
+    else if (dir == 2)
+        return (map->WE->addr_img);
+    else if (dir == 3)
+        return (map->WE->addr_img);
+    else
+        return (map->WE->addr_img);
+}
 
 void	img_put(t_winp *winp, int x, t_wall *wall, t_map *map, t_vector *xpm)
 {
     int i;
+    int    *texture;
 
     i = 0;
-    if (wall->wall_top < 0)
-        wall->wall_top = 0;
     if (i < wall->wall_top)
     {
         while(i < wall->wall_top){
@@ -28,12 +38,13 @@ void	img_put(t_winp *winp, int x, t_wall *wall, t_map *map, t_vector *xpm)
             i++;
         }
     }
+    texture = direction_texture(wall->direction, map);
     while(wall->wall_top < wall->heigth + i){
         if(wall->wall_top < WINDOW_H) {
-            wall->color = jo_pixel_color(xpm->x/5, xpm->y++/5, map->NO->addr_img);
+            wall->color = jo_pixel_color(xpm->x, xpm->y++/(wall->heigth/64), texture);
             my_mlx_pixel_put(winp, x, wall->wall_top, wall->color);
         }
-        if (xpm->y >= 320)
+        if (xpm->y >= wall->heigth)
             xpm->y = 0;
         wall->wall_top++;
     }
@@ -55,8 +66,10 @@ void	draw_map(t_winp *win, t_map *map)
     float	cos;
     t_vector    xpm;
     //t_data	img;
+    int i;
 
     ray = 0;
+    i = 0;
     cos = -30;
     map->player.angle +=30;
     xpm.x = 0;
@@ -67,11 +80,13 @@ void	draw_map(t_winp *win, t_map *map)
     {
 
         wall = find_wall_distance(*map, cos);
-        if (wall.wall_top < 0)
-            wall.wall_top = 0;
         // xpm is the position of x in the xpm file
         // the position of x and y needs to be proportioned to the actual position on the tile and
         // the wall real size
+        if (i != wall.direction || wall.color == 0)
+            xpm.x = 0;
+        i = wall.direction;
+        xpm.x = wall.color;
         if (xpm.x >= 320)
             xpm.x = 0;
         xpm.y = 0;
