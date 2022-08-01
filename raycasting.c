@@ -85,23 +85,19 @@ t_wall	find_wall_distance(t_map map, float cos)
 		vertical_dist *= cos_degrees(cos);
 		wall.heigth = (TILE_SIZE / vertical_dist * PROJ_DIST);
 		wall.wall_top = (WINDOW_H / 2) - (wall.heigth / 2);
-		wall.color = 0xA000FF;
 		if (map.player.angle < 270 && map.player.angle > 90)
 			wall.direction = 4;
 		else
 			wall.direction = 2;
 	}
-	else
-		{
-			horizontal_dist *= cos_degrees(cos);
-			wall.heigth = (TILE_SIZE / horizontal_dist * PROJ_DIST);
-			wall.wall_top = (WINDOW_H / 2) - (wall.heigth / 2);
-			wall.color = 0xF0F0F0;
-			if (map.player.angle > 180)
-				wall.direction = 3;
-			else
-				wall.direction = 1;
-			wall.color = 0xA0A0A0;
-		}
+	else {
+		horizontal_dist *= cos_degrees(cos);
+		wall.heigth = (TILE_SIZE / horizontal_dist * PROJ_DIST);
+		wall.wall_top = (WINDOW_H / 2) - (wall.heigth / 2);
+		if (map.player.angle > 180)
+			wall.direction = 3;
+		else
+			wall.direction = 1;
+	}
 	return (wall);
 }
