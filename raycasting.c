@@ -81,7 +81,8 @@ t_wall	find_wall_distance(t_map map, float cos)
 	horizontal_dist = find_hor_wall(map);
 	vertical_dist = find_vert_wall(map);
 	if ((vertical_dist < horizontal_dist && vertical_dist > 0) || horizontal_dist < 0)
-	{
+	{	wall.color = 0xF0F0F0;
+		
 		vertical_dist *= cos_degrees(cos);
 		wall.heigth = (TILE_SIZE / vertical_dist * PROJ_DIST);
 		wall.wall_top = (WINDOW_H / 2) - (wall.heigth / 2);
@@ -90,7 +91,8 @@ t_wall	find_wall_distance(t_map map, float cos)
 		else
 			wall.direction = 2;
 	}
-	else {
+	else {	wall.color = 0x0F0F0F;
+		
 		horizontal_dist *= cos_degrees(cos);
 		wall.heigth = (TILE_SIZE / horizontal_dist * PROJ_DIST);
 		wall.wall_top = (WINDOW_H / 2) - (wall.heigth / 2);
