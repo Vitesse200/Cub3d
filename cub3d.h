@@ -45,6 +45,7 @@ typedef struct s_vector
 typedef struct
 {
     char    rgb[9];
+    int     int_hexa;
 } RGBhex;
 
 typedef struct s_winpoint

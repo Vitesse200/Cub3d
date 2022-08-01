@@ -59,7 +59,7 @@ void	img_put(t_winp *winp, int x, t_wall *wall, t_map *map, t_vector *xpm)
     if (i < wall->wall_top)
     {
         while(i < wall->wall_top){
-            my_mlx_pixel_put(winp, x, i, 0x00FF0011);
+            my_mlx_pixel_put(winp, x, i, map->F_RGBhex.int_hexa);
             i++;
         }
     }
@@ -76,7 +76,7 @@ void	img_put(t_winp *winp, int x, t_wall *wall, t_map *map, t_vector *xpm)
     if (wall->wall_top < WINDOW_H)
     {
         while(wall->wall_top < WINDOW_H){
-            my_mlx_pixel_put(winp, x, wall->wall_top, 0x00FF00DD);
+            my_mlx_pixel_put(winp, x, wall->wall_top, map->C_RGBhex.int_hexa);
             wall->wall_top++;
         }
     }
