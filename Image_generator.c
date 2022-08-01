@@ -1,11 +1,10 @@
 #include "cub3d.h"
 
 
-
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	int	*dst;
-	
+
 //	printf("%p, %d %d\n", data->addr, x, y);
 	dst = (int *)data->addr + (y * data->line_length/4) + x; /* (data->bits_per_pixel / 8));*/
 	*dst = color;

@@ -20,8 +20,8 @@ typedef struct s_map	t_map;
 
 typedef struct s_intersection
 {
-	float	wall_hitx;
-	float	wall_hity;
+	float	hitx;
+	float	hity;
 	float	delta_x;
 	float	delta_y;
 }	t_intersection;
@@ -112,7 +112,7 @@ typedef struct	s_data {
 double  tan_degrees(double angle);
 void	img_put(t_winp *winp, int x, t_wall *wall, t_data *img);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-t_wall  find_wall_distance(t_map map, float cos);
+//t_wall  find_wall_distance(t_map map, float cos);
 void	window_manager(t_map *map);
 void	*null_error(char *message);
 int		error(char *message);
@@ -145,5 +145,12 @@ double  cos_degrees(double angle);
 int     convert_hexa(t_map *map);
 int	    ft_close(void);
 int     ft_input(int key, void *param);
+
+
+t_wall	find_wall_distance(t_map map, float cos);
+float	find_hor_wall(t_map map);
+float	find_vert_wall(t_map map);
+float	wall_find(t_map map, t_intersection inter);
+int		check_inbound(t_map map, t_intersection inter);
 
 #endif
