@@ -76,19 +76,29 @@ int	get_play_map(t_map *map)
 	return (0);
 }
 
+void    malloc_text(t_map *map)
+{
+    map->NO = malloc(sizeof(t_texture));
+    map->SO = malloc(sizeof(t_texture));
+    map->WE = malloc(sizeof(t_texture));
+    map->EA = malloc(sizeof(t_texture));
+}
+
 int ft_extract(t_map *map)
 {
-	init_map(map);
-	if (!ft_map_data(map))
+    malloc_text(map);
+    init_map(map);
+    if (!ft_map_data(map))
         return (error("Data extraction issue"));
-	if (!get_max_value(map->map, map))
-		return (error("Issue with max value extraction\n"));
-	ft_malloc_play_map(map);
-	get_play_map(map);
-	if (!map->play_map)
+    if (!get_max_value(map->map, map))
+        return (error("Issue with max value extraction\n"));
+    ft_malloc_play_map(map);
+    get_play_map(map);
+    if (!map->play_map)
         return (error("Map malloc did not work"));
     if (!get_max_value(map->play_map, map))
         return (error("Issue with max value extraction\n"));
-//	get_play_map(map);
+    ft_texture_data(map);
+    init_all_text(map);
     return (1);
 }
