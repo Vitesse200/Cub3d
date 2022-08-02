@@ -76,12 +76,12 @@ int	get_play_map(t_map *map)
 	return (0);
 }
 
-void    malloc_text(t_map *map)
+void	malloc_text(t_map *map)
 {
-    map->NO = malloc(sizeof(t_texture));
-    map->SO = malloc(sizeof(t_texture));
-    map->WE = malloc(sizeof(t_texture));
-    map->EA = malloc(sizeof(t_texture));
+    map->north = malloc(sizeof(t_texture));
+    map->south = malloc(sizeof(t_texture));
+    map->west = malloc(sizeof(t_texture));
+    map->east = malloc(sizeof(t_texture));
 }
 
 int ft_extract(t_map *map)

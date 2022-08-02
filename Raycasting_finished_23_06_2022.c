@@ -76,26 +76,27 @@ void	window_manager(t_map *map)
 {
 	draw_map(&map->winp, map);
 	mlx_hook(map->winp.win, 17, 0, &ft_close, 0);
-	mlx_key_hook(map->winp.win, *ft_input, map);
+	mlx_key_hook(map->winp.win, ft_input, map);
 	mlx_loop(map->winp.mlx);
 	if (map->winp.win == NULL)
 		exit(0);
 }
 
-double tan_degrees(double angle)
+double	tan_degrees(double angle)
 {
 	angle = angle * (M_PI / 180);
 	angle = tan(angle);
 	return (angle);
 }
-double cos_degrees(double angle)
+
+double	cos_degrees(double angle)
 {
 	angle = angle * (M_PI / 180);
 	angle = cos(angle);
 	return (angle);
 }
 
-double sin_degrees(double angle)
+double	sin_degrees(double angle)
 {
 	angle = angle * (M_PI / 180);
 	angle = sin(angle);

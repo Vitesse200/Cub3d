@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void dec2hex(int *rgbd, RGBhex *rgbh)
+void dec2hex(int *rgbd, t_rgbhex *rgbh)
 {
     char hexvalues[] = "0123456789ABCDEF";
     int i0;
@@ -41,14 +41,14 @@ int	color_bitshift(unsigned char a, unsigned char r, unsigned char g, unsigned c
 
 int convert_hexa(t_map *map)
 {
-    dec2hex(map->tab_F, &map->F_RGBhex);
-    printf("***rgb F %s\n", map->F_RGBhex.rgb);
-    map->F_RGBhex.int_hexa = color_bitshift(0, map->tab_F[0], map->tab_F[1], map->tab_F[2]);
-    printf("***rgb Hexa F strol = %d\n", map->F_RGBhex.int_hexa);
-    dec2hex(map->tab_C, &map->C_RGBhex);
-    printf("***rgb C %s\n", map->C_RGBhex.rgb);
-    map->C_RGBhex.int_hexa = color_bitshift(0, map->tab_C[0], map->tab_C[1], map->tab_C[2]);
-    printf("***rgb Hexa C strol = %d\n", map->C_RGBhex.int_hexa);
+    dec2hex(map->tab_floor, &map->floor_rgb);
+    printf("***rgb F %s\n", map->floor_rgb.rgb);
+    map->floor_rgb.int_hexa = color_bitshift(0, map->tab_floor[0], map->tab_floor[1], map->tab_floor[2]);
+    printf("***rgb Hexa F strol = %d\n", map->floor_rgb.int_hexa);
+    dec2hex(map->tab_ceiling, &map->ceiling_rgb);
+    printf("***rgb C %s\n", map->ceiling_rgb.rgb);
+    map->ceiling_rgb.int_hexa = color_bitshift(0, map->tab_ceiling[0], map->tab_ceiling[1], map->tab_ceiling[2]);
+    printf("***rgb Hexa C strol = %d\n", map->ceiling_rgb.int_hexa);
     printf("angle = %f\n", map->player.angle);
     return (1);
 }

@@ -2,28 +2,28 @@
 
 void	init_map(t_map *map)
 {
-    map->player.x = 0;
-    map->player.y = 0;
-    map->start_y = 0;
-    map->max_x = 0;
-    map->max_y = 0;
-    map->player.angle = 0;
-    map->play_map = NULL;
-    map->NO->extract = NULL;
-    map->SO->extract = NULL;
-    map->WE->extract = NULL;
-    map->EA->extract = NULL;
-    map->NO->path = NULL;
-    map->SO->path = NULL;
-    map->WE->path = NULL;
-    map->EA->path = NULL;
-    map->F = NULL;
-    map->C = NULL;
-    map->orientation = 0;
-    map->winp.mlx = mlx_init();
-    map->winp.win = mlx_new_window(map->winp.mlx,WINDOW_W, WINDOW_H,"Init_Cub3d");
-    map->winp.canvas_ptr = mlx_new_image(map->winp.mlx, WINDOW_W, WINDOW_H);
-    map->winp.addr_canva = (int *) mlx_get_data_addr(map->winp.canvas_ptr, &map->winp.bpp, &map->winp.size_line, &map->winp.endian);
+	map->player.x = 0;
+	map->player.y = 0;
+	map->start_y = 0;
+	map->max_x = 0;
+	map->max_y = 0;
+	map->player.angle = 0;
+	map->play_map = NULL;
+	map->north->extract = NULL;
+	map->south->extract = NULL;
+	map->west->extract = NULL;
+	map->east->extract = NULL;
+	map->north->path = NULL;
+	map->south->path = NULL;
+	map->west->path = NULL;
+	map->east->path = NULL;
+	map->floor = NULL;
+	map->ceiling = NULL;
+	map->orientation = 0;
+	map->winp.mlx = mlx_init();
+	map->winp.win = mlx_new_window(map->winp.mlx,WINDOW_W, WINDOW_H,"Init_Cub3d");
+	map->winp.canvas_ptr = mlx_new_image(map->winp.mlx, WINDOW_W, WINDOW_H);
+	map->winp.addr_canva = (int *) mlx_get_data_addr(map->winp.canvas_ptr, &map->winp.bpp, &map->winp.size_line, &map->winp.endian);
 }
 
 char	**ft_malloc_play_map(t_map *s_map)
@@ -70,27 +70,27 @@ int get_max_value(char **map, t_map *s_map)
 int	ft_match(char *c, t_map *map)
 {
 //    printf("char c = %s\n", c);
-    if ((!ft_strncmp(c, "NO", 2) && !map->NO->extract) || (!ft_strncmp(c, "WE", 2) && !map->WE->extract)
-        || (!ft_strncmp(c, "SO", 2) && !map->SO->extract) || (!ft_strncmp(c, "EA", 2) && !map->EA->extract))
+    if ((!ft_strncmp(c, "NO", 2) && !map->north->extract) || (!ft_strncmp(c, "WE", 2) && !map->west->extract)
+        || (!ft_strncmp(c, "SO", 2) && !map->south->extract) || (!ft_strncmp(c, "EA", 2) && !map->east->extract))
     {
 //        printf("char c IN = %s\n", c);
         if (c[0] == 'N')
-            map->NO->extract = c;
+            map->north->extract = c;
         else if (c[0] == 'W')
-            map->WE->extract = c;
+            map->west->extract = c;
         else if (c[0] == 'E')
-            map->EA->extract = c;
+            map->east->extract = c;
         else
-            map->SO->extract = c;
+            map->south->extract = c;
         return (1);
     }
-    else if ((!ft_strncmp(c, "F", 1) && !map->F) || (!ft_strncmp(c, "C", 1) && !map->C))
+    else if ((!ft_strncmp(c, "F", 1) && !map->floor) || (!ft_strncmp(c, "C", 1) && !map->ceiling))
     {
 //        printf("char c IN 2 = %s\n", c);
         if (c[0] == 'F')
-            map->F = c;
+            map->floor = c;
         else
-            map->C = c;
+            map->ceiling = c;
         return (1);
     }
     return (0);
