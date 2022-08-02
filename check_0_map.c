@@ -77,6 +77,8 @@ int check_zero(char **map, int y)
     x = 0;
     while (map[y][x] != '\n' && map[y][x] != '\0')
     {
+        if (map[0][x] == '0' || map[y][0] == '0')
+            return (0);
         if (map[y+1])
         {
             if (map[y][x] == '0')
@@ -99,6 +101,35 @@ int check_zero(char **map, int y)
     return (1);
 }
 
+void    ft_fill_map(t_map *map)
+{
+    int x;
+    int y;
+    int max;
+
+    max = map->max_x;
+    x = 0;
+    y = 0;
+    while (map->play_map[y]) {
+        x = 0;
+        while (map->play_map[y][x] != '\n' || map->play_map[y][x] != '\0')
+        {
+            x++;
+        }
+        if (x < max)
+        {
+            while (x < max) {
+                map->play_map[y][x] = '1';
+                x++;
+            }
+            if (y < map->max_y)
+                map->play_map[y][x] = '\n';
+            else
+                map->play_map[y][x] = '\0';
+        }
+        y++;
+    }
+}
 int ft_check_map(t_map *s_map)
 {
     char    **map;
@@ -117,5 +148,7 @@ int ft_check_map(t_map *s_map)
             return (error("Map is not valid"));
         y++;
     }
+    ft_fill_map(s_map);
+    ft_print_player_map(s_map->play_map);
     return(1);
 }
