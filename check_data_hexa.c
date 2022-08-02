@@ -28,15 +28,27 @@ void dec2hex(int *rgbd, RGBhex *rgbh)
 //    return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
 //}
 
+int	color_bitshift(unsigned char a, unsigned char r, unsigned char g, unsigned char b)
+{
+    int RGB;
+
+    RGB = (a << 24);
+    RGB = RGB | (r << 16);
+    RGB = RGB | (g << 8);
+    RGB = RGB | (b);
+    return (RGB);
+}
+
 int convert_hexa(t_map *map)
 {
     dec2hex(map->tab_F, &map->F_RGBhex);
     printf("***rgb F %s\n", map->F_RGBhex.rgb);
-    map->F_RGBhex.int_hexa = (int)strtol(map->F_RGBhex.rgb, NULL, 0);
-    printf("***rgb Hexa F %d\n", map->F_RGBhex.int_hexa);
+    map->F_RGBhex.int_hexa = color_bitshift(0, map->tab_F[0], map->tab_F[1], map->tab_F[2]);
+    printf("***rgb Hexa F strol = %d\n", map->F_RGBhex.int_hexa);
     dec2hex(map->tab_C, &map->C_RGBhex);
     printf("***rgb C %s\n", map->C_RGBhex.rgb);
-    map->C_RGBhex.int_hexa = (int)strtol(map->C_RGBhex.rgb, NULL, 0);
+    map->C_RGBhex.int_hexa = color_bitshift(0, map->tab_C[0], map->tab_C[1], map->tab_C[2]);
+    printf("***rgb Hexa C strol = %d\n", map->C_RGBhex.int_hexa);
     printf("angle = %f\n", map->player.angle);
     return (1);
 }
