@@ -6,7 +6,6 @@ void    get_texture_path(char *extract, t_texture *text)
     char    *tmp2;
     int     i;
 
-//    printf("extract = %s\n", extract);
     tmp = ft_memchr(text->extract, '.', ft_strlen(text->extract));
     tmp2 = malloc(sizeof (char) * (ft_strlen(extract)));
     i = 0;
@@ -17,7 +16,6 @@ void    get_texture_path(char *extract, t_texture *text)
     }
     tmp2[i] = '\0';
     text->path = tmp2;
-//    printf("texture path = %s\n", text->path);
 }
 
 int valid_text(char *path)

@@ -10,7 +10,6 @@ int    jo_pixel_color(int x, int y, int *firstpixel)
     if (y > 64)
         y = 0;
     fp = firstpixel;
-    //printf("pixel color  x = %d, y = %d, fp = %d\n", x, y, fp[y * 64 + x]);
     return (fp[y * 64 + x]);
 }
 
@@ -26,12 +25,12 @@ int init_texture(t_winp *winp, t_texture *text)
 int init_all_text(t_map *map)
 {
     init_texture(&map->winp, map->NO);
-    printf("text path = %s, text width = %d, text height = %d, text line size = %d\n", map->NO->path, map->NO->img_width, map->NO->img_height, map->NO->size_line);
+//    printf("text path = %s, text width = %d, text height = %d, text line size = %d\n", map->NO->path, map->NO->img_width, map->NO->img_height, map->NO->size_line);
     init_texture(&map->winp, map->SO);
-    printf("text path = %s, text width = %d, text height = %d, text line size = %d\n", map->SO->path, map->SO->img_width, map->SO->img_height, map->SO->size_line);
+//    printf("text path = %s, text width = %d, text height = %d, text line size = %d\n", map->SO->path, map->SO->img_width, map->SO->img_height, map->SO->size_line);
     init_texture(&map->winp, map->EA);
-    printf("text path = %s, text width = %d, text height = %d, text line size = %d\n", map->EA->path, map->EA->img_width, map->EA->img_height, map->EA->size_line);
+//    printf("text path = %s, text width = %d, text height = %d, text line size = %d\n", map->EA->path, map->EA->img_width, map->EA->img_height, map->EA->size_line);
     init_texture(&map->winp, map->WE);
-    printf("text path = %s, text width = %d, text height = %d, text line size = %d\n", map->WE->path, map->WE->img_width, map->WE->img_height, map->WE->size_line);
+//    printf("text path = %s, text width = %d, text height = %d, text line size = %d\n", map->WE->path, map->WE->img_width, map->WE->img_height, map->WE->size_line);
     return (1);
 }

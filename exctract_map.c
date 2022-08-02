@@ -37,7 +37,6 @@ int	ft_map_data(t_map *map)
 	}
     if (count < 6)
     {
-        printf ("count = %d\n", count);
         return (error("Wrong number of game data \n"));
     }
 	map_start_y(i, map);

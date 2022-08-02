@@ -29,7 +29,6 @@ void	init_map(t_map *map)
 char	**ft_malloc_play_map(t_map *s_map)
 {
     int	y;
-  //  char	**map;
 
     y = 0;
 	s_map->play_map = malloc(sizeof(char *) * 15);
@@ -38,7 +37,6 @@ char	**ft_malloc_play_map(t_map *s_map)
 		s_map->play_map[y] = malloc(sizeof(char) * (s_map->max_x + 1));
 		y++;
 	}
- //   s_map->play_map = map;
     if (s_map->play_map == NULL)
         return (null_error("malloc error on ft_alloc_lines"));
     return (NULL);
@@ -55,7 +53,6 @@ int get_max_value(char **map, t_map *s_map)
     x = 0;
     while (map[y])
     {
-//        printf("map[%i] = %s",y, map[y]);
         len = ft_strlen(map[y]);
         if ((len - 1 > s_map->max_x))
             s_map->max_x = len - 1;
@@ -69,11 +66,9 @@ int get_max_value(char **map, t_map *s_map)
 
 int	ft_match(char *c, t_map *map)
 {
-//    printf("char c = %s\n", c);
     if ((!ft_strncmp(c, "NO", 2) && !map->NO->extract) || (!ft_strncmp(c, "WE", 2) && !map->WE->extract)
         || (!ft_strncmp(c, "SO", 2) && !map->SO->extract) || (!ft_strncmp(c, "EA", 2) && !map->EA->extract))
     {
-//        printf("char c IN = %s\n", c);
         if (c[0] == 'N')
             map->NO->extract = c;
         else if (c[0] == 'W')
@@ -86,7 +81,6 @@ int	ft_match(char *c, t_map *map)
     }
     else if ((!ft_strncmp(c, "F", 1) && !map->F) || (!ft_strncmp(c, "C", 1) && !map->C))
     {
-//        printf("char c IN 2 = %s\n", c);
         if (c[0] == 'F')
             map->F = c;
         else

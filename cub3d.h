@@ -66,14 +66,11 @@ typedef struct  s_texture
     char    *path;
     void    *img_ptr;
     int     *addr_img;
-    int     height;
-    int     width;
     int     img_height;
     int     img_width;
     int     bpp;
     int     size_line;
     int     endian;
-    t_winp  winp;
 } t_texture;
 
 typedef struct s_map
@@ -87,7 +84,6 @@ typedef struct s_map
     t_texture	*SO;
     t_texture 	*WE;
     t_texture 	*EA;
-    t_texture   *window;
     char		*F;
     char		*C;
     char		orientation;
@@ -100,23 +96,9 @@ typedef struct s_map
     t_winp      winp;
 }	t_map;
 
-typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
-
-//double    find_first_hor(t_map map, int i);
-//double    find_first_vert(t_map map);
-//double    find_close_wall(char **map, int x, int y, double angle, double i);
-//t_test    find_close_wall(t_map map, double i, t_test test);
 double  tan_degrees(double angle);
 void    malloc_text(t_map *map);
-//void	img_put(t_winp *winp, int x, t_wall *wall, t_data *img);
 void	my_mlx_pixel_put(t_winp *data, int x, int y, int color);
-//t_wall  find_wall_distance(t_map map, float cos);
 void	window_manager(t_map *map);
 void	*null_error(char *message);
 int		error(char *message);
@@ -149,9 +131,7 @@ double  cos_degrees(double angle);
 int     convert_hexa(t_map *map);
 int	    ft_close(void);
 int     ft_input(int key, void *param);
-
 int init_all_text(t_map *map);
-
 int ft_texture_data(t_map *map);
 t_wall	find_wall_distance(t_map map, float cos);
 float	find_hor_wall(t_map map, t_wall *wall);
