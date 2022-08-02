@@ -33,17 +33,17 @@ int valid_text(char *path)
 
 int ft_texture_data(t_map *map)
 {
-    get_texture_path(map->NO->extract, map->NO);
-    if (valid_text(map->NO->path) != 1)
+    get_texture_path(map->north->extract, map->north);
+    if (valid_text(map->north->path) != 1)
         return (error("path to texture not valid\n"));
-    get_texture_path(map->SO->extract, map->SO);
-    if (valid_text(map->SO->path) != 1)
+    get_texture_path(map->south->extract, map->south);
+    if (valid_text(map->south->path) != 1)
         return (error("path to texture not valid\n"));
-    get_texture_path(map->EA->extract, map->EA);
-    if (valid_text(map->EA->path) != 1)
+    get_texture_path(map->east->extract, map->east);
+    if (valid_text(map->east->path) != 1)
         return (error("path to texture not valid\n"));
-    get_texture_path(map->WE->extract, map->WE);
-    if (valid_text(map->WE->path) != 1)
+    get_texture_path(map->west->extract, map->west);
+    if (valid_text(map->west->path) != 1)
         return (error("path to texture not valid\n"));
     return (1);
 }

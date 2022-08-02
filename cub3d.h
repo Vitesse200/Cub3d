@@ -1,4 +1,16 @@
-# ifndef CUB3D_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lgaillar <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/02 16:15:24 by lgaillar          #+#    #+#             */
+/*   Updated: 2022/08/02 16:15:39 by lgaillar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef CUB3D_H
 # define CUB3D_H
 
 # include "mlx/mlx.h"
@@ -16,6 +28,7 @@
 # define WINDOW_H 800
 # define WINDOW_W 1280
 # define ANGLE_DIFF 0.046875
+
 typedef struct s_map	t_map;
 
 typedef struct s_intersection
@@ -37,70 +50,70 @@ typedef struct s_wall
 
 typedef struct s_vector
 {
-	int	    x;
-	int	    y;
-    float	angle;
-    t_map   *map;
-} t_vector;
+	int		x;
+	int		y;
+	float	angle;
+	t_map	*map;
+}	t_vector;
 
-typedef struct
+typedef struct t_rgbhex
 {
-    char    rgb[9];
-    int     int_hexa;
-} RGBhex;
+	char	rgb[9];
+	int		int_hexa;
+}	t_rgbhex;
 
 typedef struct s_winpoint
 {
-    void	*win;
-    void	*mlx;
-    void    *canvas_ptr;
-    int     *addr_canva;
-    int     bpp;
-    int     size_line;
-    int     endian;
-}   t_winp;
+	void	*win;
+	void	*mlx;
+	void	*canvas_ptr;
+	int		*addr_canva;
+	int		bpp;
+	int		size_line;
+	int		endian;
+}	t_winp;
 
-typedef struct  s_texture
+typedef struct s_texture
 {
-    char    *extract;
-    char    *path;
-    void    *img_ptr;
-    int     *addr_img;
-    int     height;
-    int     width;
-    int     img_height;
-    int     img_width;
-    int     bpp;
-    int     size_line;
-    int     endian;
-    t_winp  winp;
-} t_texture;
+	char	*extract;
+	char	*path;
+	void	*img_ptr;
+	int		*addr_img;
+	int		height;
+	int		width;
+	int		img_height;
+	int		img_width;
+	int		bpp;
+	int		size_line;
+	int		endian;
+	t_winp	winp;
+}	t_texture;
 
 typedef struct s_map
 {
-    t_vector	size;
-    t_vector	player;
-    int			start_y;
-    int			max_x;
-    int			max_y;
-    t_texture 	*NO;
-    t_texture	*SO;
-    t_texture 	*WE;
-    t_texture 	*EA;
-    t_texture   *window;
-    char		*F;
-    char		*C;
-    char		orientation;
-    char		**map;
-    char		**play_map;
-    int         *tab_F;
-    int         *tab_C;
-    RGBhex      F_RGBhex;
-    RGBhex      C_RGBhex;
-    t_winp      winp;
+	t_vector	size;
+	t_vector	player;
+	int			start_y;
+	int			max_x;
+	int			max_y;
+	t_texture	*north;
+	t_texture	*south;
+	t_texture	*west;
+	t_texture	*east;
+	t_texture	*window;
+	char		*floor;
+	char		*ceiling;
+	char		orientation;
+	char		**map;
+	char		**play_map;
+	int			*tab_floor;
+	int			*tab_ceiling;
+	t_rgbhex	floor_rgb;
+	t_rgbhex	ceiling_rgb;
+	t_winp		winp;
 }	t_map;
 
-typedef struct	s_data {
+typedef struct s_data {
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -108,15 +121,9 @@ typedef struct	s_data {
 	int		endian;
 }				t_data;
 
-//double    find_first_hor(t_map map, int i);
-//double    find_first_vert(t_map map);
-//double    find_close_wall(char **map, int x, int y, double angle, double i);
-//t_test    find_close_wall(t_map map, double i, t_test test);
-double  tan_degrees(double angle);
-void    malloc_text(t_map *map);
-//void	img_put(t_winp *winp, int x, t_wall *wall, t_data *img);
+double	tan_degrees(double angle);
+void	malloc_text(t_map *map);
 void	my_mlx_pixel_put(t_winp *data, int x, int y, int color);
-//t_wall  find_wall_distance(t_map map, float cos);
 void	window_manager(t_map *map);
 void	*null_error(char *message);
 int		error(char *message);
@@ -130,37 +137,32 @@ char	**ft_alloc_lines(char *file, t_map *game);
 int		ft_file_linecount(char *file);
 int		ft_file_type(char *s, char *end);
 void	draw_map(t_winp *win, t_map *map);
-int     ft_extract(t_map *map);
-int     ft_check_map(t_map *struc_map);
-void    ft_print_player_map(char **map);
-int     ft_valid_data(t_map *map);
-int     ft_extract_F_data(t_map *map);
-int     ft_extract_C_data(t_map *map);
-int     ft_extract_data(t_map *map);
-int     ft_check_rgb(int *tab);
-int	    ft_isnum(int c);
-int     ft_extract_rgb(int i, char *tmp, char *rgb, char t, t_map *map, int count);
-int     ft_check_valid_num(char *f, int i);
-int     get_max_value(char **map, t_map *s_map);
+int		ft_extract(t_map *map);
+int		ft_check_map(t_map *struc_map);
+void	ft_print_player_map(char **map);
+int		ft_extract_F_data(t_map *map);
+int		ft_extract_C_data(t_map *map);
+int		ft_extract_data(t_map *map);
+int		ft_check_rgb(int *tab);
+int		ft_isnum(int c);
+int		extract_rgb(int i, char *tmp, char *rgb, char t, t_map *map, int count);
+int		ft_check_valid_num(char *f, int i);
+int		get_max_value(char **map, t_map *s_map);
 char	**ft_malloc_play_map(t_map *s_map);
-void	  init_map(t_map *map);
-int	    ft_match(char *c, t_map *map);
-double  cos_degrees(double angle);
-int     convert_hexa(t_map *map);
-int	    ft_close(void);
-int     ft_input(int key, void *param);
-
-int init_all_text(t_map *map);
-
-int ft_texture_data(t_map *map);
+void	init_map(t_map *map);
+int		ft_match(char *c, t_map *map);
+double	cos_degrees(double angle);
+int		convert_hexa(t_map *map);
+int		ft_close(void);
+int		ft_input(int key, void *param);
+int		init_all_text(t_map *map);
+int		ft_texture_data(t_map *map);
 t_wall	find_wall_distance(t_map map, float cos);
 float	find_hor_wall(t_map map, t_wall *wall);
 float	find_vert_wall(t_map map, t_wall *wall);
 float	wall_find(t_map map, t_intersection inter, t_wall *wall);
 int		check_inbound(t_map map, t_intersection inter);
 void	img_put(t_winp *winp, int x, t_wall *wall, t_map *map, t_vector *xpm);
-int    *direction_texture(int dir, t_map *map);
-int    jo_pixel_color(int x, int y, int *firstpixel);
-double sin_degrees(double angle);
-
+int		*direction_texture(int dir, t_map *map);
+int		jo_pixel_color(int x, int y, int *firstpixel);
 #endif
