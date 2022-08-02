@@ -32,6 +32,7 @@ typedef struct s_wall
 	float	wall_top;
 	int		color;
 	int		direction;
+	int		h;
 }	t_wall;
 
 typedef struct s_vector
@@ -152,12 +153,13 @@ int init_all_text(t_map *map);
 
 int ft_texture_data(t_map *map);
 t_wall	find_wall_distance(t_map map, float cos);
-float	find_hor_wall(t_map map);
-float	find_vert_wall(t_map map);
-float	wall_find(t_map map, t_intersection inter);
+float	find_hor_wall(t_map map, t_wall *wall);
+float	find_vert_wall(t_map map, t_wall *wall);
+float	wall_find(t_map map, t_intersection inter, t_wall *wall);
 int		check_inbound(t_map map, t_intersection inter);
 void	img_put(t_winp *winp, int x, t_wall *wall, t_map *map, t_vector *xpm);
 int    *direction_texture(int dir, t_map *map);
 int    jo_pixel_color(int x, int y, int *firstpixel);
+double sin_degrees(double angle);
 
 #endif

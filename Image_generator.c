@@ -41,11 +41,11 @@ void	my_mlx_pixel_put(t_winp *data, int x, int y, int color)
 int    *direction_texture(int dir, t_map *map)
 {
     if (dir == 1)
-        return (map->WE->addr_img);
+        return (map->NO->addr_img);
     else if (dir == 2)
-        return (map->WE->addr_img);
+        return (map->EA->addr_img);
     else if (dir == 3)
-        return (map->WE->addr_img);
+        return (map->SO->addr_img);
     else
         return (map->WE->addr_img);
 }

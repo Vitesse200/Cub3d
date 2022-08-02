@@ -57,9 +57,9 @@ void	draw_map(t_winp *win, t_map *map)
         if (i != wall.direction || wall.color == 0)
             xpm.x = 0;
         i = wall.direction;
-        xpm.x = wall.color;
-        if (xpm.x >= 320)
-            xpm.x = 0;
+		xpm.x = wall.color;
+		if (xpm.x >= 320)
+			xpm.x = 0;
         xpm.y = 0;
         img_put(win, ray, &wall, map, &xpm);
         xpm.x++;
@@ -92,5 +92,12 @@ double cos_degrees(double angle)
 {
 	angle = angle * (M_PI / 180);
 	angle = cos(angle);
+	return (angle);
+}
+
+double sin_degrees(double angle)
+{
+	angle = angle * (M_PI / 180);
+	angle = sin(angle);
 	return (angle);
 }
