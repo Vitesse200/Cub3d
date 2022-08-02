@@ -9,17 +9,21 @@ void	init_map(t_map *map)
     map->max_y = 0;
     map->player.angle = 0;
     map->play_map = NULL;
-    map->NO = NULL;
-    map->SO = NULL;
-    map->WE = NULL;
-    map->EA = NULL;
+    map->NO->extract = NULL;
+    map->SO->extract = NULL;
+    map->WE->extract = NULL;
+    map->EA->extract = NULL;
+    map->NO->path = NULL;
+    map->SO->path = NULL;
+    map->WE->path = NULL;
+    map->EA->path = NULL;
     map->F = NULL;
     map->C = NULL;
     map->orientation = 0;
-	map->winp.mlx = mlx_init();
-   	map->winp.win = mlx_new_window(map->winp.mlx,WINDOW_W, WINDOW_H,"Cub3d");
-    //map->winp.canvas_ptr = mlx_new_image(map->winp.mlx, WINDOW_W, WINDOW_H);
-   // map->winp.addr_canva = (int *) mlx_get_data_addr(map->winp.canvas_ptr, &map->winp.bpp, &map->winp.size_line, &map->winp.endian);
+    map->winp.mlx = mlx_init();
+    map->winp.win = mlx_new_window(map->winp.mlx,WINDOW_W, WINDOW_H,"Init_Cub3d");
+    map->winp.canvas_ptr = mlx_new_image(map->winp.mlx, WINDOW_W, WINDOW_H);
+    map->winp.addr_canva = (int *) mlx_get_data_addr(map->winp.canvas_ptr, &map->winp.bpp, &map->winp.size_line, &map->winp.endian);
 }
 
 char	**ft_malloc_play_map(t_map *s_map)
@@ -65,21 +69,24 @@ int get_max_value(char **map, t_map *s_map)
 
 int	ft_match(char *c, t_map *map)
 {
-    if ((!ft_strncmp(c, "NO", 2) && !map->NO) || (!ft_strncmp(c, "SO", 2) && !map->SO)
-    || (!ft_strncmp(c, "WE", 2) && !map->WE) || (!ft_strncmp(c, "EA", 2) && !map->EA))
+//    printf("char c = %s\n", c);
+    if ((!ft_strncmp(c, "NO", 2) && !map->NO->extract) || (!ft_strncmp(c, "WE", 2) && !map->WE->extract)
+        || (!ft_strncmp(c, "SO", 2) && !map->SO->extract) || (!ft_strncmp(c, "EA", 2) && !map->EA->extract))
     {
+//        printf("char c IN = %s\n", c);
         if (c[0] == 'N')
-            map->NO = c;
+            map->NO->extract = c;
         else if (c[0] == 'W')
-            map->WE = c;
+            map->WE->extract = c;
         else if (c[0] == 'E')
-            map->EA = c;
+            map->EA->extract = c;
         else
-            map->SO = c;
+            map->SO->extract = c;
         return (1);
     }
-    if ((!ft_strncmp(c, "F", 1) && !map->F) || (!ft_strncmp(c, "C", 1) && !map->C))
+    else if ((!ft_strncmp(c, "F", 1) && !map->F) || (!ft_strncmp(c, "C", 1) && !map->C))
     {
+//        printf("char c IN 2 = %s\n", c);
         if (c[0] == 'F')
             map->F = c;
         else

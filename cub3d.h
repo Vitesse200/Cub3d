@@ -32,6 +32,7 @@ typedef struct s_wall
 	float	wall_top;
 	int		color;
 	int		direction;
+	int		h;
 }	t_wall;
 
 typedef struct s_vector
@@ -45,6 +46,7 @@ typedef struct s_vector
 typedef struct
 {
     char    rgb[9];
+    int     int_hexa;
 } RGBhex;
 
 typedef struct s_winpoint
@@ -76,20 +78,21 @@ typedef struct  s_texture
 
 typedef struct s_map
 {
-	t_vector	size;
-	t_vector	player;
-	int			start_y;
-	int			max_x;
-	int			max_y;
-	char		*NO;
-	char		*SO;
-	char		*WE;
-	char		*EA;
-	char		*F;
-	char		*C;
-	char		orientation;
-	char		**map;
-	char		**play_map;
+    t_vector	size;
+    t_vector	player;
+    int			start_y;
+    int			max_x;
+    int			max_y;
+    t_texture 	*NO;
+    t_texture	*SO;
+    t_texture 	*WE;
+    t_texture 	*EA;
+    t_texture   *window;
+    char		*F;
+    char		*C;
+    char		orientation;
+    char		**map;
+    char		**play_map;
     int         *tab_F;
     int         *tab_C;
     RGBhex      F_RGBhex;
@@ -110,8 +113,9 @@ typedef struct	s_data {
 //double    find_close_wall(char **map, int x, int y, double angle, double i);
 //t_test    find_close_wall(t_map map, double i, t_test test);
 double  tan_degrees(double angle);
-void	img_put(t_winp *winp, int x, t_wall *wall, t_data *img);
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void    malloc_text(t_map *map);
+//void	img_put(t_winp *winp, int x, t_wall *wall, t_data *img);
+void	my_mlx_pixel_put(t_winp *data, int x, int y, int color);
 //t_wall  find_wall_distance(t_map map, float cos);
 void	window_manager(t_map *map);
 void	*null_error(char *message);
@@ -146,11 +150,17 @@ int     convert_hexa(t_map *map);
 int	    ft_close(void);
 int     ft_input(int key, void *param);
 
+int init_all_text(t_map *map);
 
+int ft_texture_data(t_map *map);
 t_wall	find_wall_distance(t_map map, float cos);
-float	find_hor_wall(t_map map);
-float	find_vert_wall(t_map map);
-float	wall_find(t_map map, t_intersection inter);
+float	find_hor_wall(t_map map, t_wall *wall);
+float	find_vert_wall(t_map map, t_wall *wall);
+float	wall_find(t_map map, t_intersection inter, t_wall *wall);
 int		check_inbound(t_map map, t_intersection inter);
+void	img_put(t_winp *winp, int x, t_wall *wall, t_map *map, t_vector *xpm);
+int    *direction_texture(int dir, t_map *map);
+int    jo_pixel_color(int x, int y, int *firstpixel);
+double sin_degrees(double angle);
 
 #endif
