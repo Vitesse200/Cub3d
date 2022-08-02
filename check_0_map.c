@@ -77,17 +77,23 @@ int check_zero(char **map, int y)
     x = 0;
     while (map[y][x] != '\n' && map[y][x] != '\0')
     {
-        if (map[y][x] == '0')
+        if (map[y+1])
         {
-            if (map[y][x+1] == '\0' || map[y][x+1] == ' ' || map[y][x+1] == '\n')
-                return (0);
-            if (map[y][x-1] == '\0' || map[y][x-1] == ' ' || map[y][x-1] == '\n')
-                return (0);
-            if (map[y+1][x] == '\0' || map[y+1][x] == ' ' || map[y+1][x] == '\n')
-                return (0);
-            if (map[y-1][x] == '\0' || map[y-1][x] == ' ' || map[y-1][x] == '\n')
-                return (0);
+            if (map[y][x] == '0')
+            {
+                if (map[y][x+1] == '\0' || map[y][x+1] == ' ' || map[y][x+1] == '\n')
+                    return (0);
+                if (map[y][x-1] == '\0' || map[y][x-1] == ' ' || map[y][x-1] == '\n')
+                    return (0);
+                if (map[y+1][x] == '\0' || map[y+1][x] == ' ' || map[y+1][x] == '\n')
+                    return (0);
+                if (map[y-1][x] == '\0' || map[y-1][x] == ' ' || map[y-1][x] == '\n')
+                    return (0);
+            }
         }
+        else
+            if (map[y][x] == '0')
+                return (0);
         x++;
     }
     return (1);
