@@ -53,7 +53,6 @@ int	extract_rgb(int i, char *tmp, char *rgb, char t, t_map *map, int count)
         tab = map->tab_floor;
     if (t == 'c')
         tab = map->tab_ceiling;
-	printf("rgb bug = %s i = %d\n", rgb, i);
     while (rgb[++i] && count < 3)
         if (ft_isnum(rgb[i]))
         {
@@ -106,12 +105,6 @@ int ft_extract_data(t_map *map)
         return (0);
     convert_hexa(map);
     while (i < 3)
-    {
-        printf("tabf[%d] = %d\n", i, map->tab_floor[i]);
-        printf("tabc[%d] = %d\n", i, map->tab_ceiling[i]);
         i++;
-    }
-    printf("player pos y = %d\n", map->player.y);
-    printf("player pos x = %d\n", map->player.x);
     return (1);
 }

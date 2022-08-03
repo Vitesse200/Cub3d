@@ -16,6 +16,7 @@ SRC = cub3d.c\
 			open_map.c\
 			exctract_map.c\
 			check_0_map.c\
+			check_0_map_2.c\
 			check_data_map.c\
 			check_data_support.c\
 			check_data_hexa.c\
@@ -24,9 +25,9 @@ SRC = cub3d.c\
             Image_generator.c\
             Raycasting_finished_23_06_2022.c\
 			hooks.c\
+			hooks_move.c\
 			texture_extract.c\
 			texture_init.c\
-			texture_print.c\
            	raycasting.c\
 
 CC = gcc -g

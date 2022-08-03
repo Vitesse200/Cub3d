@@ -59,11 +59,6 @@ int	get_play_map(t_map *map)
 			if (map->map[y][z] == '\0')
 				break;
 		}
-		while (z < map->max_x)
-		{
-			map->play_map[x][z] = '1';
-		z++;
-		}
 		if (y < map->max_y)
 			map->play_map[x][z] = '\n';
 		else
@@ -90,13 +85,13 @@ int ft_extract(t_map *map)
     init_map(map);
     if (!ft_map_data(map))
         return (error("Data extraction issue"));
-    if (!get_max_value(map->map, map))
+    if (!get_max_value(map))
         return (error("Issue with max value extraction\n"));
     ft_malloc_play_map(map);
     get_play_map(map);
     if (!map->play_map)
         return (error("Map malloc did not work"));
-    if (!get_max_value(map->play_map, map))
+    if (!get_max_value_play(map))
         return (error("Issue with max value extraction\n"));
     if (ft_texture_data(map) != 1)
 		exit (0);
