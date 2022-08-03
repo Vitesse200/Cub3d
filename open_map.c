@@ -77,7 +77,7 @@ void	ft_get_map(t_map *map, char *file)
 	fd = open (file, O_RDONLY);
 	while (fd)
 	{
-		map->map[i] = get_next_line(fd);
+		map->map[i] = gnl(fd);
 		if (!map->map[i])
 			break ;
 		i++;

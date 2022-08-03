@@ -29,6 +29,9 @@ SRC = cub3d.c\
 			texture_extract.c\
 			texture_init.c\
            	raycasting.c\
+           	free.c\
+           	gnl.c\
+           	gnl_utils.c\
 
 CC = gcc -g
 
