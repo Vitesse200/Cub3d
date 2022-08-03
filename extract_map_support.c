@@ -61,6 +61,25 @@ int get_max_value(t_map *s_map)
     return (1);
 }
 
+int get_max_value_play(t_map *s_map)
+{
+    int y;
+    int len;
+
+    y = 0;
+    while (s_map->play_map[y])
+    {
+        len = ft_strlen(s_map->play_map[y]);
+        if ((len - 1 > s_map->max_x))
+            s_map->max_x = len - 1;
+        y++;
+    }
+    s_map->max_y = y - 1;
+    if (!s_map->max_y || !s_map->max_x)
+        return (0);
+    return (1);
+}
+
 int	ft_match(char *c, t_map *map)
 {
     if ((!ft_strncmp(c, "NO", 2) && !map->north->extract) || (!ft_strncmp(c, "WE", 2) && !map->west->extract)

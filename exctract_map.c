@@ -91,7 +91,7 @@ int ft_extract(t_map *map)
     get_play_map(map);
     if (!map->play_map)
         return (error("Map malloc did not work"));
-    if (!get_max_value(map))
+    if (!get_max_value_play(map))
         return (error("Issue with max value extraction\n"));
     ft_texture_data(map);
     init_all_text(map);
