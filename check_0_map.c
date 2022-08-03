@@ -1,14 +1,24 @@
 #include "cub3d.h"
 
+//int ft_player_in(char **map, int x, int y)
+//{
+//    if (map[y - 1]
+//    if (map[y - 1][x] == ' ' || map[y + 1][x] == ' ' || map[y][x -1 ] == ' ' || map[y][x + 1] == ' ')
+//        return (0);
+//    return (1);
+//}
+
 int ft_find_player(int count, char **map, int y, t_map *s_map)
 {
     int x;
 
     x = 0;
-    //s_map->player.angle = 0;
     while (map[y][x] != '\n' && map[y][x] != '\0')
     {
-        if (map[y][x] == 'W' || map[y][x] == 'E' || map[y][x] == 'N' || map[y][x] == 'S') {
+        if (map[y][x] == 'W' || map[y][x] == 'E' || map[y][x] == 'N' || map[y][x] == 'S')
+        {
+//            if (ft_player_in(map, y, x))
+//                return (0);
             count += 1;
             s_map->player.x = x * TILE_SIZE + TILE_SIZE / 2;
             s_map->player.y = y * TILE_SIZE + TILE_SIZE / 2;
@@ -24,7 +34,6 @@ int ft_find_player(int count, char **map, int y, t_map *s_map)
         }
         x++;
     }
-    printf("/////*****////****/////**//*/init player angle = %f\n", s_map->player.angle);
     return (count);
 }
 
@@ -77,11 +86,13 @@ int check_zero(char **map, int y)
     x = 0;
     while (map[y][x] != '\n' && map[y][x] != '\0')
     {
-        if (map[0][x] == '0' || map[y][0] == '0')
+        if (map[0][x] == '0' || map[0][x] == 'W' || map[0][x] == 'E' || map[0][x] == 'N'
+        || map[0][x] == 'S'|| map[y][0] == '0' || map[y][0] == 'W'
+        || map[y][0] == 'E' || map[y][0] == 'N' || map[y][0] == 'S')
             return (0);
-        if (map[y+1])
+        if (map[y + 1])
         {
-            if (map[y][x] == '0')
+            if (map[y][x] == '0' || map[y][x] == 'W' || map[y][x] == 'E' || map[y][x] == 'N' || map[y][x] == 'S')
             {
                 if (map[y][x+1] == '\0' || map[y][x+1] == ' ' || map[y][x+1] == '\n')
                     return (0);
@@ -94,7 +105,7 @@ int check_zero(char **map, int y)
             }
         }
         else
-            if (map[y][x] == '0')
+            if (map[y][x] == '0' || map[y][x] == 'W' || map[y][x] == 'E' || map[y][x] == 'N' || map[y][x] == 'S')
                 return (0);
         x++;
     }
@@ -112,7 +123,7 @@ void    ft_fill_map(t_map *map)
     y = 0;
     while (map->play_map[y]) {
         x = 0;
-        while (map->play_map[y][x] != '\n' || map->play_map[y][x] != '\0')
+        while (map->play_map[y][x] != '\n' && map->play_map[y][x] != '\0')
         {
             x++;
         }

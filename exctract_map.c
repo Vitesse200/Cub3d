@@ -59,11 +59,6 @@ int	get_play_map(t_map *map)
 			if (map->map[y][z] == '\0')
 				break;
 		}
-//		while (z < map->max_x)
-//		{
-//			map->play_map[x][z] = '1';
-//		z++;
-//		}
 		if (y < map->max_y)
 			map->play_map[x][z] = '\n';
 		else
