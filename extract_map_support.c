@@ -42,18 +42,15 @@ char	**ft_malloc_play_map(t_map *s_map)
     return (NULL);
 }
 
-int get_max_value(char **map, t_map *s_map)
+int get_max_value(t_map *s_map)
 {
     int y;
-    int x;
     int len;
 
-    len = 0;
     y = s_map->start_y;
-    x = 0;
-    while (map[y])
+    while (s_map->map[y])
     {
-        len = ft_strlen(map[y]);
+        len = ft_strlen(s_map->map[y]);
         if ((len - 1 > s_map->max_x))
             s_map->max_x = len - 1;
         y++;

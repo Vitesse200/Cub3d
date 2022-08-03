@@ -150,7 +150,7 @@ int		ft_check_rgb(int *tab);
 int		ft_isnum(int c);
 int		extract_rgb(int i, char *tmp, char *rgb, char t, t_map *map, int count);
 int		ft_check_valid_num(char *f, int i);
-int		get_max_value(char **map, t_map *s_map);
+int		get_max_value(t_map *s_map);
 char	**ft_malloc_play_map(t_map *s_map);
 void	init_map(t_map *map);
 int		ft_match(char *c, t_map *map);

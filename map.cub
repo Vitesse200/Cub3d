@@ -1,14 +1,24 @@
 
+
+
+
+C             225, 30,       12
+
 NO ./cub3d_pics/MiConv.com__output-onlinepngtools (2).xpm
 
 WE ./cub3d_pics/MiConv.com__output-onlinepngtools (1).xpm
 
 SO ./cub3d_pics/greystone.xpm
 
+
+
+
+
+
+
 EA ./cub3d_pics/redbrick.xpm
 
-F 220, 254, 25
-C 225, 30, 12
+F 210, 25, 125
 
 
 
