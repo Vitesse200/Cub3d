@@ -113,14 +113,6 @@ typedef struct s_map
 	t_winp		winp;
 }	t_map;
 
-typedef struct s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
-
 double	tan_degrees(double angle);
 void	malloc_text(t_map *map);
 void	my_mlx_pixel_put(t_winp *data, int x, int y, int color);
@@ -173,4 +165,5 @@ int		check_inbound(t_map map, t_intersection inter);
 void	img_put(t_winp *winp, int x, t_wall *wall, t_map *map, t_vector *xpm);
 int		*direction_texture(int dir, t_map *map);
 int		jo_pixel_color(int x, int y, int *firstpixel);
+
 #endif

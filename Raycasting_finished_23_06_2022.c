@@ -25,8 +25,6 @@ void	draw_map(t_winp *win, t_map *map)
             xpm.x = 0;
         i = wall.direction;
 		xpm.x = wall.color;
-		if (xpm.x >= 320)
-			xpm.x = 0;
         xpm.y = 0;
         img_put(win, ray, &wall, map, &xpm);
         //free wall?????
