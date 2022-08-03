@@ -163,7 +163,7 @@ float	find_vert_wall(t_map map, t_wall *wall);
 float	wall_find(t_map map, t_intersection inter, t_wall *wall);
 int		check_inbound(t_map map, t_intersection inter);
 void	img_put(t_winp *winp, int x, t_wall *wall, t_map *map, t_vector *xpm);
-int		*direction_texture(int dir, t_map *map);
-int		jo_pixel_color(int x, int y, int *firstpixel);
+t_texture    direction_texture(int dir, t_map *map);
+int	jo_pixel_color(float x, int y, t_texture texture);
 
 #endif
