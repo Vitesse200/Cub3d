@@ -37,7 +37,6 @@ char	**ft_malloc_play_map(t_map *s_map)
 		s_map->play_map[y] = malloc(sizeof(char) * (s_map->max_x + 1));
 		y++;
 	}
- //   s_map->play_map = map;
     if (s_map->play_map == NULL)
         return (null_error("malloc error on ft_alloc_lines"));
     return (NULL);
