@@ -77,7 +77,7 @@ float	find_hor_wall(t_map map, t_wall *wall)
 	return (wall_find(map, inter, wall));
 }
 
-t_wall	find_wall_distance(t_map map, float cos)
+t_wall	*find_wall_distance(t_map map, float cos)
 {
 	t_wall			*wall;
 	float			horizontal_dist;
@@ -107,5 +107,5 @@ t_wall	find_wall_distance(t_map map, float cos)
 			wall->direction = 1;
 		wall->color = wall->h;
 	}
-	return (*wall);
+	return (wall);
 }

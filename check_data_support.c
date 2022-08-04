@@ -36,7 +36,9 @@ int ft_extract_C_data(t_map *map)
     count = 0;
     tmp = NULL;
     map->tab_ceiling = malloc(sizeof(int) * 4);
-    count = extract_rgb(i, tmp, rgb, 'c', map, count);
+    if (!map->tab_ceiling)
+        return (0);
+    count = extract_rgb(i, rgb, 'c', map, count);
     if (count != 3)
         return (error("rgb made of 3 numbers\n"));
     return (1);
