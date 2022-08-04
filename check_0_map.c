@@ -48,12 +48,9 @@ int check_zero(char **map, int y)
     int x;
 
     x = 0;
+	ft_print_player_map(map);
     while (map[y][x] != '\n' && map[y][x] != '\0')
     {
-        if (map[0][x] == '0' || map[0][x] == 'W' || map[0][x] == 'E' || map[0][x] == 'N'
-        || map[0][x] == 'S'|| map[y][0] == '0' || map[y][0] == 'W'
-        || map[y][0] == 'E' || map[y][0] == 'N' || map[y][0] == 'S')
-            return (0);
         if (map[y + 1])
         {
             if (check_zero_2(map, y, x) == 0)
@@ -95,6 +92,34 @@ void    ft_fill_map(t_map *map)
     }
 }
 
+int	check_borders(t_map map)
+{
+	int	x;
+	int	y;
+
+	x = -1;
+	y = 0;
+	while (y < map.max_y)
+	{
+		while (map.play_map[y][x++] != '\n')
+			if ((map.play_map[y][x] != '1' && map.play_map[y][x] != ' ' && map.play_map[y][x] != '\n') && y == 0)
+				return (0);
+		if (map.play_map[y][x - 2] != '1' && map.play_map[y][x - 1] != ' ')
+			return (0);
+		x = 0;
+		y++;
+		if (map.play_map[y][x] != '1' && map.play_map[y][x] != ' ')
+			return (0);
+	}
+	while (map.play_map[y][x])
+	{
+		if ((map.play_map[y][x] != '1' && map.play_map[y][x] != ' ') && y == 0)
+			return (0);
+		x++;
+	}
+	return (1);
+}
+
 int ft_check_map(t_map *s_map)
 {
     char    **map;
@@ -105,6 +130,8 @@ int ft_check_map(t_map *s_map)
         return (0);
     if (!player_pos(s_map, map))
         return (error("Player is not valid"));
+	if (!check_borders(*s_map))
+		return (error("Map is not valid"));
     y = 0;
     while (map[y])
     {
