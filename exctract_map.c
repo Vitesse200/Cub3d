@@ -69,6 +69,7 @@ int	get_play_map(t_map *map)
 		x++;
 	}
 	map->play_map[x] = NULL;
+    //ft_free_map(map->map);
 	return (0);
 }
 
