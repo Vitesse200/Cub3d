@@ -34,8 +34,9 @@ void    ft_camera(int key, t_map *map)
         if (map->player.angle > 360)
             map->player.angle -=  360;
     }
-    else
-        exit(0);
+    else {
+		exit(0);
+	}
 }
 
 int	ft_input(int key, void *param)
@@ -49,8 +50,9 @@ int	ft_input(int key, void *param)
         ft_move(key, map);
     else if (key == 123 || key == 124 || key == 53)
         ft_camera(key, map);
-    else
-        return (0);
+    else {
+		return (0);
+	}
     printf("angle == %f\n", map->player.angle);
 	draw_map(&map->winp, map);
     return (0);

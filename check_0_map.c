@@ -48,7 +48,9 @@ int check_zero(char **map, int y)
     int x;
 
     x = 0;
-	ft_print_player_map(map);
+
+
+
     while (map[y][x] != '\n' && map[y][x] != '\0')
     {
         if (map[y + 1])
