@@ -16,22 +16,29 @@ void    ft_free_map(char **map)
         free(map[y]);
         y++;
     }
-    map = NULL;
+    free(map);
+}
+
+void    ft_free_tab(int *tab)
+{
+    free(tab);
 }
 
 void    ft_free_all(t_map *map)
 {
-    ft_free_texture(map->north);
-    ft_free_texture(map->south);
-    ft_free_texture(map->east);
-    ft_free_texture(map->west);
-    free(map->north);
-    free(map->south);
-    free(map->east);
-    free(map->west);
+    ft_free_texture((*map).north);
+    ft_free_texture((*map).south);
+    ft_free_texture((*map).west);
+    ft_free_texture((*map).east);
+    free((*map).north);
+    free((*map).south);
+    free((*map).east);
+    free((*map).west);
     //free(map->ceiling_rgb.rgb);
     //free(map->floor_rgb.rgb);
-    ft_free_map(map->map);
-    ft_free_map(map->play_map);
+//    free(map->tab_ceiling);
+//    free(map->tab_floor);
+    ft_free_map((*map).map);
+    ft_free_map((*map).play_map);
     //free(map);
 }

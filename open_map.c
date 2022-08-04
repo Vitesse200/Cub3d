@@ -45,19 +45,19 @@ int	ft_file_linecount(char *file)
 	return (line_count);
 }
 
-char	**ft_alloc_lines(char *file, t_map *game)
+int ft_alloc_lines(char *file, t_map *game)
 {
-	char	**map;
+	//char	**map;
 	int		linecount;
 
 	linecount = ft_file_linecount(file);
 	if (linecount <= 0)
-		return (NULL);
+		return (1);
 	game->size.y = linecount;
-	map = malloc(sizeof(char *) * (linecount + 1));
-	if (map == NULL)
-		return (null_error("malloc error on ft_alloc_lines"));
-	return (map);
+	game->map = malloc(sizeof(char *) * (linecount + 1));
+	if (game->map == NULL)
+		return (error("malloc error on ft_alloc_lines"));
+	return (0);
 }
 
 int	ft_valid_file(char *file)
@@ -73,7 +73,8 @@ void	ft_get_map(t_map *map, char *file)
 	int		i;
 
 	i = 0;
-	map->map = ft_alloc_lines(file, map);
+	if (ft_alloc_lines(file, map) != 0)
+        return ;
 	fd = open (file, O_RDONLY);
 	while (fd)
 	{
