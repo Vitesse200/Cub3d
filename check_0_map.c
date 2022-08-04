@@ -99,14 +99,16 @@ int	check_borders(t_map map)
 	int	x;
 	int	y;
 
-	x = -1;
+	x = 0;
 	y = 0;
 	while (y < map.max_y)
 	{
-		while (map.play_map[y][x++] != '\n')
+		while (map.play_map[y][x] != '\n') {
 			if ((map.play_map[y][x] != '1' && map.play_map[y][x] != ' ' && map.play_map[y][x] != '\n') && y == 0)
 				return (0);
-		if (map.play_map[y][x - 2] != '1' && map.play_map[y][x - 1] != ' ')
+			x++;
+		}
+		if (map.play_map[y][x - 1] != '1' && map.play_map[y][x - 1] != ' ')
 			return (0);
 		x = 0;
 		y++;
