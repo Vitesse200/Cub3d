@@ -79,14 +79,11 @@ typedef struct s_texture
 	char	*path;
 	void	*img_ptr;
 	int		*addr_img;
-	int		height;
-	int		width;
 	int		img_height;
 	int		img_width;
 	int		bpp;
 	int		size_line;
 	int		endian;
-	t_winp	winp;
 }	t_texture;
 
 typedef struct s_map
@@ -100,7 +97,6 @@ typedef struct s_map
 	t_texture	*south;
 	t_texture	*west;
 	t_texture	*east;
-	t_texture	*window;
 	char		*floor;
 	char		*ceiling;
 	char		orientation;
@@ -108,6 +104,7 @@ typedef struct s_map
 	char		**play_map;
 	int			*tab_floor;
 	int			*tab_ceiling;
+    char        *tmp;
 	t_rgbhex	floor_rgb;
 	t_rgbhex	ceiling_rgb;
 	t_winp		winp;
@@ -125,7 +122,7 @@ char	*ft_read_and_save(int fd, char *save);
 char	*get_next_line(int fd);
 void	ft_get_map(t_map *map, char *file);
 int		ft_valid_file(char *file);
-char	**ft_alloc_lines(char *file, t_map *game);
+int     ft_alloc_lines(char *file, t_map *game);
 int		ft_file_linecount(char *file);
 int		ft_file_type(char *s, char *end);
 void	draw_map(t_winp *win, t_map *map);
@@ -140,7 +137,7 @@ int		ft_extract_C_data(t_map *map);
 int		ft_extract_data(t_map *map);
 int		ft_check_rgb(int *tab);
 int		ft_isnum(int c);
-int		extract_rgb(int i, char *tmp, char *rgb, char t, t_map *map, int count);
+int		extract_rgb(int i, char *rgb, char t, t_map *map, int count);
 int		ft_check_valid_num(char *f, int i);
 int		get_max_value(t_map *s_map);
 int		get_max_value_play(t_map *s_map);
@@ -157,13 +154,19 @@ void	ft_move_up(t_vector *game, t_map *map);
 void	ft_move_d(t_vector *game, t_map *map);
 int		init_all_text(t_map *map);
 int		ft_texture_data(t_map *map);
-t_wall	find_wall_distance(t_map map, float cos);
+t_wall	*find_wall_distance(t_map map, float cos);
 float	find_hor_wall(t_map map, t_wall *wall);
 float	find_vert_wall(t_map map, t_wall *wall);
 float	wall_find(t_map map, t_intersection inter, t_wall *wall);
 int		check_inbound(t_map map, t_intersection inter);
 void	img_put(t_winp *winp, int x, t_wall *wall, t_map *map, t_vector *xpm);
 t_texture    direction_texture(int dir, t_map *map);
-int	jo_pixel_color(float x, int y, t_texture texture);
+int	    jo_pixel_color(float x, int y, t_texture texture);
+void    ft_free_all(t_map *map);
+
+char	*ft_next(char *s, int c);
+char	*ft_strljoin(char **s1, char *s2, int l);
+int		ft_strchri(char *s, int c);
+char	*gnl(int fd);
 
 #endif

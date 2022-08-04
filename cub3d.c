@@ -59,5 +59,7 @@ int	main(int argc, char **argv)
     if (!ft_extract_data(&map))
         return (error("Expected rgb data\n"));
 	window_manager(&map);
+    ft_free_all(&map);
+
 	return (0);
 }

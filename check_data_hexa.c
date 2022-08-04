@@ -38,7 +38,9 @@ int convert_hexa(t_map *map)
 {
     dec2hex(map->tab_floor, &map->floor_rgb);
     map->floor_rgb.int_hexa = color_bitshift(0, map->tab_floor[0], map->tab_floor[1], map->tab_floor[2]);
+    //free(map->tab_floor);
     dec2hex(map->tab_ceiling, &map->ceiling_rgb);
     map->ceiling_rgb.int_hexa = color_bitshift(0, map->tab_ceiling[0], map->tab_ceiling[1], map->tab_ceiling[2]);
+    //free(map->tab_ceiling);
     return (1);
 }

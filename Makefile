@@ -29,6 +29,9 @@ SRC = cub3d.c\
 			texture_extract.c\
 			texture_init.c\
            	raycasting.c\
+           	free.c\
+           	gnl.c\
+           	gnl_utils.c\
 
 CC = gcc -g
 
@@ -36,7 +39,7 @@ NAME = cub3D
 
 OBJ = $(SRC:.c=.o)
 	
-FLAGS = -Imlx -Wall -Wextra -Werror -Imlx -g #-fsanitize=address
+FLAGS = -Imlx -Wall -Wextra -Werror -Imlx -g -fsanitize=address
 
 LIBX = -Lmlx -lmlx -lz -framework OpenGL -framework AppKit
 

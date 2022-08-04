@@ -4,7 +4,7 @@
 void	draw_map(t_winp *win, t_map *map)
 {
     int		ray;
-    t_wall	wall;
+    t_wall	*wall;
     float	cos;
     t_vector    xpm;
     int i;
@@ -21,13 +21,13 @@ void	draw_map(t_winp *win, t_map *map)
     {
 
         wall = find_wall_distance(*map, cos);
-        if (i != wall.direction || wall.color == 0)
+        if (i != wall->direction || wall->color == 0)
             xpm.x = 0;
-        i = wall.direction;
-		xpm.x = wall.color;
+        i = wall->direction;
+		xpm.x = wall->color;
         xpm.y = 0;
-        img_put(win, ray, &wall, map, &xpm);
-        //free wall?????
+        img_put(win, ray, wall, map, &xpm);
+        free(wall);
         xpm.x++;
         map->player.angle -= ANGLE_DIFF;
         if (map->player.angle < 0)

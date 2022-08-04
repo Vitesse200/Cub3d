@@ -7,8 +7,11 @@ void	init_map(t_map *map)
 	map->start_y = 0;
 	map->max_x = 0;
 	map->max_y = 0;
+    map->tab_floor= 0;
+    map->tab_ceiling = 0;
 	map->player.angle = 0;
 	map->play_map = NULL;
+    map->tmp = NULL;
 	map->north->extract = NULL;
 	map->south->extract = NULL;
 	map->west->extract = NULL;

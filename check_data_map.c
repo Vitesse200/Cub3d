@@ -44,7 +44,7 @@ int ft_valid_C_data(t_map *map)
     return (1);
 }
 
-int	extract_rgb(int i, char *tmp, char *rgb, char t, t_map *map, int count)
+int	extract_rgb(int i, char *rgb, char t, t_map *map, int count)
 {
     int *tab;
     int j;
@@ -56,12 +56,19 @@ int	extract_rgb(int i, char *tmp, char *rgb, char t, t_map *map, int count)
     while (rgb[++i] && count < 3)
         if (ft_isnum(rgb[i]))
         {
-            tmp = (char *)malloc(3 * 3);
             j = 0;
+            map->tmp = malloc(sizeof(char *));
+            if (!map->tmp)
+                return (0);
             while (ft_isnum(rgb[i]))
-                tmp[j++] = rgb[i++];
-            tab[count++] = ft_atoi(tmp);
-            tmp = NULL;
+                map->tmp[j++] = rgb[i++];
+            if (j < 3)
+                while (j < 3)
+                    map->tmp[j++] = ' ';
+            tab[count++] = ft_atoi(map->tmp);
+            free(map->tmp);
+            map->tmp = NULL;
+            tab[count] = '\0';
         }
     if (t == 'f')
         map->tab_floor = tab;
@@ -76,14 +83,15 @@ int ft_extract_F_data(t_map *map)
     int     i;
     int     count;
     char    *rgb;
-    char    *tmp;
 
     rgb = map->floor;
+    printf("rgb F= %s\n", rgb);
     i = -1;
     count = 0;
-    tmp = NULL;
     map->tab_floor = malloc(sizeof(int) * 4);
-    count = extract_rgb(i, tmp, rgb, 'f', map, count);
+    if (!map->tab_floor)
+        return (0);
+    count = extract_rgb(i, rgb, 'f', map, count);
     if (count != 3)
         return (error("rgb made of 3 numbers\n"));
     return (1);

@@ -27,6 +27,7 @@ int	valid_text(char *path)
 		printf("FILE OK\n");
 	else
 		return (error("XPM FILE not OK\n"));
+    close (file);
 	return (1);
 }
 
