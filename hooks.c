@@ -39,7 +39,7 @@ void    ft_camera(int key, t_map *map)
 	else
 	{
 		printf("get to free **********\n");
-		ft_free_all(map);
+		//ft_free_all(map);
 		while (1)
 			;
 		exit(0);
