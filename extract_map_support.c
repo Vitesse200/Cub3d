@@ -34,10 +34,10 @@ char	**ft_malloc_play_map(t_map *s_map)
     int	y;
 
     y = 0;
-	s_map->play_map = malloc(sizeof(char *) * 15);
-	while (y < 1 + s_map->max_y - s_map->start_y)
+	s_map->play_map = malloc(sizeof(char *) * (1 + s_map->max_y) - s_map->start_y);
+	while (y <= (1 + s_map->max_y) - s_map->start_y)
 	{
-		s_map->play_map[y] = malloc(sizeof(char) * (s_map->max_x + 1));
+		s_map->play_map[y] = malloc(sizeof(char) * (s_map->max_x + 2));
 		y++;
 	}
     if (s_map->play_map == NULL)

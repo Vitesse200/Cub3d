@@ -61,6 +61,6 @@ int	ft_input(int key, void *param)
 		ft_camera(key, map);
 	else
 		return (0);
-	draw_map(&map->winp, map);
+		draw_map(&map->winp, map);
 	return (0);
 }
