@@ -34,7 +34,5 @@ void    ft_free_all(t_map *map)
     free((*map).south);
     free((*map).east);
     free((*map).west);
-    //ft_free_map((*map).map);
     ft_free_map((*map).play_map);
-    //free(map);
 }

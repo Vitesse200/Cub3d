@@ -37,17 +37,7 @@ void    ft_camera(int key, t_map *map)
 			map->player.angle -=  360;
 	}
 	else // esc key 53
-	{
-		printf("key = %d = get to free **********\n", key);
-        //ft_free_map(map->play_map);
-        //free(map->play_map);
-        //ft_free_map(map->map);
-		printf("get to free **********\n");
-		//ft_free_all(map);
-		while (1)
-			;
 		exit(0);
-	}
 }
 
 int	ft_input(int key, void *param)

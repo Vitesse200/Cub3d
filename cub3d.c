@@ -51,15 +51,12 @@ int	main(int argc, char **argv)
 		return (error("expecting .cub file type\n"));
     if (!ft_extract(&map))
         return (0);
-	ft_get_map(&map, argv[1]);
     if (!map.map)
         return (error("No map to extract"));
 	if (!ft_check_map(&map))
 		return (error("map is not valid\n"));
     if (!ft_extract_data(&map))
         return (error("Expected rgb data\n"));
-//    ft_free_map(map.map);
-//    ft_free_map(map.play_map);
 	window_manager(&map);
 	return (0);
 }
