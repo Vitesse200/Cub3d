@@ -6,22 +6,22 @@
 #    By: jhermon- <jhermon-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/10 19:52:35 by jhermon-          #+#    #+#              #
-#    Updated: 2022/07/20 15:57:57 by jhermon-         ###   ########.fr        #
+#    Updated: 2022/08/05 17:40:40 by jhermon-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC = cub3d.c\
 			error.c\
-			get_next_line.c\
 			open_map.c\
 			exctract_map.c\
+			exctract_map_support.c\
 			check_0_map.c\
 			check_0_map_2.c\
 			check_data_map.c\
 			check_data_support.c\
 			check_data_hexa.c\
-			extract_map_support.c\
 			window.c\
+			support.c\
             Image_generator.c\
             Raycasting_finished_23_06_2022.c\
 			hooks.c\
@@ -39,7 +39,7 @@ NAME = cub3D
 
 OBJ = $(SRC:.c=.o)
 	
-FLAGS = -Imlx -Wall -Wextra -Werror -Imlx -g #-fsanitize=address
+FLAGS = -Imlx -Wall -Wextra -Werror -Imlx -g -fsanitize=address
 
 LIBX = -Lmlx -lmlx -lz -framework OpenGL -framework AppKit
 
