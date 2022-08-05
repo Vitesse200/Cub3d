@@ -144,5 +144,6 @@ int ft_check_map(t_map *s_map)
         y++;
     }
     ft_fill_map(s_map);
+    //ft_free_map(map);
     return(1);
 }
