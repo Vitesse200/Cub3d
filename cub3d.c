@@ -41,8 +41,6 @@ void	ft_print_player_map(char **map)
 int	main(int argc, char **argv)
 {
 	t_map	map;
-    int x;
-    x = 0;
 
 	if (argc != 2)
 		return (error("expecting 1 map as argument\n"));
@@ -63,11 +61,5 @@ int	main(int argc, char **argv)
 //    ft_free_map(map.map);
 //    ft_free_map(map.play_map);
 	window_manager(&map);
-    while (map.map[x])
-    {
-        free(map.map[x]);
-        x++;
-    }
-    free(map.map);
 	return (0);
 }
