@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgaillar <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: jhermon- <jhermon-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 16:15:24 by lgaillar          #+#    #+#             */
-/*   Updated: 2022/08/02 16:15:39 by lgaillar         ###   ########.fr       */
+/*   Updated: 2022/08/05 18:04:16 by jhermon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,16 +132,16 @@ int		check_valid_char(char **map);
 int		player_pos(t_map *s_map, char **map);
 int		ft_find_player(int count, char **map, int y, t_map *s_map);
 void	ft_print_player_map(char **map);
-int		ft_extract_F_data(t_map *map);
-int		ft_extract_C_data(t_map *map);
+int		ft_extract_f_data(t_map *map);
+int		ft_extract_c_data(t_map *map);
 int		ft_extract_data(t_map *map);
 int		ft_check_rgb(int *tab);
 int		ft_isnum(int c);
-int		extract_rgb(int i, char *rgb, char t, t_map *map, int count);
+int		extract_rgb(int i, char *rgb, char t, t_map *map);
 int		ft_check_valid_num(char *f, int i);
 int		get_max_value(t_map *s_map);
 int		get_max_value_play(t_map *s_map);
-char	**ft_malloc_play_map(t_map *s_map);
+char	*ft_malloc_play_map(t_map *s_map);
 void	init_map(t_map *map);
 int		ft_match(char *c, t_map *map);
 double	cos_degrees(double angle);
@@ -168,5 +168,9 @@ char	*ft_next(char *s, int c);
 char	*ft_strljoin(char **s1, char *s2, int l);
 int		ft_strchri(char *s, int c);
 char	*gnl(int fd);
+int	check_borders(t_map map);
+int	check_last_border(t_map map, int y, int x);
+int	*ft_tab(char t, t_map *map);
+void	init_window(t_map *map);
 
 #endif

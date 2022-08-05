@@ -1,4 +1,16 @@
-# include "cub3d.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   open_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jhermon- <jhermon-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/05 18:05:12 by jhermon-          #+#    #+#             */
+/*   Updated: 2022/08/05 18:08:30 by jhermon-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
 
 int	ft_file_type(char *s, char *end)
 {
@@ -45,9 +57,8 @@ int	ft_file_linecount(char *file)
 	return (line_count);
 }
 
-t_map   ft_alloc_lines(char *file, t_map *game)
+t_map	ft_alloc_lines(char *file, t_map *game)
 {
-	//char	**map;
 	int		linecount;
 
 	linecount = ft_file_linecount(file);
@@ -56,7 +67,7 @@ t_map   ft_alloc_lines(char *file, t_map *game)
 	game->size.y = linecount;
 	game->map = malloc(sizeof(char *) * (linecount + 1));
 	if (!game->map)
-		error (NULL) ;
+		error (NULL);
 	return (*game);
 }
 
@@ -69,13 +80,13 @@ int	ft_valid_file(char *file)
 
 void	ft_get_map(t_map *map, char *file)
 {
-	int		fd;
-	int		i;
+	int	fd;
+	int	i;
 
 	i = 0;
 	ft_alloc_lines(file, map);
-        if (!map->map)
-            return ;
+	if (!map->map)
+		return ;
 	fd = open (file, O_RDONLY);
 	while (fd)
 	{
