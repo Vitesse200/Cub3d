@@ -41,6 +41,7 @@ void	ft_print_player_map(char **map)
 int	main(int argc, char **argv)
 {
 	t_map	map;
+	int x = 0;
 
 	if (argc != 2)
 		return (error("expecting 1 map as argument\n"));
@@ -59,7 +60,13 @@ int	main(int argc, char **argv)
     if (!ft_extract_data(&map))
         return (error("Expected rgb data\n"));
 	window_manager(&map);
-    ft_free_all(&map);
+	while (map.map[x])
+	{
+		free(map.map[x]);
+		x++;
+	}
+	free (map.map);
+   // ft_free_all(&map);
 
 	return (0);
 }
