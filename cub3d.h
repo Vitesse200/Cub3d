@@ -122,7 +122,7 @@ char	*ft_read_and_save(int fd, char *save);
 char	*get_next_line(int fd);
 void	ft_get_map(t_map *map, char *file);
 int		ft_valid_file(char *file);
-int     ft_alloc_lines(char *file, t_map *game);
+t_map   ft_alloc_lines(char *file, t_map *game);
 int		ft_file_linecount(char *file);
 int		ft_file_type(char *s, char *end);
 void	draw_map(t_winp *win, t_map *map);
@@ -163,7 +163,7 @@ void	img_put(t_winp *winp, int x, t_wall *wall, t_map *map, t_vector *xpm);
 t_texture    direction_texture(int dir, t_map *map);
 int	    jo_pixel_color(float x, int y, t_texture texture);
 void    ft_free_all(t_map *map);
-
+void    ft_free_map(char **map);
 char	*ft_next(char *s, int c);
 char	*ft_strljoin(char **s1, char *s2, int l);
 int		ft_strchri(char *s, int c);
