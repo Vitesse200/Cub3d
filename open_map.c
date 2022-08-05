@@ -74,8 +74,8 @@ void	ft_get_map(t_map *map, char *file)
 
 	i = 0;
 	ft_alloc_lines(file, map);
-    if (!map->map)
-        return ;
+        if (!map->map)
+            return ;
 	fd = open (file, O_RDONLY);
 	while (fd)
 	{
