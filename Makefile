@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jhermon- <jhermon-@student.42.fr>          +#+  +:+       +#+         #
+#    By: lgaillar <lgaillar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/10 19:52:35 by jhermon-          #+#    #+#              #
 #    Updated: 2022/08/26 15:48:23 by jhermon-         ###   ########.fr        #
@@ -22,15 +22,18 @@ SRC = cub3d.c\
 			check_data_hexa.c\
 			window.c\
 			support.c\
-      image_generator.c\
-      Raycasting_finished_23_06_2022.c\
+      		image_generator.c\
+      		Raycasting_finished_23_06_2022.c\
 			hooks.c\
 			hooks_move.c\
 			texture_extract.c\
 			texture_init.c\
-      raycasting.c\
-      gnl.c\
-      gnl_utils.c\
+           	raycasting.c\
+           	free.c\
+           	gnl.c\
+           	gnl_utils.c\
+           	raycasting_2.c\
+
 
 CC = gcc -g
 

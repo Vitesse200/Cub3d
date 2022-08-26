@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lgaillar <lgaillar@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/26 14:24:33 by lgaillar          #+#    #+#             */
+/*   Updated: 2022/08/26 15:26:16 by lgaillar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int	check_inbound(t_map map, t_intersection inter)
@@ -13,7 +25,8 @@ float	wall_find(t_map map, t_intersection inter, t_wall *wall)
 {
 	if (check_inbound(map, inter))
 	{
-		while (map.play_map[(int)inter.hity / TILE_SIZE][(int)inter.hitx / TILE_SIZE] != '1')
+		while (map.play_map[(int)inter.hity / TILE_SIZE]
+			[(int)inter.hitx / TILE_SIZE] != '1')
 		{
 			inter.hity += inter.delta_y;
 			inter.hitx += inter.delta_x;
@@ -24,7 +37,8 @@ float	wall_find(t_map map, t_intersection inter, t_wall *wall)
 			wall->color = (int)inter.hity % 64;
 		else
 			wall->h = (int)inter.hitx % 64;
-		return (sqrt(pow(map.player.x - inter.hitx, 2) + pow(map.player.y - inter.hity, 2)));
+		return (sqrt(pow(map.player.x - inter.hitx, 2)
+				+ pow(map.player.y - inter.hity, 2)));
 	}
 	return (-1);
 }
@@ -37,7 +51,8 @@ float	find_vert_wall(t_map map, t_wall *wall)
 	if (map.player.angle < 90 || map.player.angle > 270)
 	{
 		inter.hitx = ((int)((map.player.x / 64) * TILE_SIZE)) + TILE_SIZE;
-		inter.hity = map.player.y + ((map.player.x - inter.hitx) * tan_degrees(map.player.angle));
+		inter.hity = map.player.y + ((map.player.x - inter.hitx)
+				* tan_degrees(map.player.angle));
 		inter.delta_x = 64;
 		inter.delta_y = 64 * fabs(tan_degrees(map.player.angle));
 		if (map.player.angle < 90)
@@ -46,7 +61,8 @@ float	find_vert_wall(t_map map, t_wall *wall)
 	else
 	{
 		inter.hitx = ((int)((map.player.x / TILE_SIZE) * TILE_SIZE)) - 0.001;
-		inter.hity = map.player.y + ((inter.hitx - map.player.x) * -1 * tan_degrees(map.player.angle));
+		inter.hity = map.player.y + ((inter.hitx - map.player.x)
+				* -1 * tan_degrees(map.player.angle));
 		inter.delta_x = -64;
 		inter.delta_y = 64 * tan_degrees(map.player.angle);
 	}
@@ -87,25 +103,15 @@ t_wall	*find_wall_distance(t_map map, float cos)
 	wall->color = 0;
 	horizontal_dist = find_hor_wall(map, wall);
 	vertical_dist = find_vert_wall(map, wall);
-	if ((vertical_dist < horizontal_dist && vertical_dist > 0) || horizontal_dist < 0)
+	if ((vertical_dist < horizontal_dist && vertical_dist > 0)
+		|| horizontal_dist < 0)
 	{
 		vertical_dist *= cos_degrees(cos);
-		wall->heigth = (TILE_SIZE / vertical_dist * PROJ_DIST);
-		wall->wall_top = (WINDOW_H / 2) - (wall->heigth / 2);
-		if (map.player.angle < 270 && map.player.angle > 90)
-			wall->direction = 4;
-		else
-			wall->direction = 2;
+		return (get_dist(vertical_dist, map, 1, wall));
 	}
-	else {
+	else
+	{
 		horizontal_dist *= cos_degrees(cos);
-		wall->heigth = (TILE_SIZE / horizontal_dist * PROJ_DIST);
-		wall->wall_top = (WINDOW_H / 2) - (wall->heigth / 2);
-		if (map.player.angle > 180)
-			wall->direction = 3;
-		else
-			wall->direction = 1;
-		wall->color = wall->h;
+		return (get_dist(horizontal_dist, map, 2, wall));
 	}
-	return (wall);
 }
