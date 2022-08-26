@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhermon- <jhermon-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lgaillar <lgaillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 17:43:15 by jhermon-          #+#    #+#             */
-/*   Updated: 2022/08/05 17:45:31 by jhermon-         ###   ########.fr       */
+/*   Updated: 2022/08/26 15:34:21 by lgaillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,6 @@ int	ft_input(int key, void *param)
 		ft_camera(key, map);
 	else
 		return (0);
-		draw_map(&map->winp, map);
+	draw_map(&map->winp, map);
 	return (0);
 }

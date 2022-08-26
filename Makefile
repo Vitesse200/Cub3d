@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jhermon- <jhermon-@student.42.fr>          +#+  +:+       +#+         #
+#    By: lgaillar <lgaillar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/10 19:52:35 by jhermon-          #+#    #+#              #
-#    Updated: 2022/08/26 11:49:35 by jhermon-         ###   ########.fr        #
+#    Updated: 2022/08/26 16:31:22 by lgaillar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRC = cub3d.c\
            	free.c\
            	gnl.c\
            	gnl_utils.c\
+           	raycasting_2.c\
 
 CC = gcc -g
 

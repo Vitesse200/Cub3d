@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhermon- <jhermon-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lgaillar <lgaillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 16:15:24 by lgaillar          #+#    #+#             */
-/*   Updated: 2022/08/26 10:30:59 by jhermon-         ###   ########.fr       */
+/*   Updated: 2022/08/26 16:56:54 by lgaillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,8 @@ float		find_hor_wall(t_map map, t_wall *wall);
 float		find_vert_wall(t_map map, t_wall *wall);
 float		wall_find(t_map map, t_intersection inter, t_wall *wall);
 int			check_inbound(t_map map, t_intersection inter);
-void		img_put(t_winp *winp, int x, t_wall *wall, t_map *map, t_vector *xpm);
+void		img_put(t_winp *winp, int x,
+				t_wall *wall, t_map *map, t_vector *xpm);
 int			jo_pixel_color(float x, int y, t_texture texture);
 void		ft_free_all(t_map *map);
 void		ft_free_map(char **map);
@@ -172,5 +173,8 @@ void		init_window(t_map *map);
 t_wall		*find_wall_distance(t_map map, float cos);
 t_map		ft_alloc_lines(char *file, t_map *game);
 t_texture	direction_texture(int dir, t_map *map);
+t_wall		*get_dist(float dist, t_map map, int v_t, t_wall *wall);
+float		get_temp(t_map *map);
+float		get_temp_2(t_map *map);
 
 #endif
