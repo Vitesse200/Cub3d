@@ -1,13 +1,14 @@
 
-C             225, 191,       0
+C            225, 191,       0
 
 NO ./cub3d_pics/MiConv.com__output-onlinepngtools (2).xpm
 
 
 
+
 WE ./cub3d_pics/MiConv.com__output-onlinepngtools (1).xpm
 
-SO ./cub3d_pics/eagle_test.xpm
+SO          ./cub3d_pics/eagle_test.xpm
 
 EA ./cub3d_pics/greystone.xpm
 
