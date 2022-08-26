@@ -23,7 +23,7 @@ SRC = cub3d.c\
 			window.c\
 			support.c\
       		image_generator.c\
-      		Raycasting_finished_23_06_2022.c\
+      		draw_map.c\
 			hooks.c\
 			hooks_move.c\
 			texture_extract.c\
