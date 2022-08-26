@@ -6,7 +6,7 @@
 /*   By: jhermon- <jhermon-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 17:45:56 by jhermon-          #+#    #+#             */
-/*   Updated: 2022/08/05 18:02:16 by jhermon-         ###   ########.fr       */
+/*   Updated: 2022/08/26 16:27:51 by jhermon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,43 +36,43 @@ t_texture	direction_texture(int dir, t_map *map)
 		return (*map->west);
 }
 
-void	img_put(t_winp *winp, int x, t_wall *wall, t_map *map, t_vector *xpm)
+void	pxl_put(t_wall *wall, t_map *map, t_vector *xpm, t_texture *texture)
 {
-	int			i;
-	t_texture	texture;
-	float		ratio;
-
-	i = 0;
-	ratio = 0;
-	if (i < wall->wall_top)
-	{
-		while (i < wall->wall_top)
-		{
-			my_mlx_pixel_put(winp, x, i, map->ceiling_rgb.int_hexa);
-			i++;
-		}
-	}
-	texture = direction_texture(wall->direction, map);
-	while (wall->wall_top < wall->heigth + i)
+	while (wall->wall_top < wall->heigth + wall->i)
 	{
 		if (wall->wall_top < WINDOW_H)
 		{
-			ratio = (float )texture.img_width / 64;
-			wall->color = jo_pixel_color(xpm->x * ratio, xpm->y++ / (wall->heigth / texture.img_height), texture);
-			my_mlx_pixel_put(winp, x, wall->wall_top, wall->color);
-		}
+			map->ratio = (float )texture->img_width / 64;
+			wall->color = jo_pixel_color(xpm->x * map->ratio,
+					xpm->y++ / (wall->heigth / texture->img_height), *texture);
+			my_mlx_pixel_put(&map->winp, map->ray, wall->wall_top, wall->color);
+		}	
 		if (xpm->y >= wall->heigth)
 			xpm->y = 0;
 		wall->wall_top++;
 	}
-	if (wall->wall_top < WINDOW_H)
+}
+
+void	img_put(t_winp *winp, t_wall *wall, t_map *map, t_vector *xpm)
+{
+	t_texture	texture;
+
+	wall->i = 0;
+	map->ratio = 0;
+	if (wall->i < wall->wall_top)
 	{
-		while (wall->wall_top < WINDOW_H)
-		{
-			my_mlx_pixel_put(winp, x, wall->wall_top, map->floor_rgb.int_hexa);
-			wall->wall_top++;
-		}
+		while (wall->i < wall->wall_top)
+			my_mlx_pixel_put(winp, map->ray, wall->i++,
+				map->ceiling_rgb.int_hexa);
 	}
-	if (x == WINDOW_W - 1)
+	texture = direction_texture(wall->direction, map);
+	pxl_put(wall, map, xpm, &texture);
+	while (wall->wall_top < WINDOW_H)
+	{
+		my_mlx_pixel_put(winp, map->ray, wall->wall_top,
+			map->floor_rgb.int_hexa);
+		wall->wall_top++;
+	}
+	if (map->ray == WINDOW_W - 1)
 		mlx_put_image_to_window(winp->mlx, winp->win, winp->canvas_ptr, 0, 0);
 }
