@@ -6,15 +6,15 @@
 #    By: lgaillar <lgaillar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/10 19:52:35 by jhermon-          #+#    #+#              #
-#    Updated: 2022/08/26 16:31:22 by lgaillar         ###   ########.fr        #
+#    Updated: 2022/08/26 15:48:23 by jhermon-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC = cub3d.c\
 			error.c\
 			open_map.c\
-			exctract_map.c\
-			exctract_map_support.c\
+			extract_map.c\
+			extract_map_support.c\
 			check_0_map.c\
 			check_0_map_2.c\
 			check_data_map.c\
@@ -22,8 +22,8 @@ SRC = cub3d.c\
 			check_data_hexa.c\
 			window.c\
 			support.c\
-            Image_generator.c\
-            Raycasting_finished_23_06_2022.c\
+      		image_generator.c\
+      		Raycasting_finished_23_06_2022.c\
 			hooks.c\
 			hooks_move.c\
 			texture_extract.c\
@@ -33,6 +33,7 @@ SRC = cub3d.c\
            	gnl.c\
            	gnl_utils.c\
            	raycasting_2.c\
+
 
 CC = gcc -g
 
@@ -59,8 +60,8 @@ $(OBJ): $(SRC)
 exe: all
 		./$(NAME) map.cub
 
-#norm: 
-#		norminette -d open_map.c check_map.c check_map_utils.c error.c get_next_line.c get_next_line_utils.c window.c print_map.c ft_itoa.c hooks.c draw_player.c so_long.h gnl.h
+norm: 
+		norminette -d $(SRC) 
 
 clean: 
 		rm -f $(OBJ)

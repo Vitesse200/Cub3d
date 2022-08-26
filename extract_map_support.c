@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exctract_map_support.c                             :+:      :+:    :+:   */
+/*   extract_map_support.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhermon- <jhermon-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 17:20:55 by jhermon-          #+#    #+#             */
-/*   Updated: 2022/08/05 17:39:21 by jhermon-         ###   ########.fr       */
+/*   Updated: 2022/08/26 15:18:05 by jhermon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,11 @@ char	*ft_malloc_play_map(t_map *s_map)
 			* (2 + (s_map->max_y - s_map->start_y)));
 	while (y < 2 + (s_map->max_y - s_map->start_y))
 	{
-		s_map->play_map[y] = malloc(sizeof(char) * (s_map->max_x + 1));
+		s_map->play_map[y] = malloc(sizeof(char) * (s_map->max_x + 5));
 		y++;
 	}
 	if (!s_map->play_map)
-		return (null_error("malloc error on ft_alloc_lines"));
+		return (null_error("malloc error"));
 	return (NULL);
 }
 

@@ -6,7 +6,11 @@
 /*   By: lgaillar <lgaillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 16:15:24 by lgaillar          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/08/26 16:56:54 by lgaillar         ###   ########.fr       */
+=======
+/*   Updated: 2022/08/26 16:26:11 by jhermon-         ###   ########.fr       */
+>>>>>>> 6b9e9fa1be4780ea4e690ac8fc37de8126f6b78a
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +50,7 @@ typedef struct s_wall
 	int		color;
 	int		direction;
 	int		h;
+	int		i;
 }	t_wall;
 
 typedef struct s_vector
@@ -62,7 +67,7 @@ typedef struct t_rgbhex
 	int		int_hexa;
 }	t_rgbhex;
 
-typedef struct s_winpoint
+typedef struct s_winp
 {
 	void	*win;
 	void	*mlx;
@@ -90,6 +95,8 @@ typedef struct s_map
 {
 	t_vector	size;
 	t_vector	player;
+	float		ratio;
+	int			ray;
 	int			start_y;
 	int			max_x;
 	int			max_y;
@@ -157,8 +164,7 @@ float		find_hor_wall(t_map map, t_wall *wall);
 float		find_vert_wall(t_map map, t_wall *wall);
 float		wall_find(t_map map, t_intersection inter, t_wall *wall);
 int			check_inbound(t_map map, t_intersection inter);
-void		img_put(t_winp *winp, int x,
-				t_wall *wall, t_map *map, t_vector *xpm);
+void		img_put(t_winp *winp, t_wall *wall, t_map *map, t_vector *xpm);
 int			jo_pixel_color(float x, int y, t_texture texture);
 void		ft_free_all(t_map *map);
 void		ft_free_map(char **map);
