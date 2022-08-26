@@ -6,7 +6,7 @@
 /*   By: jhermon- <jhermon-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 15:19:39 by jhermon-          #+#    #+#             */
-/*   Updated: 2022/08/05 16:50:51 by jhermon-         ###   ########.fr       */
+/*   Updated: 2022/08/26 11:46:47 by jhermon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,11 @@ int	ft_valid_f_data(t_map *map)
 		if (i == 0)
 		{
 			if (f[i] != 'F')
-				return (error("should start with F\n"));
+				return (0);
 			i++;
 		}
+		if (f[1] != ' ')
+			return (0);
 		if (!ft_check_valid_num(f, i))
 			return (0);
 		i = ft_check_valid_num(f, i);
@@ -46,9 +48,11 @@ int	ft_valid_c_data(t_map *map)
 		if (i == 0)
 		{
 			if (c[i] != 'C')
-				return (error("should start with C\n"));
+				return (0);
 		i++;
 		}
+		if (c[1] != ' ')
+			return (0);
 		if (!ft_check_valid_num(c, i))
 			return (0);
 		i = ft_check_valid_num(c, i);

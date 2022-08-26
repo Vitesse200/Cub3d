@@ -6,7 +6,7 @@
 #    By: jhermon- <jhermon-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/10 19:52:35 by jhermon-          #+#    #+#              #
-#    Updated: 2022/08/26 10:49:51 by jhermon-         ###   ########.fr        #
+#    Updated: 2022/08/26 11:49:35 by jhermon-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,7 @@ exe: all
 		./$(NAME) map.cub
 
 #norm: 
-#		norminette -d so_long.c open_map.c check_map.c check_map_utils.c error.c get_next_line.c get_next_line_utils.c window.c print_map.c ft_itoa.c hooks.c draw_player.c so_long.h gnl.h
+#		norminette -d open_map.c check_map.c check_map_utils.c error.c get_next_line.c get_next_line_utils.c window.c print_map.c ft_itoa.c hooks.c draw_player.c so_long.h gnl.h
 
 clean: 
 		rm -f $(OBJ)
