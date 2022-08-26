@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Image_generator.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jhermon- <jhermon-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/05 17:45:56 by jhermon-          #+#    #+#             */
+/*   Updated: 2022/08/05 18:02:16 by jhermon-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	my_mlx_pixel_put(t_winp *data, int x, int y, int color)
@@ -12,17 +24,7 @@ void	my_mlx_pixel_put(t_winp *data, int x, int y, int color)
 	}
 }
 
-//t_texture	direction_texture(int dir, t_map *map)
-//{
-//    dst = NULL;
-//    if (y < WINDOW_H && x < WINDOW_W && x >= 0 && y >= 0)
-//    {
-//        dst = data->addr_canva + (y * (data->size_line / 4) + x);
-//        *dst = color;
-//    }
-//}
-
-t_texture    direction_texture(int dir, t_map *map)
+t_texture	direction_texture(int dir, t_map *map)
 {
 	if (dir == 1)
 		return (*map->north);

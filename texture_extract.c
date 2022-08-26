@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   texture_extract.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jhermon- <jhermon-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/05 18:08:51 by jhermon-          #+#    #+#             */
+/*   Updated: 2022/08/05 18:16:30 by jhermon-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	get_texture_path(char *extract, t_texture *text)
@@ -23,11 +35,9 @@ int	valid_text(char *path)
 	int	file;
 
 	file = open(path, O_WRONLY);
-	if (file != -1)
-		printf("FILE OK\n");
-	else
-		return (error("XPM FILE not OK\n"));
-    close (file);
+	if (file == -1)
+		return (error("Texture file issue\n"));
+	close (file);
 	return (1);
 }
 

@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jhermon- <jhermon-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/26 11:53:54 by jhermon-          #+#    #+#             */
+/*   Updated: 2022/08/26 11:53:55 by jhermon-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	ft_print_map(t_map *map)
 {
-	int i, j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (map->map[i])
@@ -22,7 +35,8 @@ void	ft_print_map(t_map *map)
 
 void	ft_print_player_map(char **map)
 {
-	int i, j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (map[i])
@@ -47,19 +61,14 @@ int	main(int argc, char **argv)
 	if (!ft_valid_file(argv[1]))
 		return (error("expecting .cub file type\n"));
 	ft_get_map(&map, argv[1]);
-	if (!ft_valid_file(argv[1]))
-		return (error("expecting .cub file type\n"));
-    if (!ft_extract(&map))
-        return (0);
-	ft_get_map(&map, argv[1]);
-    if (!map.map)
-        return (error("No map to extract"));
+	if (!ft_extract(&map))
+		return (0);
+	if (!map.map)
+		return (error("no map to extract"));
 	if (!ft_check_map(&map))
-		return (error("map is not valid\n"));
-    if (!ft_extract_data(&map))
-        return (error("Expected rgb data\n"));
-//    ft_free_map(map.map);
-//    ft_free_map(map.play_map);
+		return (error("map not valid\n"));
+	if (!ft_extract_data(&map))
+		return (error("rgb data issue\n"));
 	window_manager(&map);
 	return (0);
 }

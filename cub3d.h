@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgaillar <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: jhermon- <jhermon-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 16:15:24 by lgaillar          #+#    #+#             */
-/*   Updated: 2022/08/02 16:15:39 by lgaillar         ###   ########.fr       */
+/*   Updated: 2022/08/26 10:30:59 by jhermon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,69 +104,73 @@ typedef struct s_map
 	char		**play_map;
 	int			*tab_floor;
 	int			*tab_ceiling;
-    char        *tmp;
+	char		*tmp;
 	t_rgbhex	floor_rgb;
 	t_rgbhex	ceiling_rgb;
 	t_winp		winp;
 }	t_map;
 
-double	tan_degrees(double angle);
-void	malloc_text(t_map *map);
-void	my_mlx_pixel_put(t_winp *data, int x, int y, int color);
-void	window_manager(t_map *map);
-void	*null_error(char *message);
-int		error(char *message);
-char	*ft_save(char *save);
-char	*ft_get_line(char *save);
-char	*ft_read_and_save(int fd, char *save);
-char	*get_next_line(int fd);
-void	ft_get_map(t_map *map, char *file);
-int		ft_valid_file(char *file);
-t_map   ft_alloc_lines(char *file, t_map *game);
-int		ft_file_linecount(char *file);
-int		ft_file_type(char *s, char *end);
-void	draw_map(t_winp *win, t_map *map);
-int		ft_extract(t_map *map);
-int		ft_check_map(t_map *struc_map);
-int		check_valid_char(char **map);
-int		player_pos(t_map *s_map, char **map);
-int		ft_find_player(int count, char **map, int y, t_map *s_map);
-void	ft_print_player_map(char **map);
-int		ft_extract_F_data(t_map *map);
-int		ft_extract_C_data(t_map *map);
-int		ft_extract_data(t_map *map);
-int		ft_check_rgb(int *tab);
-int		ft_isnum(int c);
-int		extract_rgb(int i, char *rgb, char t, t_map *map, int count);
-int		ft_check_valid_num(char *f, int i);
-int		get_max_value(t_map *s_map);
-int		get_max_value_play(t_map *s_map);
-char	**ft_malloc_play_map(t_map *s_map);
-void	init_map(t_map *map);
-int		ft_match(char *c, t_map *map);
-double	cos_degrees(double angle);
-int		convert_hexa(t_map *map);
-int		ft_close(void);
-int		ft_input(int key, void *param);
-void	ft_move_r(t_vector *game, t_map *map);
-void	ft_move_l(t_vector *game, t_map *map);
-void	ft_move_up(t_vector *game, t_map *map);
-void	ft_move_d(t_vector *game, t_map *map);
-int		init_all_text(t_map *map);
-int		ft_texture_data(t_map *map);
-t_wall	*find_wall_distance(t_map map, float cos);
-float	find_hor_wall(t_map map, t_wall *wall);
-float	find_vert_wall(t_map map, t_wall *wall);
-float	wall_find(t_map map, t_intersection inter, t_wall *wall);
-int		check_inbound(t_map map, t_intersection inter);
-void	img_put(t_winp *winp, int x, t_wall *wall, t_map *map, t_vector *xpm);
-t_texture    direction_texture(int dir, t_map *map);
-int	    jo_pixel_color(float x, int y, t_texture texture);
-void    ft_free_all(t_map *map);
-void    ft_free_map(char **map);
-char	*ft_next(char *s, int c);
-char	*ft_strljoin(char **s1, char *s2, int l);
-int		ft_strchri(char *s, int c);
-char	*gnl(int fd);
+double		tan_degrees(double angle);
+void		malloc_text(t_map *map);
+void		my_mlx_pixel_put(t_winp *data, int x, int y, int color);
+void		window_manager(t_map *map);
+void		*null_error(char *message);
+int			error(char *message);
+char		*ft_save(char *save);
+char		*ft_get_line(char *save);
+char		*ft_read_and_save(int fd, char *save);
+char		*get_next_line(int fd);
+void		ft_get_map(t_map *map, char *file);
+int			ft_valid_file(char *file);
+int			ft_file_linecount(char *file);
+int			ft_file_type(char *s, char *end);
+void		draw_map(t_winp *win, t_map *map);
+int			ft_extract(t_map *map);
+int			ft_check_map(t_map *struc_map);
+int			check_valid_char(char **map);
+int			player_pos(t_map *s_map, char **map);
+int			ft_find_player(int count, char **map, int y, t_map *s_map);
+void		ft_print_player_map(char **map);
+int			ft_extract_f_data(t_map *map);
+int			ft_extract_c_data(t_map *map);
+int			ft_extract_data(t_map *map);
+int			ft_check_rgb(int *tab);
+int			ft_isnum(int c);
+int			extract_rgb(int i, char *rgb, char t, t_map *map);
+int			ft_check_valid_num(char *f, int i);
+int			get_max_value(t_map *s_map);
+int			get_max_value_play(t_map *s_map);
+char		*ft_malloc_play_map(t_map *s_map);
+void		init_map(t_map *map);
+int			ft_match(char *c, t_map *map);
+double		cos_degrees(double angle);
+int			convert_hexa(t_map *map);
+int			ft_close(void);
+int			ft_input(int key, void *param);
+void		ft_move_r(t_vector *game, t_map *map);
+void		ft_move_l(t_vector *game, t_map *map);
+void		ft_move_up(t_vector *game, t_map *map);
+void		ft_move_d(t_vector *game, t_map *map);
+int			init_all_text(t_map *map);
+int			ft_texture_data(t_map *map);
+float		find_hor_wall(t_map map, t_wall *wall);
+float		find_vert_wall(t_map map, t_wall *wall);
+float		wall_find(t_map map, t_intersection inter, t_wall *wall);
+int			check_inbound(t_map map, t_intersection inter);
+void		img_put(t_winp *winp, int x, t_wall *wall, t_map *map, t_vector *xpm);
+int			jo_pixel_color(float x, int y, t_texture texture);
+void		ft_free_all(t_map *map);
+void		ft_free_map(char **map);
+char		*ft_next(char *s, int c);
+char		*ft_strljoin(char **s1, char *s2, int l);
+int			ft_strchri(char *s, int c);
+char		*gnl(int fd);
+int			check_borders(t_map map);
+int			check_last_border(t_map map, int y, int x);
+int			*ft_tab(char t, t_map *map);
+void		init_window(t_map *map);
+t_wall		*find_wall_distance(t_map map, float cos);
+t_map		ft_alloc_lines(char *file, t_map *game);
+t_texture	direction_texture(int dir, t_map *map);
 
 #endif
