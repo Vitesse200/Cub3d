@@ -6,7 +6,7 @@
 #    By: jhermon- <jhermon-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/10 19:52:35 by jhermon-          #+#    #+#              #
-#    Updated: 2022/08/26 15:26:44 by jhermon-         ###   ########.fr        #
+#    Updated: 2022/08/26 15:48:23 by jhermon-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRC = cub3d.c\
 			check_data_hexa.c\
 			window.c\
 			support.c\
-      Image_generator.c\
+      image_generator.c\
       Raycasting_finished_23_06_2022.c\
 			hooks.c\
 			hooks_move.c\
