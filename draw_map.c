@@ -31,17 +31,14 @@ void	draw_2(t_winp *win, t_map *map, t_vector xpm)
 {
 	t_wall	*wall;
 	float	cos;
-	int		i;
 
-	i = 0;
 	map->ray = 0;
 	cos = -30;
 	while (map->ray < WINDOW_W)
 	{
 		wall = find_wall_distance(*map, cos);
-		if (i != wall->direction || wall->color == 0)
+		if (0 != wall->direction || wall->color == 0)
 			xpm.x = 0;
-		i = wall->direction;
 		xpm.x = wall->color;
 		xpm.y = 0;
 		img_put(win, wall, map, &xpm);
@@ -50,6 +47,8 @@ void	draw_2(t_winp *win, t_map *map, t_vector xpm)
 		map->player.angle -= ANGLE_DIFF;
 		if (map->player.angle < 0)
 			map->player.angle += 360;
+		if (map->player.angle > 360)
+			map->player.angle -= 360;
 		cos += ANGLE_DIFF;
 		map->ray++;
 	}
